@@ -13,14 +13,14 @@ public class Game1v1{
             strP1Choice = kb.readLine();
         }catch(Exception e){
             System.out.println("Error");
-            strP1Choice = null;
+            strP1Choice = "Rock";
         }
         System.out.println("P2, Pick one: Rock, Paper, Scissors, Lizard, Spock");
         try{
             strP2Choice = kb.readLine();
         }catch(Exception e){
             System.out.println("Error");
-            strP2Choice = null;
+            strP2Choice = "Rock";
         }
 
         if(strP1Choice.equals(strP2Choice)){
@@ -45,14 +45,8 @@ public class Game1v1{
             System.out.println("P1 Wins");
         }else if(strP1Choice.equals("Spock") && (strP2Choice.equals("Paper") || strP2Choice.equals("Lizard"))){
             System.out.println("P2 Wins");
-        }else if(strP1Choice == null && strP2Choice != null){
-            System.out.println("P1 chose nothing, P2 Wins");
-        }else if(strP2Choice == null && strP1Choice != null){
-            System.out.println("P2 chose nothing, P1 Wins");
         }else{
-            System.out.println("Both players chose nothing, TIE");
-        }
-
+            System.out.println("Someone chose nothing");
         }
     }
 }
