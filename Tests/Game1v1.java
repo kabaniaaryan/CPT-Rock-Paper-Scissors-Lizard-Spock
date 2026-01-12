@@ -8,18 +8,18 @@ public class Game1v1{
         BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
         String strP1Choice;
         String strP2Choice;
-        System.out.println("P1, Pick one: Rock, Paper, Scissors, Lizard, Spock");
+        System.out.println("P1, Pick one: rock, paper, scissors, lizard, spock:");
         try{
             strP1Choice = kb.readLine();
         }catch(Exception e){
-            System.out.println("Error");
+            System.out.println("Error, selecting Rock");
             strP1Choice = "Rock";
         }
-        System.out.println("P2, Pick one: Rock, Paper, Scissors, Lizard, Spock");
+        System.out.println("P2, Pick one: rock, paper, scissors, lizard, spock:");
         try{
             strP2Choice = kb.readLine();
         }catch(Exception e){
-            System.out.println("Error");
+            System.out.println("Error, selecting Rock");
             strP2Choice = "Rock";
         }
 
