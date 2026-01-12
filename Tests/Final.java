@@ -18,8 +18,9 @@ public class Final extends JPanel{
 
     //Constructor
     public Final(){
+        super();
         InputStream imageStream = null;
-        imageStream = this.getClass().getResourceAsStream("Final.png");
+        imageStream = this.getClass().getResourceAsStream("Finals.png");
         try{
             fImage = ImageIO.read(imageStream);
         }catch(IOException e){

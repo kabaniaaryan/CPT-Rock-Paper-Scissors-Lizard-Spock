@@ -22,6 +22,7 @@ public class SemiFinal extends JPanel{
 
     //Constructor
     public SemiFinal(){
+        super();
         InputStream imageStream = null;
         imageStream = this.getClass().getResourceAsStream("Semis.png");
         try{

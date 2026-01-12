@@ -21,6 +21,7 @@ public class QuarterFinal extends JPanel{
 
     //Constructor
     public QuarterFinal(){
+        super();
         InputStream imageStream = null;
         imageStream = this.getClass().getResourceAsStream("Quarters.png");
         try{
