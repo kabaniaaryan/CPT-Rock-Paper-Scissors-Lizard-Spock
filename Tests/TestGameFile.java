@@ -13,6 +13,8 @@ public class TestGameFile implements ActionListener{
     JButton clientButton = new JButton("Join Game");
     JTextField ipField = new JTextField();
     JButton startButton = new JButton("Start Game");
+    JTextArea chatArea = new JTextArea();
+    JScrollPane theScroll = new JScrollPane(chatArea);
     SuperSocketMaster ssm = null;
 
     // Methods
@@ -23,13 +25,20 @@ public class TestGameFile implements ActionListener{
             serverButton.setVisible(false);
             startButton.setVisible(true);
             clientButton.setVisible(false);
-            ipField.setVisible(false);
+            //chatArea.setVisible(true);
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
             System.out.println("Joining Game");
+            serverButton.setVisible(false);
+            clientButton.setVisible(false);
+            //chatArea.setVisible(true);
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
+        }else if(evt.getSource() == ipField){
+            String strMessage = ipField.getText();
+            ssm.sendText(strMessage);
+            chatArea.append(strMessage + "\n");
         }
     }
 
@@ -58,6 +67,9 @@ public class TestGameFile implements ActionListener{
         startButton.setLocation(900, 500);
         startButton.setVisible(false);
         startButton.addActionListener(this);
+
+        chatArea.setSize(200, 100);
+        chatArea.setLocation(900, 300);
 
         thePanel.add(serverButton);
         thePanel.add(clientButton);
