@@ -9,6 +9,7 @@ public class TestGameFile implements ActionListener{
     // Properties
     JFrame theFrame = new JFrame("Rock Paper Scissors Lizard Spock");
     HomeScreen thePanel = new HomeScreen();
+    QuarterFinal qfPanel = new QuarterFinal();
     JButton serverButton = new JButton("Host Game");
     JButton clientButton = new JButton("Join Game");
     JTextField ipField = new JTextField();
@@ -35,6 +36,10 @@ public class TestGameFile implements ActionListener{
             ssm.connect();
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
+            ssm.sendText("START_GAME");
+            thePanel.setVisible(false);
+            theFrame.setContentPane(qfPanel);
+            theFrame.pack();
         }else if(evt.getSource() == ipField){
             String strMessage = ipField.getText();
             ssm.sendText(strMessage);
@@ -43,11 +48,17 @@ public class TestGameFile implements ActionListener{
         }else if(evt.getSource() == ssm){
             String strMessage = ssm.readText();
             chatArea.append(strMessage + "\n");
+            if(strMessage.equals("START_GAME")){
+                thePanel.setVisible(false);
+                theFrame.setContentPane(qfPanel);
+                theFrame.pack();
+            }
         }
     }
 
     // Constructor
     public TestGameFile(){
+        // Frames & Panels
         thePanel.setPreferredSize(new Dimension(1280, 720));
         thePanel.setLayout(null);
         theFrame.setContentPane(thePanel);
@@ -55,6 +66,10 @@ public class TestGameFile implements ActionListener{
         theFrame.pack();
         theFrame.setVisible(true);
 
+        qfPanel.setPreferredSize(new Dimension(1280, 720));
+        qfPanel.setLayout(null);
+
+        // Home Screen Components
         serverButton.setSize(680, 100);
         serverButton.setLocation(200, 500);
         serverButton.addActionListener(this);
@@ -81,6 +96,15 @@ public class TestGameFile implements ActionListener{
         thePanel.add(ipField);
         thePanel.add(startButton);
         thePanel.add(theScroll);
+
+        // Quarter Final Screen Components
+        // Chat Settings
+
+        // Semi Final Screen Components
+
+        // Final Screen Components
+
+        // Winner Screen Components
     }
 
     // Main Method
