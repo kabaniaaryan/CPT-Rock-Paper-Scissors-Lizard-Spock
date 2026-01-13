@@ -39,6 +39,9 @@ public class TestGameFile implements ActionListener{
             String strMessage = ipField.getText();
             ssm.sendText(strMessage);
             chatArea.append(strMessage + "\n");
+        }else if(evt.getSource() == ssm){
+            String strMessage = ssm.readText();
+            chatArea.append(strMessage + "\n");
         }
     }
 
@@ -68,13 +71,15 @@ public class TestGameFile implements ActionListener{
         startButton.setVisible(false);
         startButton.addActionListener(this);
 
-        chatArea.setSize(200, 100);
-        chatArea.setLocation(900, 300);
+        theScroll.setSize(200, 100);
+        theScroll.setLocation(900, 300);
+        chatArea.setEditable(false);
 
         thePanel.add(serverButton);
         thePanel.add(clientButton);
         thePanel.add(ipField);
         thePanel.add(startButton);
+        thePanel.add(theScroll);
     }
 
     // Main Method
