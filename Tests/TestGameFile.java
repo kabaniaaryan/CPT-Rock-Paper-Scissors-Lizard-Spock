@@ -25,14 +25,14 @@ public class TestGameFile implements ActionListener{
             serverButton.setVisible(false);
             startButton.setVisible(true);
             clientButton.setVisible(false);
-            //chatArea.setVisible(true);
+            ssm.connect();
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
             System.out.println("Joining Game");
             serverButton.setVisible(false);
             clientButton.setVisible(false);
-            //chatArea.setVisible(true);
+            ssm.connect();
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
         }else if(evt.getSource() == ipField){
