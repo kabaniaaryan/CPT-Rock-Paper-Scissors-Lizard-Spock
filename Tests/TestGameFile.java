@@ -39,6 +39,7 @@ public class TestGameFile implements ActionListener{
             String strMessage = ipField.getText();
             ssm.sendText(strMessage);
             chatArea.append(strMessage + "\n");
+            ipField.setText("");
         }else if(evt.getSource() == ssm){
             String strMessage = ssm.readText();
             chatArea.append(strMessage + "\n");
