@@ -1,5 +1,6 @@
 package Tests;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,9 @@ public class QuarterFinal extends JPanel{
     
     //Properties
     BufferedImage qfImage;
+    JFrame theFrame = new JFrame("Quarter Finals");
+    JPanel thePanel = new JPanel();
+
 
     //Methods
     public void paintComponent(Graphics g){
