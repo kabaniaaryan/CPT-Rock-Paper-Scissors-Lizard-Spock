@@ -145,7 +145,7 @@ public class TestGameFile implements ActionListener{
             System.out.println(ssm.readText());
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
-            ssm.sendText("START_GAME");
+            ssm.sendText("GAME_START");
             thePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
@@ -157,7 +157,7 @@ public class TestGameFile implements ActionListener{
         }else if(evt.getSource() == ssm){
             System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
-            if(strMessage.equals("START_GAME")){
+            if(strMessage.equals("GAME_START")){
                 thePanel.setVisible(false);
             }else{
                 chatArea.append(strMessage + "\n");

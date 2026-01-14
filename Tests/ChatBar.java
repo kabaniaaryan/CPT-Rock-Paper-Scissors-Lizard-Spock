@@ -19,8 +19,12 @@ public class ChatBar implements ActionListener{
     JScrollPane theScroll = new JScrollPane(chatArea);
     SuperSocketMaster ssm = null;
     int intPNumber = 0;
+    int intPNumberTemp = 0;
     String strName = "";
     int intPlayerCount = 0;
+    boolean blnIsHost = false;
+    boolean blnHostPass = false;
+    boolean blnNAssigned = false;
 
     // Methods
     public void actionPerformed(ActionEvent evt) {
@@ -32,9 +36,17 @@ public class ChatBar implements ActionListener{
             clientButton.setVisible(false);
             chatArea.setEditable(true);
             ssm.connect();
-            //intPNumber = 1;
-            //strName = "P"+intPNumber;
-            //System.out.println(strName+" connected");
+            blnIsHost = true;
+            blnHostPass = true;
+            blnNAssigned = true;
+            intPlayerCount = 1;
+            intPNumber = 1;
+            intPNumberTemp = 2;
+            strName = "[P"+intPNumber+"]";
+            System.out.println(strName+" connected");
+            ssm.sendText(strName+" has connected");
+            chatArea.append(strName+" has connected" + "\n");
+            chatArea.setEditable(false);
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -42,6 +54,7 @@ public class ChatBar implements ActionListener{
             serverButton.setVisible(false);
             clientButton.setVisible(false);
             ssm.connect();
+            ssm.sendText("SERVER_NEW_PLAYER");
             //intPNumber = Integer.parseInt(ssm.readText());
             //intPNumber++;
             //strName = "P"+intPNumber;
@@ -49,22 +62,28 @@ public class ChatBar implements ActionListener{
             //ssm.sendText(intPNumber+"");
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
-            ssm.sendText("START_GAME");
+            ssm.sendText("GAME_START");
             homePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
         }else if(evt.getSource() == messageField){
             String strMessage = messageField.getText();
-            ssm.sendText(strMessage);
+            ssm.sendText(intPNumberTemp + " " + strMessage);
             chatArea.append(strMessage + "\n");
             messageField.setText("");
         }else if(evt.getSource() == ssm){
             System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
-            if(strMessage.equals("START_GAME")){
+            if(strMessage.equals("GAME_START")){
                 homePanel.setVisible(false);
                 theFrame.setContentPane(qfPanel);
                 theFrame.pack();
+            }else if(strMessage.equals("SERVER_NEW_PLAYER")){
+                if(blnIsHost == true){
+                    ssm.sendText(intPNumberTemp+"");
+                }
+            }else if(blnNAssigned == false){
+                intPNumber = Integer.parseInt(strMessage);
             }else{
                 chatArea.append(strMessage + "\n");
             }
