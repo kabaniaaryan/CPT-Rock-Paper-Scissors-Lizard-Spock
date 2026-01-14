@@ -95,8 +95,8 @@ public class TestGameFile implements ActionListener{
     JButton Rp7SFButton = new JButton("ROCK");
     JButton Pp7SFButton = new JButton("PAPER");
     JButton Cp7SFButton = new JButton("SCISSORS");
-    JButton Lp8SFButton = new JButton("LIZARD");
-    JButton Sp8SFButton = new JButton("SPOCK");
+    JButton Lp7SFButton = new JButton("LIZARD");
+    JButton Sp7SFButton = new JButton("SPOCK");
     // Buttons for Finals
     JButton Rp1FButton = new JButton("ROCK");
     JButton Pp1FButton = new JButton("PAPER");
@@ -367,10 +367,69 @@ public class TestGameFile implements ActionListener{
         tempButton2.addActionListener(this);
 
         //p1 buttons
+        Rp1SFButton.setSize(100,35);
+        Rp1SFButton.setLocation(100,270);
+        sfPanel.add(Rp1SFButton);
+        Pp1SFButton.setSize(100,35);
+        Pp1SFButton.setLocation(100,315);
+        sfPanel.add(Pp1SFButton);
+        Cp1SFButton.setSize(100,35);
+        Cp1SFButton.setLocation(225,270);
+        sfPanel.add(Cp1SFButton);
+        Lp1SFButton.setSize(100,35);
+        Lp1SFButton.setLocation(225,315);
+        sfPanel.add(Lp1SFButton);
+        Sp1SFButton.setSize(100,35);
+        Sp1SFButton.setLocation(350,315);
+        sfPanel.add(Sp1SFButton);
         //p3 buttons
+        Rp3SFButton.setSize(100,35);
+        Rp3SFButton.setLocation(650,270);
+        sfPanel.add(Rp3SFButton);
+        Pp3SFButton.setSize(100,35);
+        Pp3SFButton.setLocation(525,315);
+        sfPanel.add(Pp3SFButton);
+        Cp3SFButton.setSize(100,35);
+        Cp3SFButton.setLocation(775,270);
+        sfPanel.add(Cp3SFButton);
+        Lp3SFButton.setSize(100,35);
+        Lp3SFButton.setLocation(650,315);
+        sfPanel.add(Lp3SFButton);
+        Sp3SFButton.setSize(100,35);
+        Sp3SFButton.setLocation(775,315);
+        sfPanel.add(Sp3SFButton);
         //p5 buttons
+        Rp5SFButton.setSize(100,35);
+        Rp5SFButton.setLocation(100,560);
+        sfPanel.add(Rp5SFButton);
+        Pp5SFButton.setSize(100,35);
+        Pp5SFButton.setLocation(100,605);
+        sfPanel.add(Pp5SFButton);
+        Cp5SFButton.setSize(100,35);
+        Cp5SFButton.setLocation(225,560);
+        sfPanel.add(Cp5SFButton);
+        Lp5SFButton.setSize(100,35);
+        Lp5SFButton.setLocation(225,605);
+        sfPanel.add(Lp5SFButton);
+        Sp5SFButton.setSize(100,35);
+        Sp5SFButton.setLocation(350,605);
+        sfPanel.add(Sp5SFButton);
         //p7 buttons
-
+        Rp7SFButton.setSize(100,35);
+        Rp7SFButton.setLocation(650,560);
+        sfPanel.add(Rp7SFButton);
+        Pp7SFButton.setSize(100,35);
+        Pp7SFButton.setLocation(525,605);
+        sfPanel.add(Pp7SFButton);
+        Cp7SFButton.setSize(100,35);
+        Cp7SFButton.setLocation(775,560);
+        sfPanel.add(Cp7SFButton);
+        Lp7SFButton.setSize(100,35);
+        Lp7SFButton.setLocation(650,605);
+        sfPanel.add(Lp7SFButton);
+        Sp7SFButton.setSize(100,35);
+        Sp7SFButton.setLocation(775,605);
+        sfPanel.add(Sp7SFButton);
         // Final Screen Components
         fPanel.setPreferredSize(new Dimension(1280, 720));
         fPanel.setLayout(null);
@@ -380,8 +439,37 @@ public class TestGameFile implements ActionListener{
         tempButton3.addActionListener(this);
 
         //p1 buttons
+        Rp1FButton.setSize(100,35);
+        Rp1FButton.setLocation(225,270);
+        fPanel.add(Rp1FButton);
+        Pp1FButton.setSize(100,35);
+        Pp1FButton.setLocation(225,315);
+        fPanel.add(Pp1FButton);
+        Cp1FButton.setSize(100,35);
+        Cp1FButton.setLocation(225,360);
+        fPanel.add(Cp1FButton);
+        Lp1FButton.setSize(100,35);
+        Lp1FButton.setLocation(225,405);
+        fPanel.add(Lp1FButton);
+        Sp1FButton.setSize(100,35);
+        Sp1FButton.setLocation(225,450);
+        fPanel.add(Sp1FButton);
         //p5 buttons
-
+        Rp5FButton.setSize(100,35);
+        Rp5FButton.setLocation(650,270);
+        fPanel.add(Rp5FButton);
+        Pp5FButton.setSize(100,35);
+        Pp5FButton.setLocation(650,315);
+        fPanel.add(Pp5FButton);
+        Cp5FButton.setSize(100,35);
+        Cp5FButton.setLocation(650,360);
+        fPanel.add(Cp5FButton);
+        Lp5FButton.setSize(100,35);
+        Lp5FButton.setLocation(650,405);
+        fPanel.add(Lp5FButton);
+        Sp5FButton.setSize(100,35);
+        Sp5FButton.setLocation(650,450);
+        fPanel.add(Sp5FButton);
         // Winner Screen Components
     }
 
