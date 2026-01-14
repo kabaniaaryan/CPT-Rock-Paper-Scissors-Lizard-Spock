@@ -9,7 +9,6 @@ public class TestGameFile implements ActionListener{
     // Properties
     JFrame theFrame = new JFrame("Rock Paper Scissors Lizard Spock");
     HomeScreen thePanel = new HomeScreen();
-    QuarterFinal qfPanel = new QuarterFinal();
     JButton serverButton = new JButton("Host Game");
     JButton clientButton = new JButton("Join Game");
     JTextField ipField = new JTextField();
@@ -19,6 +18,21 @@ public class TestGameFile implements ActionListener{
     SuperSocketMaster ssm = null;
     int intPNumber = 0;
     String strName = "";
+
+    // Game Panels
+    QuarterFinal qfPanel = new QuarterFinal();
+    SemiFinal sfPanel = new SemiFinal();
+    Final fPanel = new Final();
+    // Buttons For Quarter Finals
+    //Format for naming buttons (Player numbers)(Round)(First Letter of Option - Scissors is C)(Button)
+    JButton p1QFRButton = new JButton("ROCK");
+    // Buttons for Semi Finals
+    // Buttons for Finals
+
+    JButton tempButton1 = new JButton("TO SF");
+    JButton tempButton2 = new JButton("to F");
+    JButton tempButton3 = new JButton("to QF");
+
 
     // Methods
     public void actionPerformed(ActionEvent evt) {
@@ -63,11 +77,24 @@ public class TestGameFile implements ActionListener{
             String strMessage = ssm.readText();
             if(strMessage.equals("START_GAME")){
                 thePanel.setVisible(false);
-                theFrame.setContentPane(qfPanel);
-                theFrame.pack();
             }else{
                 chatArea.append(strMessage + "\n");
             }
+        }else if(evt.getSource() == tempButton1){
+            qfPanel.setVisible(false);
+            sfPanel.setVisible(true);
+            theFrame.setContentPane(sfPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == tempButton2){
+            sfPanel.setVisible(false);
+            fPanel.setVisible(true);
+            theFrame.setContentPane(fPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == tempButton3){
+            fPanel.setVisible(false);
+            qfPanel.setVisible(true);
+            theFrame.setContentPane(qfPanel);
+            theFrame.pack();
         }
     }
 
@@ -113,11 +140,26 @@ public class TestGameFile implements ActionListener{
         thePanel.add(theScroll);
 
         // Quarter Final Screen Components
-        // Chat Settings
-
+        qfPanel.setPreferredSize(new Dimension(1280, 720));
+        qfPanel.setLayout(null);
+        qfPanel.add(tempButton1);
+        tempButton1.setSize(200,100);
+        tempButton1.setLocation(900, 300);
+        tempButton1.addActionListener(this);
         // Semi Final Screen Components
-
+        sfPanel.setPreferredSize(new Dimension(1280, 720));
+        sfPanel.setLayout(null);
+        sfPanel.add(tempButton2);
+        tempButton2.setSize(200,100);
+        tempButton2.setLocation(900, 300);
+        tempButton2.addActionListener(this);
         // Final Screen Components
+        fPanel.setPreferredSize(new Dimension(1280, 720));
+        fPanel.setLayout(null);
+        fPanel.add(tempButton3);
+        tempButton3.setSize(200,100);
+        tempButton3.setLocation(900, 300);
+        tempButton3.addActionListener(this);
 
         // Winner Screen Components
     }
