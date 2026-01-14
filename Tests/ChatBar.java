@@ -50,10 +50,10 @@ public class ChatBar implements ActionListener{
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
-            System.out.println("Joining Game");
             serverButton.setVisible(false);
             clientButton.setVisible(false);
             ssm.connect();
+            System.out.println("Joining Game");
             ssm.sendText("SERVER_NEW_PLAYER");
             //intPNumber = Integer.parseInt(ssm.readText());
             //intPNumber++;
@@ -68,8 +68,8 @@ public class ChatBar implements ActionListener{
             theFrame.pack();
         }else if(evt.getSource() == messageField){
             String strMessage = messageField.getText();
-            ssm.sendText(intPNumberTemp + " " + strMessage);
-            chatArea.append(strMessage + "\n");
+            ssm.sendText("[" + intPNumberTemp + "] " + strMessage);
+            chatArea.append("[" + intPNumberTemp + "] " + strMessage + "\n");
             messageField.setText("");
         }else if(evt.getSource() == ssm){
             System.out.println("MESSAGE RECEIVED");
@@ -84,6 +84,7 @@ public class ChatBar implements ActionListener{
                 }
             }else if(blnNAssigned == false){
                 intPNumber = Integer.parseInt(strMessage);
+                blnNAssigned = true;
             }else{
                 chatArea.append(strMessage + "\n");
             }
