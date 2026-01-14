@@ -24,11 +24,93 @@ public class TestGameFile implements ActionListener{
     SemiFinal sfPanel = new SemiFinal();
     Final fPanel = new Final();
     // Buttons For Quarter Finals
-    //Format for naming buttons (Player numbers)(Round)(First Letter of Option - Scissors is C)(Button)
-    JButton p1QFRButton = new JButton("ROCK");
-    // Buttons for Semi Finals
-    // Buttons for Finals
+    //Format for naming buttons (First Letter of Option - Scissors is C)(Player numbers)(Round)(Button)
+    JButton Rp1QFButton = new JButton("ROCK");
+    JButton Pp1QFButton = new JButton("PAPER");
+    JButton Cp1QFButton = new JButton("SCISSORS");
+    JButton Lp1QFButton = new JButton("LIZARD");
+    JButton Sp1QFButton = new JButton("SPOCK");
 
+    JButton Rp2QFButton = new JButton("ROCK");
+    JButton Pp2QFButton = new JButton("PAPER");
+    JButton Cp2QFButton = new JButton("SCISSORS");
+    JButton Lp2QFButton = new JButton("LIZARD");
+    JButton Sp2QFButton = new JButton("SPOCK");
+
+    JButton Rp3QFButton = new JButton("ROCK");
+    JButton Pp3QFButton = new JButton("PAPER");
+    JButton Cp3QFButton = new JButton("SCISSORS");
+    JButton Lp3QFButton = new JButton("LIZARD");
+    JButton Sp3QFButton = new JButton("SPOCK");
+
+    JButton Rp4QFButton = new JButton("ROCK");
+    JButton Pp4QFButton = new JButton("PAPER");
+    JButton Cp4QFButton = new JButton("SCISSORS");
+    JButton Lp4QFButton = new JButton("LIZARD");
+    JButton Sp4QFButton = new JButton("SPOCK");
+
+    JButton Rp5QFButton = new JButton("ROCK");
+    JButton Pp5QFButton = new JButton("PAPER");
+    JButton Cp5QFButton = new JButton("SCISSORS");
+    JButton Lp5QFButton = new JButton("LIZARD");
+    JButton Sp5QFButton = new JButton("SPOCK");
+
+    JButton Rp6QFButton = new JButton("ROCK");
+    JButton Pp6QFButton = new JButton("PAPER");
+    JButton Cp6QFButton = new JButton("SCISSORS");
+    JButton Lp6QFButton = new JButton("LIZARD");
+    JButton Sp6QFButton = new JButton("SPOCK");
+
+    JButton Rp7QFButton = new JButton("ROCK");
+    JButton Pp7QFButton = new JButton("PAPER");
+    JButton Cp7QFButton = new JButton("SCISSORS");
+    JButton Lp7QFButton = new JButton("LIZARD");
+    JButton Sp7QFButton = new JButton("SPOCK");
+
+    JButton Rp8QFButton = new JButton("ROCK");
+    JButton Pp8QFButton = new JButton("PAPER");
+    JButton Cp8QFButton = new JButton("SCISSORS");
+    JButton Lp8QFButton = new JButton("LIZARD");
+    JButton Sp8QFButton = new JButton("SPOCK");
+
+    // Buttons for Semi Finals
+    JButton Rp1SFButton = new JButton("ROCK");
+    JButton Pp1SFButton = new JButton("PAPER");
+    JButton Cp1SFButton = new JButton("SCISSORS");
+    JButton Lp1SFButton = new JButton("LIZARD");
+    JButton Sp1SFButton = new JButton("SPOCK");
+
+    JButton Rp3SFButton = new JButton("ROCK");
+    JButton Pp3SFButton = new JButton("PAPER");
+    JButton Cp3SFButton = new JButton("SCISSORS");
+    JButton Lp3SFButton = new JButton("LIZARD");
+    JButton Sp3SFButton = new JButton("SPOCK");
+
+    JButton Rp5SFButton = new JButton("ROCK");
+    JButton Pp5SFButton = new JButton("PAPER");
+    JButton Cp5SFButton = new JButton("SCISSORS");
+    JButton Lp5SFButton = new JButton("LIZARD");
+    JButton Sp5SFButton = new JButton("SPOCK");
+
+    JButton Rp7SFButton = new JButton("ROCK");
+    JButton Pp7SFButton = new JButton("PAPER");
+    JButton Cp7SFButton = new JButton("SCISSORS");
+    JButton Lp8SFButton = new JButton("LIZARD");
+    JButton Sp8SFButton = new JButton("SPOCK");
+    // Buttons for Finals
+    JButton Rp1FButton = new JButton("ROCK");
+    JButton Pp1FButton = new JButton("PAPER");
+    JButton Cp1FButton = new JButton("SCISSORS");
+    JButton Lp1FButton = new JButton("LIZARD");
+    JButton Sp1FButton = new JButton("SPOCK");
+
+    JButton Rp5FButton = new JButton("ROCK");
+    JButton Pp5FButton = new JButton("PAPER");
+    JButton Cp5FButton = new JButton("SCISSORS");
+    JButton Lp5FButton = new JButton("LIZARD");
+    JButton Sp5FButton = new JButton("SPOCK");
+
+    //temp buttons
     JButton tempButton1 = new JButton("TO SF");
     JButton tempButton2 = new JButton("to F");
     JButton tempButton3 = new JButton("to QF");
@@ -146,6 +228,136 @@ public class TestGameFile implements ActionListener{
         tempButton1.setSize(200,100);
         tempButton1.setLocation(900, 300);
         tempButton1.addActionListener(this);
+
+        //p1 buttons
+        Rp1QFButton.setSize(100,35);
+        Rp1QFButton.setLocation(100,125);
+        qfPanel.add(Rp1QFButton);
+        Pp1QFButton.setSize(100,35);
+        Pp1QFButton.setLocation(100,170);
+        qfPanel.add(Pp1QFButton);
+        Cp1QFButton.setSize(100,35);
+        Cp1QFButton.setLocation(225,125);
+        qfPanel.add(Cp1QFButton);
+        Lp1QFButton.setSize(100,35);
+        Lp1QFButton.setLocation(225,170);
+        qfPanel.add(Lp1QFButton);
+        Sp1QFButton.setSize(100,35);
+        Sp1QFButton.setLocation(350,170);
+        qfPanel.add(Sp1QFButton);
+        //p2 buttons
+        Rp2QFButton.setSize(100,35);
+        Rp2QFButton.setLocation(650,125);
+        qfPanel.add(Rp2QFButton);
+        Pp2QFButton.setSize(100,35);
+        Pp2QFButton.setLocation(525,170);
+        qfPanel.add(Pp2QFButton);
+        Cp2QFButton.setSize(100,35);
+        Cp2QFButton.setLocation(775,125);
+        qfPanel.add(Cp2QFButton);
+        Lp2QFButton.setSize(100,35);
+        Lp2QFButton.setLocation(650,170);
+        qfPanel.add(Lp2QFButton);
+        Sp2QFButton.setSize(100,35);
+        Sp2QFButton.setLocation(775,170);
+        qfPanel.add(Sp2QFButton);
+        //p3 buttons
+        Rp3QFButton.setSize(100,35);
+        Rp3QFButton.setLocation(100,270);
+        qfPanel.add(Rp3QFButton);
+        Pp3QFButton.setSize(100,35);
+        Pp3QFButton.setLocation(100,315);
+        qfPanel.add(Pp3QFButton);
+        Cp3QFButton.setSize(100,35);
+        Cp3QFButton.setLocation(225,270);
+        qfPanel.add(Cp3QFButton);
+        Lp3QFButton.setSize(100,35);
+        Lp3QFButton.setLocation(225,315);
+        qfPanel.add(Lp3QFButton);
+        Sp3QFButton.setSize(100,35);
+        Sp3QFButton.setLocation(350,315);
+        qfPanel.add(Sp3QFButton);
+        //p4 buttons
+        Rp4QFButton.setSize(100,35);
+        Rp4QFButton.setLocation(650,270);
+        qfPanel.add(Rp4QFButton);
+        Pp4QFButton.setSize(100,35);
+        Pp4QFButton.setLocation(525,315);
+        qfPanel.add(Pp4QFButton);
+        Cp4QFButton.setSize(100,35);
+        Cp4QFButton.setLocation(775,270);
+        qfPanel.add(Cp4QFButton);
+        Lp4QFButton.setSize(100,35);
+        Lp4QFButton.setLocation(650,315);
+        qfPanel.add(Lp4QFButton);
+        Sp4QFButton.setSize(100,35);
+        Sp4QFButton.setLocation(775,315);
+        qfPanel.add(Sp4QFButton);
+        //p5 buttons
+        Rp5QFButton.setSize(100,35);
+        Rp5QFButton.setLocation(100,415);
+        qfPanel.add(Rp5QFButton);
+        Pp5QFButton.setSize(100,35);
+        Pp5QFButton.setLocation(100,460);
+        qfPanel.add(Pp5QFButton);
+        Cp5QFButton.setSize(100,35);
+        Cp5QFButton.setLocation(225,415);
+        qfPanel.add(Cp5QFButton);
+        Lp5QFButton.setSize(100,35);
+        Lp5QFButton.setLocation(225,460);
+        qfPanel.add(Lp5QFButton);
+        Sp5QFButton.setSize(100,35);
+        Sp5QFButton.setLocation(350,460);
+        qfPanel.add(Sp5QFButton);
+        //p6 buttons
+        Rp6QFButton.setSize(100,35);
+        Rp6QFButton.setLocation(650,415);
+        qfPanel.add(Rp6QFButton);
+        Pp6QFButton.setSize(100,35);
+        Pp6QFButton.setLocation(525,460);
+        qfPanel.add(Pp6QFButton);
+        Cp6QFButton.setSize(100,35);
+        Cp6QFButton.setLocation(775,415);
+        qfPanel.add(Cp6QFButton);
+        Lp6QFButton.setSize(100,35);
+        Lp6QFButton.setLocation(650,460);
+        qfPanel.add(Lp6QFButton);
+        Sp6QFButton.setSize(100,35);
+        Sp6QFButton.setLocation(775,460);
+        qfPanel.add(Sp6QFButton);
+        //p7 buttons
+        Rp7QFButton.setSize(100,35);
+        Rp7QFButton.setLocation(100,560);
+        qfPanel.add(Rp7QFButton);
+        Pp7QFButton.setSize(100,35);
+        Pp7QFButton.setLocation(100,605);
+        qfPanel.add(Pp7QFButton);
+        Cp7QFButton.setSize(100,35);
+        Cp7QFButton.setLocation(225,560);
+        qfPanel.add(Cp7QFButton);
+        Lp7QFButton.setSize(100,35);
+        Lp7QFButton.setLocation(225,605);
+        qfPanel.add(Lp7QFButton);
+        Sp7QFButton.setSize(100,35);
+        Sp7QFButton.setLocation(350,605);
+        qfPanel.add(Sp7QFButton);
+        //p8 buttons
+        Rp8QFButton.setSize(100,35);
+        Rp8QFButton.setLocation(650,560);
+        qfPanel.add(Rp8QFButton);
+        Pp8QFButton.setSize(100,35);
+        Pp8QFButton.setLocation(525,605);
+        qfPanel.add(Pp8QFButton);
+        Cp8QFButton.setSize(100,35);
+        Cp8QFButton.setLocation(775,560);
+        qfPanel.add(Cp8QFButton);
+        Lp8QFButton.setSize(100,35);
+        Lp8QFButton.setLocation(650,605);
+        qfPanel.add(Lp8QFButton);
+        Sp8QFButton.setSize(100,35);
+        Sp8QFButton.setLocation(775,605);
+        qfPanel.add(Sp8QFButton);
+
         // Semi Final Screen Components
         sfPanel.setPreferredSize(new Dimension(1280, 720));
         sfPanel.setLayout(null);
@@ -153,6 +365,12 @@ public class TestGameFile implements ActionListener{
         tempButton2.setSize(200,100);
         tempButton2.setLocation(900, 300);
         tempButton2.addActionListener(this);
+
+        //p1 buttons
+        //p3 buttons
+        //p5 buttons
+        //p7 buttons
+
         // Final Screen Components
         fPanel.setPreferredSize(new Dimension(1280, 720));
         fPanel.setLayout(null);
@@ -160,6 +378,9 @@ public class TestGameFile implements ActionListener{
         tempButton3.setSize(200,100);
         tempButton3.setLocation(900, 300);
         tempButton3.addActionListener(this);
+
+        //p1 buttons
+        //p5 buttons
 
         // Winner Screen Components
     }
