@@ -470,11 +470,12 @@ public class TestGameFile implements ActionListener{
         Sp5FButton.setSize(100,35);
         Sp5FButton.setLocation(650,450);
         fPanel.add(Sp5FButton);
+
         // Winner Screen Components
     }
 
     // Main Method
     public static void main(String[] args){
-        TestGameFile tgf = new TestGameFile();
+        new TestGameFile();
     }
 }
