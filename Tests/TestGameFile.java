@@ -33,7 +33,7 @@ public class TestGameFile implements ActionListener{
             //intPNumber = 1;
             //strName = "P"+intPNumber;
             //System.out.println(strName+" connected");
-            //ssm.sendText(intPNumber+"");
+            ssm.sendText("THIS IS A TEST");
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -46,6 +46,7 @@ public class TestGameFile implements ActionListener{
             //strName = "P"+intPNumber;
             //System.out.println(strName+" connected");
             //ssm.sendText(intPNumber+"");
+            System.out.println(ssm.readText());
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
             ssm.sendText("START_GAME");
