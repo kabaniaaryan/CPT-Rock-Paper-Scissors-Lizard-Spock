@@ -3,7 +3,6 @@ package Tests;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import javax.swing.event.*;
 
 public class ChatBar implements ActionListener{
     // Properties
@@ -138,6 +137,6 @@ public class ChatBar implements ActionListener{
 
     // Main Method
     public static void main(String[] args){
-        ChatBar CB = new ChatBar();
+        new ChatBar();
     }
 }
