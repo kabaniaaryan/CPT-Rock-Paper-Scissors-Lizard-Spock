@@ -22,9 +22,11 @@ public class ChatBar implements ActionListener{
     int intPNumberTemp = 0;
     String strName = "";
     int intPlayerCount = 0;
+    int intFinalPlayer = 0;
     boolean blnIsHost = false;
     boolean blnHostPass = false;
     boolean blnNAssigned = false;
+    boolean blnLastPlayer = false;
 
     // Methods
     public void actionPerformed(ActionEvent evt) {
@@ -34,7 +36,6 @@ public class ChatBar implements ActionListener{
             serverButton.setVisible(false);
             startButton.setVisible(true);
             clientButton.setVisible(false);
-            chatArea.setEditable(true);
             ssm.connect();
             blnIsHost = true;
             blnHostPass = true;
@@ -42,11 +43,7 @@ public class ChatBar implements ActionListener{
             intPlayerCount = 1;
             intPNumber = 1;
             intPNumberTemp = 2;
-            strName = "[P"+intPNumber+"]";
-            System.out.println(strName+" connected");
-            ssm.sendText(strName+" has connected");
-            chatArea.append(strName+" has connected" + "\n");
-            chatArea.setEditable(false);
+            strName = "[P1]";
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -54,37 +51,48 @@ public class ChatBar implements ActionListener{
             clientButton.setVisible(false);
             ssm.connect();
             System.out.println("Joining Game");
+            blnNAssigned = false;
+            blnLastPlayer = true;
             ssm.sendText("SERVER_NEW_PLAYER");
-            //intPNumber = Integer.parseInt(ssm.readText());
-            //intPNumber++;
-            //strName = "P"+intPNumber;
-            //System.out.println(strName+" connected");
-            //ssm.sendText(intPNumber+"");
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
-            ssm.sendText("GAME_START");
+            if(intPlayerCount % 2 == 0){
+                ssm.sendText("GAME_START_EVEN");
+            }else{
+                ssm.sendText("GAME_START_ODD");
+            }
             homePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
         }else if(evt.getSource() == messageField){
             String strMessage = messageField.getText();
-            ssm.sendText("[" + intPNumberTemp + "] " + strMessage);
-            chatArea.append("[" + intPNumberTemp + "] " + strMessage + "\n");
+            ssm.sendText("[" + intPNumber + "] " + strMessage);
+            chatArea.append("[" + intPNumber + "] " + strMessage + "\n");
             messageField.setText("");
         }else if(evt.getSource() == ssm){
-            System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
-            if(strMessage.equals("GAME_START")){
-                homePanel.setVisible(false);
-                theFrame.setContentPane(qfPanel);
-                theFrame.pack();
-            }else if(strMessage.equals("SERVER_NEW_PLAYER")){
+            if(strMessage.equals("SERVER_NEW_PLAYER")){
                 if(blnIsHost == true){
+                    intPNumberTemp++;
+                    intPlayerCount++;
                     ssm.sendText(intPNumberTemp+"");
+                }else{
+                    blnLastPlayer = false;
                 }
             }else if(blnNAssigned == false){
                 intPNumber = Integer.parseInt(strMessage);
                 blnNAssigned = true;
+            }else if(strMessage.equals("GAME_START_ODD")){
+                homePanel.setVisible(false);
+                theFrame.setContentPane(qfPanel);
+                theFrame.pack();
+            }else if(strMessage.equals("GAME_START_EVEN")){
+                if(blnLastPlayer == true){
+                    intPNumber = 2;
+                }
+                homePanel.setVisible(false);
+                theFrame.setContentPane(qfPanel);
+                theFrame.pack();
             }else{
                 chatArea.append(strMessage + "\n");
             }
