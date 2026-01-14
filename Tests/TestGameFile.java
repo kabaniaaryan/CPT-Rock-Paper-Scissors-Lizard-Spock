@@ -129,7 +129,6 @@ public class TestGameFile implements ActionListener{
             //intPNumber = 1;
             //strName = "P"+intPNumber;
             //System.out.println(strName+" connected");
-            ssm.sendText("THIS IS A TEST");
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -142,7 +141,6 @@ public class TestGameFile implements ActionListener{
             //strName = "P"+intPNumber;
             //System.out.println(strName+" connected");
             //ssm.sendText(intPNumber+"");
-            System.out.println(ssm.readText());
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
             ssm.sendText("GAME_START");
@@ -157,11 +155,11 @@ public class TestGameFile implements ActionListener{
         }else if(evt.getSource() == ssm){
             System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
-            if(strMessage.equals("GAME_START")){
+            /*if(strMessage.equals("GAME_START")){
                 thePanel.setVisible(false);
-            }else{
+            }else{*/
                 chatArea.append(strMessage + "\n");
-            }
+            //}
         }else if(evt.getSource() == tempButton1){
             qfPanel.setVisible(false);
             sfPanel.setVisible(true);
