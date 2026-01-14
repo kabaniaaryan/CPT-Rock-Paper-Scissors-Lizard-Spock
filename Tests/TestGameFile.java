@@ -30,10 +30,10 @@ public class TestGameFile implements ActionListener{
             clientButton.setVisible(false);
             chatArea.setEditable(true);
             ssm.connect();
-            intPNumber = 1;
-            strName = "P"+intPNumber;
-            System.out.println(strName+" connected");
-            ssm.sendText(intPNumber+"");
+            //intPNumber = 1;
+            //strName = "P"+intPNumber;
+            //System.out.println(strName+" connected");
+            //ssm.sendText(intPNumber+"");
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -41,11 +41,11 @@ public class TestGameFile implements ActionListener{
             serverButton.setVisible(false);
             clientButton.setVisible(false);
             ssm.connect();
-            intPNumber = Integer.parseInt(ssm.readText());
-            intPNumber++;
-            strName = "P"+intPNumber;
-            System.out.println(strName+" connected");
-            ssm.sendText(intPNumber+"");
+            //intPNumber = Integer.parseInt(ssm.readText());
+            //intPNumber++;
+            //strName = "P"+intPNumber;
+            //System.out.println(strName+" connected");
+            //ssm.sendText(intPNumber+"");
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
             ssm.sendText("START_GAME");
@@ -58,6 +58,7 @@ public class TestGameFile implements ActionListener{
             chatArea.append(strMessage + "\n");
             ipField.setText("");
         }else if(evt.getSource() == ssm){
+            System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
             if(strMessage.equals("START_GAME")){
                 thePanel.setVisible(false);
