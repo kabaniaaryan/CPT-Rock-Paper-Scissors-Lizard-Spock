@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
 import java.awt.Graphics;
 
 public class QuarterFinal extends JPanel{
