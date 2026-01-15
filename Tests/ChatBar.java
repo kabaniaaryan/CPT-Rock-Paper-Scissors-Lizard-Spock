@@ -49,6 +49,7 @@ public class ChatBar implements ActionListener{
             intPNumber = 1;
             intPNumberTemp = 2;
             strName = "[P1]";
+            ipField.setVisible(false);
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
@@ -59,6 +60,7 @@ public class ChatBar implements ActionListener{
             blnNAssigned = false;
             blnLastPlayer = true;
             ssm.sendText("SERVER_NEW_PLAYER");
+            ipField.setVisible(false);
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
             if(intPlayerCount % 2 == 0){
