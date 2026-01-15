@@ -6,17 +6,41 @@ import java.awt.event.*;
 
 public class TestGameFile implements ActionListener{
     // Properties
-    JFrame theFrame = new JFrame("Rock Paper Scissors Lizard Spock");
+    JFrame theFrame = new JFrame("GAME");
     HomeScreen thePanel = new HomeScreen();
     JButton serverButton = new JButton("Host Game");
     JButton clientButton = new JButton("Join Game");
-    JTextField ipField = new JTextField();
     JButton startButton = new JButton("Start Game");
+    JTextField ipField = new JTextField();
+
+    // Home Screen Chat Components
+    JTextField messageField = new JTextField();
     JTextArea chatArea = new JTextArea();
     JScrollPane theScroll = new JScrollPane(chatArea);
+    // Quarter Final Screen Chat Components
+    JTextField messageField2 = new JTextField();
+    JTextArea chatArea2 = new JTextArea();
+    JScrollPane theScroll2 = new JScrollPane(chatArea2);
+    // Semi Final Screen Chat Components
+    JTextField messageField3 = new JTextField();
+    JTextArea chatArea3 = new JTextArea();
+    JScrollPane theScroll3 = new JScrollPane(chatArea3);
+    // Final Screen Chat Components
+    JTextField messageField4 = new JTextField();
+    JTextArea chatArea4 = new JTextArea();
+    JScrollPane theScroll4 = new JScrollPane(chatArea4);
+
     SuperSocketMaster ssm = null;
     int intPNumber = 0;
+    int intPNumberTemp = 0;
     String strName = "";
+    int intPlayerCount = 0;
+    int intFinalPlayer = 0;
+    boolean blnIsHost = false;
+    boolean blnHostPass = false;
+    boolean blnNAssigned = false;
+    boolean blnLastPlayer = false;
+    boolean blnGameStarted = false;
 
     // Game Panels
     QuarterFinal qfPanel = new QuarterFinal();
@@ -123,42 +147,90 @@ public class TestGameFile implements ActionListener{
             serverButton.setVisible(false);
             startButton.setVisible(true);
             clientButton.setVisible(false);
-            chatArea.setEditable(true);
             ssm.connect();
-            //intPNumber = 1;
-            //strName = "P"+intPNumber;
-            //System.out.println(strName+" connected");
+            blnIsHost = true;
+            blnHostPass = true;
+            blnNAssigned = true;
+            intPlayerCount = 1;
+            intPNumber = 1;
+            intPNumberTemp = 2;
+            strName = "[P1]";
+            ipField.setVisible(false);
         }else if(evt.getSource() == clientButton){
             ssm = new SuperSocketMaster(ipField.getText(), 8765, this);
             ipField.setText("");
-            System.out.println("Joining Game");
             serverButton.setVisible(false);
             clientButton.setVisible(false);
             ssm.connect();
-            //intPNumber = Integer.parseInt(ssm.readText());
-            //intPNumber++;
-            //strName = "P"+intPNumber;
-            //System.out.println(strName+" connected");
-            //ssm.sendText(intPNumber+"");
+            System.out.println("Joining Game");
+            blnNAssigned = false;
+            blnLastPlayer = true;
+            ssm.sendText("SERVER_NEW_PLAYER");
+            ipField.setVisible(false);
         }else if(evt.getSource() == startButton){
             System.out.println("Starting Game");
-            ssm.sendText("GAME_START");
+            if(intPlayerCount % 2 == 0){
+                ssm.sendText("GAME_START_EVEN");
+            }else{
+                ssm.sendText("GAME_START_ODD");
+            }
             thePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
-        }else if(evt.getSource() == ipField){
-            String strMessage = ipField.getText();
-            ssm.sendText(strMessage);
-            chatArea.append(strMessage + "\n");
-            ipField.setText("");
+            blnGameStarted = true;
+        }else if(evt.getSource() == messageField){
+            String strMessage = messageField.getText();
+            ssm.sendText("[P" + intPNumber + "] " + strMessage);
+            chatArea.append("[P" + intPNumber + "] " + strMessage + "\n");
+            messageField.setText("");
+        }else if(evt.getSource() == messageField2){
+            String strMessage = messageField2.getText();
+            ssm.sendText("[P" + intPNumber + "] " + strMessage);
+            chatArea2.append("[P" + intPNumber + "] " + strMessage + "\n");
+            messageField2.setText("");
+        }else if((evt.getSource() == messageField3)){
+            String strMessage = messageField3.getText();
+            ssm.sendText("[P" + intPNumber + "] " + strMessage);
+            chatArea3.append("[P" + intPNumber + "] " + strMessage + "\n");
+            messageField3.setText("");
+        }else if((evt.getSource() == messageField4)){
+            String strMessage = messageField4.getText();
+            ssm.sendText("[P" + intPNumber + "] " + strMessage);
+            chatArea4.append("[P" + intPNumber + "] " + strMessage + "\n");
+            messageField4.setText("");
         }else if(evt.getSource() == ssm){
-            System.out.println("MESSAGE RECEIVED");
             String strMessage = ssm.readText();
-            /*if(strMessage.equals("GAME_START")){
+            if(strMessage.equals("SERVER_NEW_PLAYER")){
+                if(blnIsHost == true){
+                    intPNumberTemp++;
+                    intPlayerCount++;
+                    ssm.sendText(intPNumberTemp+"");
+                }else{
+                    blnLastPlayer = false;
+                }
+            }else if(blnNAssigned == false){
+                intPNumber = Integer.parseInt(strMessage);
+                blnNAssigned = true;
+            }else if(strMessage.equals("GAME_START_ODD")){
                 thePanel.setVisible(false);
-            }else{*/
-                chatArea.append(strMessage + "\n");
-            //}
+                theFrame.setContentPane(qfPanel);
+                theFrame.pack();
+                blnGameStarted = true;
+            }else if(strMessage.equals("GAME_START_EVEN")){
+                if(blnLastPlayer == true){
+                    intPNumber = 2;
+                }
+                thePanel.setVisible(false);
+                theFrame.setContentPane(qfPanel);
+                theFrame.pack();
+                blnGameStarted = true;
+            }else{
+                if(blnGameStarted == false){
+                    chatArea.append(strMessage + "\n");
+                }else{
+                    chatArea2.append(strMessage + "\n");
+                }
+            }
         }else if(evt.getSource() == tempButton1){
             qfPanel.setVisible(false);
             sfPanel.setVisible(true);
@@ -179,45 +251,6 @@ public class TestGameFile implements ActionListener{
 
     // Constructor
     public TestGameFile(){
-        // Frames & Panels
-        thePanel.setPreferredSize(new Dimension(1280, 720));
-        thePanel.setLayout(null);
-        theFrame.setContentPane(thePanel);
-        theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        theFrame.pack();
-        theFrame.setVisible(true);
-
-        qfPanel.setPreferredSize(new Dimension(1280, 720));
-        qfPanel.setLayout(null);
-
-        // Home Screen Components
-        serverButton.setSize(680, 100);
-        serverButton.setLocation(200, 500);
-        serverButton.addActionListener(this);
-
-        clientButton.setSize(680, 100);
-        clientButton.setLocation(200, 610);
-        clientButton.addActionListener(this);
-
-        ipField.setSize(200, 100);
-        ipField.setLocation(900, 610);
-        ipField.addActionListener(this);
-
-        startButton.setSize(200, 100);
-        startButton.setLocation(900, 500);
-        startButton.setVisible(false);
-        startButton.addActionListener(this);
-
-        theScroll.setSize(200, 100);
-        theScroll.setLocation(900, 300);
-        chatArea.setEditable(false);
-
-        thePanel.add(serverButton);
-        thePanel.add(clientButton);
-        thePanel.add(ipField);
-        thePanel.add(startButton);
-        thePanel.add(theScroll);
-
         // Quarter Final Screen Components
         qfPanel.setPreferredSize(new Dimension(1280, 720));
         qfPanel.setLayout(null);
@@ -469,6 +502,78 @@ public class TestGameFile implements ActionListener{
         fPanel.add(Sp5FButton);
 
         // Winner Screen Components
+
+        // Chat Components
+        // Frame & Panel
+        thePanel.setPreferredSize(new Dimension(1280,720));
+        thePanel.setLayout(null);
+        theFrame.setContentPane(thePanel);
+        theFrame.pack();
+        theFrame.setVisible(true);
+        theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Buttons, TextFields, TextAreas, ScrollPanes
+        serverButton.setSize(100, 100);
+        serverButton.setLocation(0, 620);
+        thePanel.add(serverButton);
+        serverButton.addActionListener(this);
+
+        clientButton.setSize(100, 100);
+        clientButton.setLocation(100, 620);
+        thePanel.add(clientButton);
+        clientButton.addActionListener(this);
+
+        startButton.setSize(100, 100);
+        startButton.setLocation(0, 520);
+        startButton.setVisible(false);
+        thePanel.add(startButton);
+        startButton.addActionListener(this);
+
+        ipField.setSize(100, 100);
+        ipField.setLocation(200, 620);
+        thePanel.add(ipField);
+
+        messageField.setSize(300, 40);
+        messageField.setLocation(980, 680);
+        thePanel.add(messageField);
+        messageField.addActionListener(this);
+
+        theScroll.setSize(300, 500);
+        theScroll.setLocation(980, 100);
+        chatArea.setEditable(false);
+        thePanel.add(theScroll);
+
+        // Quarter Final Panel Chat Components
+        messageField2.setSize(300, 40);
+        messageField2.setLocation(980, 680);
+        qfPanel.add(messageField2);
+        messageField2.addActionListener(this);
+
+        theScroll2.setSize(300, 500);
+        theScroll2.setLocation(980, 100);
+        chatArea2.setEditable(false);
+        qfPanel.add(theScroll2);
+
+        // Semi Final Panel Chat Components
+        messageField3.setSize(300, 40);
+        messageField3.setLocation(980, 680);
+        sfPanel.add(messageField3);
+        messageField3.addActionListener(this);
+
+        theScroll3.setSize(300, 500);
+        theScroll3.setLocation(980, 100);
+        chatArea3.setEditable(false);
+        sfPanel.add(theScroll3);
+
+        // Final Panel Chat Components
+        messageField4.setSize(300, 40);
+        messageField4.setLocation(980, 680);
+        fPanel.add(messageField4);
+        messageField4.addActionListener(this);
+
+        theScroll4.setSize(300, 500);
+        theScroll4.setLocation(980, 100);
+        chatArea4.setEditable(false);
+        fPanel.add(theScroll4);
     }
 
     // Main Method
