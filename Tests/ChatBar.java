@@ -13,9 +13,14 @@ public class ChatBar implements ActionListener{
     JButton clientButton = new JButton("Join Game");
     JButton startButton = new JButton("Start Game");
     JTextField ipField = new JTextField();
+
     JTextField messageField = new JTextField();
     JTextArea chatArea = new JTextArea();
     JScrollPane theScroll = new JScrollPane(chatArea);
+    JTextField messageField2 = new JTextField();
+    JTextArea chatArea2 = new JTextArea();
+    JScrollPane theScroll2 = new JScrollPane(chatArea2);
+
     SuperSocketMaster ssm = null;
     int intPNumber = 0;
     int intPNumberTemp = 0;
@@ -26,6 +31,7 @@ public class ChatBar implements ActionListener{
     boolean blnHostPass = false;
     boolean blnNAssigned = false;
     boolean blnLastPlayer = false;
+    boolean blnGameStarted = false;
 
     // Methods
     public void actionPerformed(ActionEvent evt) {
@@ -63,11 +69,17 @@ public class ChatBar implements ActionListener{
             homePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
+            blnGameStarted = true;
         }else if(evt.getSource() == messageField){
             String strMessage = messageField.getText();
             ssm.sendText("[" + intPNumber + "] " + strMessage);
             chatArea.append("[" + intPNumber + "] " + strMessage + "\n");
             messageField.setText("");
+        }else if(evt.getSource() == messageField2){
+            String strMessage = messageField2.getText();
+            ssm.sendText("[" + intPNumber + "] " + strMessage);
+            chatArea2.append("[" + intPNumber + "] " + strMessage + "\n");
+            messageField2.setText("");
         }else if(evt.getSource() == ssm){
             String strMessage = ssm.readText();
             if(strMessage.equals("SERVER_NEW_PLAYER")){
@@ -85,6 +97,7 @@ public class ChatBar implements ActionListener{
                 homePanel.setVisible(false);
                 theFrame.setContentPane(qfPanel);
                 theFrame.pack();
+                blnGameStarted = true;
             }else if(strMessage.equals("GAME_START_EVEN")){
                 if(blnLastPlayer == true){
                     intPNumber = 2;
@@ -92,8 +105,13 @@ public class ChatBar implements ActionListener{
                 homePanel.setVisible(false);
                 theFrame.setContentPane(qfPanel);
                 theFrame.pack();
+                blnGameStarted = true;
             }else{
-                chatArea.append(strMessage + "\n");
+                if(blnGameStarted == false){
+                    chatArea.append(strMessage + "\n");
+                }else{
+                    chatArea2.append(strMessage + "\n");
+                }
             }
         }
     }
@@ -141,6 +159,17 @@ public class ChatBar implements ActionListener{
         theScroll.setLocation(980, 100);
         chatArea.setEditable(false);
         homePanel.add(theScroll);
+
+        // Quarter Final Panel Chat Components
+        messageField2.setSize(300, 40);
+        messageField2.setLocation(980, 680);
+        qfPanel.add(messageField2);
+        messageField2.addActionListener(this);
+
+        theScroll2.setSize(300, 500);
+        theScroll2.setLocation(980, 100);
+        chatArea2.setEditable(false);
+        qfPanel.add(theScroll2);
     }
 
     // Main Method
