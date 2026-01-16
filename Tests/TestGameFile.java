@@ -135,29 +135,29 @@ public class TestGameFile implements ActionListener{
     JButton Sp8QFButton = new JButton("SPOCK");
 
     // Buttons for Semi Finals
-    JButton Rp1SFButton = new JButton("ROCK");
-    JButton Pp1SFButton = new JButton("PAPER");
-    JButton Cp1SFButton = new JButton("SCISSORS");
-    JButton Lp1SFButton = new JButton("LIZARD");
-    JButton Sp1SFButton = new JButton("SPOCK");
+    JButton RWinR1aButton = new JButton("ROCK");
+    JButton PWinR1aButton = new JButton("PAPER");
+    JButton CWinR1aButton = new JButton("SCISSORS");
+    JButton LWinR1aButton = new JButton("LIZARD");
+    JButton SWinR1aButton = new JButton("SPOCK");
 
-    JButton Rp3SFButton = new JButton("ROCK");
-    JButton Pp3SFButton = new JButton("PAPER");
-    JButton Cp3SFButton = new JButton("SCISSORS");
-    JButton Lp3SFButton = new JButton("LIZARD");
-    JButton Sp3SFButton = new JButton("SPOCK");
+    JButton RWinR1bButton = new JButton("ROCK");
+    JButton PWinR1bButton = new JButton("PAPER");
+    JButton CWinR1bButton = new JButton("SCISSORS");
+    JButton LWinR1bButton = new JButton("LIZARD");
+    JButton SWinR1bButton = new JButton("SPOCK");
 
-    JButton Rp5SFButton = new JButton("ROCK");
-    JButton Pp5SFButton = new JButton("PAPER");
-    JButton Cp5SFButton = new JButton("SCISSORS");
-    JButton Lp5SFButton = new JButton("LIZARD");
-    JButton Sp5SFButton = new JButton("SPOCK");
+    JButton RWinR1cButton = new JButton("ROCK");
+    JButton PWinR1cButton = new JButton("PAPER");
+    JButton CWinR1cButton = new JButton("SCISSORS");
+    JButton LWinR1cButton = new JButton("LIZARD");
+    JButton SWinR1cButton = new JButton("SPOCK");
 
-    JButton Rp7SFButton = new JButton("ROCK");
-    JButton Pp7SFButton = new JButton("PAPER");
-    JButton Cp7SFButton = new JButton("SCISSORS");
-    JButton Lp7SFButton = new JButton("LIZARD");
-    JButton Sp7SFButton = new JButton("SPOCK");
+    JButton RWinR1dButton = new JButton("ROCK");
+    JButton PWinR1dButton = new JButton("PAPER");
+    JButton CWinR1dButton = new JButton("SCISSORS");
+    JButton LWinR1dButton = new JButton("LIZARD");
+    JButton SWinR1dButton = new JButton("SPOCK");
     // Buttons for Finals
     JButton Rp1FButton = new JButton("ROCK");
     JButton Pp1FButton = new JButton("PAPER");
@@ -317,7 +317,7 @@ public class TestGameFile implements ActionListener{
                     chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
                     chatArea2.append("Winner: P[" + strWinnerR1d + "]\n");
                 }
-            }else if(strMessage.startsWith("2_R2_")){
+            }else if(strMessage.startsWith(strWinnerR1b + "_R2_")){
                 if(intPNumber == Integer.parseInt(strWinnerR1a)){
                     strChoiceR2aOPP = strMessage.substring(5);
                     chatArea3.append("Matchup: [P" + strWinnerR1a + "] chose " + strChoiceR2a + " | [P" + strWinnerR1b + "] chose " + strChoiceR2aOPP + "\n");
@@ -329,7 +329,6 @@ public class TestGameFile implements ActionListener{
                     }
                     chatArea3.append("Outcome for [P" + strWinnerR1a + "]: " + strOutcomeSfA + "\n");
                     chatArea3.append("Winner: P[" + strWinnerR2a + "]\n");
-                    System.out.println(strWinnerR2a);
             }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
@@ -481,35 +480,35 @@ public class TestGameFile implements ActionListener{
             ssm.sendText("[P8] chose " + strChoiceR1dOPP);
             ssm.sendText("8_R1_" + strChoiceR1dOPP);
         //Semi finals choices
-        }else if(evt.getSource() == Rp1SFButton || evt.getSource() == Pp1SFButton || evt.getSource() == Cp1SFButton || evt.getSource() == Lp1SFButton || evt.getSource() == Sp1SFButton){
-            if(evt.getSource() == Rp1SFButton){
+        }else if(evt.getSource() == RWinR1aButton || evt.getSource() == PWinR1aButton || evt.getSource() == CWinR1aButton || evt.getSource() == LWinR1aButton || evt.getSource() == SWinR1aButton){
+            if(evt.getSource() == RWinR1aButton){
                 strChoiceR2a = "ROCK";
-            }else if(evt.getSource() == Pp1SFButton){
+            }else if(evt.getSource() == PWinR1aButton){
                 strChoiceR2a = "PAPER";
-            }else if(evt.getSource() == Cp1SFButton){
+            }else if(evt.getSource() == CWinR1aButton){
                 strChoiceR2a = "SCISSORS";
-            }else if(evt.getSource() == Lp1SFButton){
+            }else if(evt.getSource() == LWinR1aButton){
                 strChoiceR2a = "LIZARD";
-            }else if(evt.getSource() == Sp1SFButton){
+            }else if(evt.getSource() == SWinR1aButton){
                 strChoiceR2a = "SPOCK";
             }
             chatArea3.append("[P" + strWinnerR1a + "] chose " + strChoiceR2a + "\n");
             ssm.sendText("[P" + strWinnerR1a + "] chose " + strChoiceR2a);
-        }else if(evt.getSource() == Rp3SFButton || evt.getSource() == Pp3SFButton || evt.getSource() == Cp3SFButton || evt.getSource() == Lp3SFButton || evt.getSource() == Sp3SFButton){
-            if(evt.getSource() == Rp3SFButton){
+        }else if(evt.getSource() == RWinR1bButton || evt.getSource() == PWinR1bButton || evt.getSource() == CWinR1bButton || evt.getSource() == LWinR1bButton || evt.getSource() == SWinR1bButton){
+            if(evt.getSource() == RWinR1bButton){
                 strChoiceR2aOPP = "ROCK";
-            }else if(evt.getSource() == Pp3SFButton){
+            }else if(evt.getSource() == PWinR1bButton){
                 strChoiceR2aOPP = "PAPER";  
-            }else if(evt.getSource() == Cp3SFButton){
+            }else if(evt.getSource() == CWinR1bButton){
                 strChoiceR2aOPP = "SCISSORS";
-            }else if(evt.getSource() == Lp3SFButton){
+            }else if(evt.getSource() == LWinR1bButton){
                 strChoiceR2aOPP = "LIZARD";
-            }else if(evt.getSource() == Sp3SFButton){
+            }else if(evt.getSource() == SWinR1bButton){
                 strChoiceR2aOPP = "SPOCK";
             }
             chatArea3.append("[P" + strWinnerR1b + "] chose " + strChoiceR2aOPP + "\n");
             ssm.sendText("[P" + strWinnerR1b + "] chose " + strChoiceR2aOPP);
-            ssm.sendText("2_R2_" + strChoiceR2aOPP);
+            ssm.sendText(strWinnerR1b+"_R2_" + strChoiceR2aOPP);
         }
     }
 
@@ -709,89 +708,89 @@ public class TestGameFile implements ActionListener{
         tempButton2.addActionListener(this);
 
         //p1 buttons
-        Rp1SFButton.setSize(100,35);
-        Rp1SFButton.setLocation(100,270);
-        sfPanel.add(Rp1SFButton);
-        Rp1SFButton.addActionListener(this);
-        Pp1SFButton.setSize(100,35);
-        Pp1SFButton.setLocation(100,315);
-        sfPanel.add(Pp1SFButton);
-        Pp1SFButton.addActionListener(this);
-        Cp1SFButton.setSize(100,35);
-        Cp1SFButton.setLocation(225,270);
-        sfPanel.add(Cp1SFButton);
-        Cp1SFButton.addActionListener(this);
-        Lp1SFButton.setSize(100,35);
-        Lp1SFButton.setLocation(225,315);
-        sfPanel.add(Lp1SFButton);
-        Lp1SFButton.addActionListener(this);
-        Sp1SFButton.setSize(100,35);
-        Sp1SFButton.setLocation(350,315);
-        sfPanel.add(Sp1SFButton);
-        Sp1SFButton.addActionListener(this);
+        RWinR1aButton.setSize(100,35);
+        RWinR1aButton.setLocation(100,270);
+        sfPanel.add(RWinR1aButton);
+        RWinR1aButton.addActionListener(this);
+        PWinR1aButton.setSize(100,35);
+        PWinR1aButton.setLocation(100,315);
+        sfPanel.add(PWinR1aButton);
+        PWinR1aButton.addActionListener(this);
+        CWinR1aButton.setSize(100,35);
+        CWinR1aButton.setLocation(225,270);
+        sfPanel.add(CWinR1aButton);
+        CWinR1aButton.addActionListener(this);
+        LWinR1aButton.setSize(100,35);
+        LWinR1aButton.setLocation(225,315);
+        sfPanel.add(LWinR1aButton);
+        LWinR1aButton.addActionListener(this);
+        SWinR1aButton.setSize(100,35);
+        SWinR1aButton.setLocation(350,315);
+        sfPanel.add(SWinR1aButton);
+        SWinR1aButton.addActionListener(this);
         //p3 buttons
-        Rp3SFButton.setSize(100,35);
-        Rp3SFButton.setLocation(650,270);
-        sfPanel.add(Rp3SFButton);
-        Rp3SFButton.addActionListener(this);
-        Pp3SFButton.setSize(100,35);
-        Pp3SFButton.setLocation(525,315);
-        sfPanel.add(Pp3SFButton);
-        Pp3SFButton.addActionListener(this);
-        Cp3SFButton.setSize(100,35);
-        Cp3SFButton.setLocation(775,270);
-        sfPanel.add(Cp3SFButton);
-        Cp3SFButton.addActionListener(this);
-        Lp3SFButton.setSize(100,35);
-        Lp3SFButton.setLocation(650,315);
-        sfPanel.add(Lp3SFButton);
-        Lp3SFButton.addActionListener(this);
-        Sp3SFButton.setSize(100,35);
-        Sp3SFButton.setLocation(775,315);
-        sfPanel.add(Sp3SFButton);
-        Sp3SFButton.addActionListener(this);
+        RWinR1bButton.setSize(100,35);
+        RWinR1bButton.setLocation(650,270);
+        sfPanel.add(RWinR1bButton);
+        RWinR1bButton.addActionListener(this);
+        PWinR1bButton.setSize(100,35);
+        PWinR1bButton.setLocation(525,315);
+        sfPanel.add(PWinR1bButton);
+        PWinR1bButton.addActionListener(this);
+        CWinR1bButton.setSize(100,35);
+        CWinR1bButton.setLocation(775,270);
+        sfPanel.add(CWinR1bButton);
+        CWinR1bButton.addActionListener(this);
+        LWinR1bButton.setSize(100,35);
+        LWinR1bButton.setLocation(650,315);
+        sfPanel.add(LWinR1bButton);
+        LWinR1bButton.addActionListener(this);
+        SWinR1bButton.setSize(100,35);
+        SWinR1bButton.setLocation(775,315);
+        sfPanel.add(SWinR1bButton);
+        SWinR1bButton.addActionListener(this);
         //p5 buttons
-        Rp5SFButton.setSize(100,35);
-        Rp5SFButton.setLocation(100,560);
-        sfPanel.add(Rp5SFButton);
-        Rp5SFButton.addActionListener(this);
-        Pp5SFButton.setSize(100,35);
-        Pp5SFButton.setLocation(100,605);
-        sfPanel.add(Pp5SFButton);
-        Pp5SFButton.addActionListener(this);
-        Cp5SFButton.setSize(100,35);
-        Cp5SFButton.setLocation(225,560);
-        sfPanel.add(Cp5SFButton);
-        Cp5SFButton.addActionListener(this);
-        Lp5SFButton.setSize(100,35);
-        Lp5SFButton.setLocation(225,605);
-        sfPanel.add(Lp5SFButton);
-        Lp5SFButton.addActionListener(this);
-        Sp5SFButton.setSize(100,35);
-        Sp5SFButton.setLocation(350,605);
-        sfPanel.add(Sp5SFButton);
-        Sp5SFButton.addActionListener(this);
+        RWinR1cButton.setSize(100,35);
+        RWinR1cButton.setLocation(100,560);
+        sfPanel.add(RWinR1cButton);
+        RWinR1cButton.addActionListener(this);
+        PWinR1cButton.setSize(100,35);
+        PWinR1cButton.setLocation(100,605);
+        sfPanel.add(PWinR1cButton);
+        PWinR1cButton.addActionListener(this);
+        CWinR1cButton.setSize(100,35);
+        CWinR1cButton.setLocation(225,560);
+        sfPanel.add(CWinR1cButton);
+        CWinR1cButton.addActionListener(this);
+        LWinR1cButton.setSize(100,35);
+        LWinR1cButton.setLocation(225,605);
+        sfPanel.add(LWinR1cButton);
+        LWinR1cButton.addActionListener(this);
+        SWinR1cButton.setSize(100,35);
+        SWinR1cButton.setLocation(350,605);
+        sfPanel.add(SWinR1cButton);
+        SWinR1cButton.addActionListener(this);
         //p7 buttons
-        Rp7SFButton.setSize(100,35);
-        Rp7SFButton.setLocation(650,560);
-        sfPanel.add(Rp7SFButton);
-        Rp7SFButton.addActionListener(this);
-        Pp7SFButton.setSize(100,35);
-        Pp7SFButton.setLocation(525,605);
-        sfPanel.add(Pp7SFButton);
-        Pp7SFButton.addActionListener(this);
-        Cp7SFButton.setSize(100,35);
-        Cp7SFButton.setLocation(775,560);
-        sfPanel.add(Cp7SFButton);
-        Cp7SFButton.addActionListener(this);
-        Lp7SFButton.setSize(100,35);
-        Lp7SFButton.setLocation(650,605);
-        sfPanel.add(Lp7SFButton);
-        Lp7SFButton.addActionListener(this);
-        Sp7SFButton.setSize(100,35);
-        Sp7SFButton.setLocation(775,605);
-        sfPanel.add(Sp7SFButton);
-        Sp7SFButton.addActionListener(this);
+        RWinR1dButton.setSize(100,35);
+        RWinR1dButton.setLocation(650,560);
+        sfPanel.add(RWinR1dButton);
+        RWinR1dButton.addActionListener(this);
+        PWinR1dButton.setSize(100,35);
+        PWinR1dButton.setLocation(525,605);
+        sfPanel.add(PWinR1dButton);
+        PWinR1dButton.addActionListener(this);
+        CWinR1dButton.setSize(100,35);
+        CWinR1dButton.setLocation(775,560);
+        sfPanel.add(CWinR1dButton);
+        CWinR1dButton.addActionListener(this);
+        LWinR1dButton.setSize(100,35);
+        LWinR1dButton.setLocation(650,605);
+        sfPanel.add(LWinR1dButton);
+        LWinR1dButton.addActionListener(this);
+        SWinR1dButton.setSize(100,35);
+        SWinR1dButton.setLocation(775,605);
+        sfPanel.add(SWinR1dButton);
+        SWinR1dButton.addActionListener(this);
 
         // Final Screen Components
         fPanel.setPreferredSize(new Dimension(1280, 720));
