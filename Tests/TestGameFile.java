@@ -260,26 +260,34 @@ public class TestGameFile implements ActionListener{
                 theFrame.pack();
                 blnGameStarted = true;
                 blnRound1Start = true;
-            }else if(intPNumber == 1 && strMessage.startsWith("2_R1_")){
-                strChoiceR1aOPP = strMessage.substring(5);
-                chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
-                String strOutcomeQfA = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
-                System.out.println(strOutcomeQfA);
-            }else if(intPNumber == 3 && strMessage.startsWith("4_R1_")){
-                strChoiceR1bOPP = strMessage.substring(5);
-                chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
-                String strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
-                System.out.println(strOutcomeQfB);
-            }else if(intPNumber == 5 && strMessage.startsWith("6_R1_")){
-                strChoiceR1cOPP = strMessage.substring(5);
-                chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
-                String strOutcomeQfC = winningMethodsTests.isWinner(strChoiceR1c, strChoiceR1cOPP);
-                System.out.println(strOutcomeQfC);
-            }else if(intPNumber == 7 && strMessage.startsWith("8_R1_")){
-                strChoiceR1dOPP = strMessage.substring(5);
-                chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
-                String strOutcomeQfD = winningMethodsTests.isWinner(strChoiceR1d, strChoiceR1dOPP);
-                System.out.println(strOutcomeQfD);
+            }else if(strMessage.startsWith("2_R1_")){
+                if(intPNumber == 1){
+                    strChoiceR1aOPP = strMessage.substring(5);
+                    chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
+                    String strOutcomeQfA = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
+                    System.out.println(strOutcomeQfA);
+                }
+            }else if(strMessage.startsWith("4_R1_")){
+                if(intPNumber == 3){
+                    strChoiceR1bOPP = strMessage.substring(5);
+                    chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
+                    String strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
+                    System.out.println(strOutcomeQfB);
+                }
+            }else if(strMessage.startsWith("6_R1_")){
+                if(intPNumber == 5){
+                    strChoiceR1cOPP = strMessage.substring(5);
+                    chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
+                    String strOutcomeQfC = winningMethodsTests.isWinner(strChoiceR1c, strChoiceR1cOPP);
+                    System.out.println(strOutcomeQfC);
+                }
+            }else if(strMessage.startsWith("8_R1_")){
+                if(intPNumber == 7){
+                    strChoiceR1dOPP = strMessage.substring(5);
+                    chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
+                    String strOutcomeQfD = winningMethodsTests.isWinner(strChoiceR1d, strChoiceR1dOPP);
+                    System.out.println(strOutcomeQfD);
+                }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
                     chatArea.append(strMessage + "\n");
@@ -335,6 +343,93 @@ public class TestGameFile implements ActionListener{
             chatArea2.append("[P2] chose " + strChoiceR1aOPP + "\n");
             ssm.sendText("[P2] chose " + strChoiceR1aOPP);
             ssm.sendText("2_R1_" + strChoiceR1aOPP);
+        }else if(evt.getSource() == Rp3QFButton || evt.getSource() == Pp3QFButton || evt.getSource() == Cp3QFButton || evt.getSource() == Lp3QFButton || evt.getSource() == Sp3QFButton){
+            if(evt.getSource() == Rp3QFButton){
+                strChoiceR1b = "ROCK";
+            }else if(evt.getSource() == Pp3QFButton){
+                strChoiceR1b = "PAPER";
+            }else if(evt.getSource() == Cp3QFButton){
+                strChoiceR1b = "SCISSORS";
+            }else if(evt.getSource() == Lp3QFButton){
+                strChoiceR1b = "LIZARD";
+            }else if(evt.getSource() == Sp3QFButton){
+                strChoiceR1b = "SPOCK";
+            }
+            chatArea2.append("[P3] chose " + strChoiceR1b + "\n");
+            ssm.sendText("[P3] chose " + strChoiceR1b);
+        }else if(evt.getSource() == Rp4QFButton || evt.getSource() == Pp4QFButton || evt.getSource() == Cp4QFButton || evt.getSource() == Lp4QFButton || evt.getSource() == Sp4QFButton){
+            if(evt.getSource() == Rp4QFButton){
+                strChoiceR1bOPP = "ROCK";
+            }else if(evt.getSource() == Pp4QFButton){
+                strChoiceR1bOPP = "PAPER";
+            }else if(evt.getSource() == Cp4QFButton){
+                strChoiceR1bOPP = "SCISSORS";
+            }else if(evt.getSource() == Lp4QFButton){
+                strChoiceR1bOPP = "LIZARD";
+            }else if(evt.getSource() == Sp4QFButton){
+                strChoiceR1bOPP = "SPOCK";
+            }
+            chatArea2.append("[P4] chose " + strChoiceR1bOPP + "\n");
+            ssm.sendText("[P4] chose " + strChoiceR1bOPP);
+            ssm.sendText("4_R1_" + strChoiceR1bOPP);
+        }else if(evt.getSource() == Rp5QFButton || evt.getSource() == Pp5QFButton || evt.getSource() == Cp5QFButton || evt.getSource() == Lp5QFButton || evt.getSource() == Sp5QFButton){
+            if(evt.getSource() == Rp5QFButton){
+                strChoiceR1c = "ROCK";
+            }else if(evt.getSource() == Pp5QFButton){
+                strChoiceR1c = "PAPER";
+            }else if(evt.getSource() == Cp5QFButton){
+                strChoiceR1c = "SCISSORS";
+            }else if(evt.getSource() == Lp5QFButton){
+                strChoiceR1c = "LIZARD";
+            }else if(evt.getSource() == Sp5QFButton){
+                strChoiceR1c = "SPOCK";
+            }
+            chatArea2.append("[P5] chose " + strChoiceR1c + "\n");
+            ssm.sendText("[P5] chose " + strChoiceR1c);
+        }else if(evt.getSource() == Rp6QFButton || evt.getSource() == Pp6QFButton || evt.getSource() == Cp6QFButton || evt.getSource() == Lp6QFButton || evt.getSource() == Sp6QFButton){
+            if(evt.getSource() == Rp6QFButton){
+                strChoiceR1cOPP = "ROCK";
+            }else if(evt.getSource() == Pp6QFButton){
+                strChoiceR1cOPP = "PAPER";
+            }else if(evt.getSource() == Cp6QFButton){
+                strChoiceR1cOPP = "SCISSORS";
+            }else if(evt.getSource() == Lp6QFButton){
+                strChoiceR1cOPP = "LIZARD";
+            }else if(evt.getSource() == Sp6QFButton){
+                strChoiceR1cOPP = "SPOCK";
+            }
+            chatArea2.append("[P6] chose " + strChoiceR1cOPP + "\n");
+            ssm.sendText("[P6] chose " + strChoiceR1cOPP);
+            ssm.sendText("6_R1_" + strChoiceR1cOPP);
+        }else if(evt.getSource() == Rp7QFButton || evt.getSource() == Pp7QFButton || evt.getSource() == Cp7QFButton || evt.getSource() == Lp7QFButton || evt.getSource() == Sp7QFButton){
+            if(evt.getSource() == Rp7QFButton){
+                strChoiceR1d = "ROCK";
+            }else if(evt.getSource() == Pp7QFButton){
+                strChoiceR1d = "PAPER";
+            }else if(evt.getSource() == Cp7QFButton){
+                strChoiceR1d = "SCISSORS";
+            }else if(evt.getSource() == Lp7QFButton){
+                strChoiceR1d = "LIZARD";
+            }else if(evt.getSource() == Sp7QFButton){
+                strChoiceR1d = "SPOCK";
+            }
+            chatArea2.append("[P7] chose " + strChoiceR1d + "\n");
+            ssm.sendText("[P7] chose " + strChoiceR1d);
+        }else if(evt.getSource() == Rp8QFButton || evt.getSource() == Pp8QFButton || evt.getSource() == Cp8QFButton || evt.getSource() == Lp8QFButton || evt.getSource() == Sp8QFButton){
+            if(evt.getSource() == Rp8QFButton){
+                strChoiceR1dOPP = "ROCK";
+            }else if(evt.getSource() == Pp8QFButton){
+                strChoiceR1dOPP = "PAPER";
+            }else if(evt.getSource() == Cp8QFButton){
+                strChoiceR1dOPP = "SCISSORS";
+            }else if(evt.getSource() == Lp8QFButton){
+                strChoiceR1dOPP = "LIZARD";
+            }else if(evt.getSource() == Sp8QFButton){
+                strChoiceR1dOPP = "SPOCK";
+            }
+            chatArea2.append("[P8] chose " + strChoiceR1dOPP + "\n");
+            ssm.sendText("[P8] chose " + strChoiceR1dOPP);
+            ssm.sendText("8_R1_" + strChoiceR1dOPP);
         }
     }
 
@@ -402,98 +497,128 @@ public class TestGameFile implements ActionListener{
         Rp3QFButton.setSize(100,35);
         Rp3QFButton.setLocation(100,270);
         qfPanel.add(Rp3QFButton);
+        Rp3QFButton.addActionListener(this);
         Pp3QFButton.setSize(100,35);
         Pp3QFButton.setLocation(100,315);
         qfPanel.add(Pp3QFButton);
+        Pp3QFButton.addActionListener(this);
         Cp3QFButton.setSize(100,35);
         Cp3QFButton.setLocation(225,270);
         qfPanel.add(Cp3QFButton);
+        Cp3QFButton.addActionListener(this);
         Lp3QFButton.setSize(100,35);
         Lp3QFButton.setLocation(225,315);
         qfPanel.add(Lp3QFButton);
+        Lp3QFButton.addActionListener(this);
         Sp3QFButton.setSize(100,35);
         Sp3QFButton.setLocation(350,315);
         qfPanel.add(Sp3QFButton);
+        Sp3QFButton.addActionListener(this);
         //p4 buttons
         Rp4QFButton.setSize(100,35);
         Rp4QFButton.setLocation(650,270);
         qfPanel.add(Rp4QFButton);
+        Rp4QFButton.addActionListener(this);
         Pp4QFButton.setSize(100,35);
         Pp4QFButton.setLocation(525,315);
         qfPanel.add(Pp4QFButton);
+        Pp4QFButton.addActionListener(this);
         Cp4QFButton.setSize(100,35);
         Cp4QFButton.setLocation(775,270);
         qfPanel.add(Cp4QFButton);
+        Cp4QFButton.addActionListener(this);
         Lp4QFButton.setSize(100,35);
         Lp4QFButton.setLocation(650,315);
         qfPanel.add(Lp4QFButton);
+        Lp4QFButton.addActionListener(this);
         Sp4QFButton.setSize(100,35);
         Sp4QFButton.setLocation(775,315);
         qfPanel.add(Sp4QFButton);
+        Sp4QFButton.addActionListener(this);
         //p5 buttons
         Rp5QFButton.setSize(100,35);
         Rp5QFButton.setLocation(100,415);
         qfPanel.add(Rp5QFButton);
+        Rp5QFButton.addActionListener(this);
         Pp5QFButton.setSize(100,35);
         Pp5QFButton.setLocation(100,460);
         qfPanel.add(Pp5QFButton);
+        Pp5QFButton.addActionListener(this);
         Cp5QFButton.setSize(100,35);
         Cp5QFButton.setLocation(225,415);
         qfPanel.add(Cp5QFButton);
+        Cp5QFButton.addActionListener(this);
         Lp5QFButton.setSize(100,35);
         Lp5QFButton.setLocation(225,460);
         qfPanel.add(Lp5QFButton);
+        Lp5QFButton.addActionListener(this);
         Sp5QFButton.setSize(100,35);
         Sp5QFButton.setLocation(350,460);
         qfPanel.add(Sp5QFButton);
+        Sp5QFButton.addActionListener(this);
         //p6 buttons
         Rp6QFButton.setSize(100,35);
         Rp6QFButton.setLocation(650,415);
         qfPanel.add(Rp6QFButton);
+        Rp6QFButton.addActionListener(this);
         Pp6QFButton.setSize(100,35);
         Pp6QFButton.setLocation(525,460);
         qfPanel.add(Pp6QFButton);
+        Pp6QFButton.addActionListener(this);
         Cp6QFButton.setSize(100,35);
         Cp6QFButton.setLocation(775,415);
         qfPanel.add(Cp6QFButton);
+        Cp6QFButton.addActionListener(this);
         Lp6QFButton.setSize(100,35);
         Lp6QFButton.setLocation(650,460);
         qfPanel.add(Lp6QFButton);
+        Lp6QFButton.addActionListener(this);
         Sp6QFButton.setSize(100,35);
         Sp6QFButton.setLocation(775,460);
         qfPanel.add(Sp6QFButton);
+        Sp6QFButton.addActionListener(this);
         //p7 buttons
         Rp7QFButton.setSize(100,35);
         Rp7QFButton.setLocation(100,560);
         qfPanel.add(Rp7QFButton);
+        Rp7QFButton.addActionListener(this);
         Pp7QFButton.setSize(100,35);
         Pp7QFButton.setLocation(100,605);
         qfPanel.add(Pp7QFButton);
+        Pp7QFButton.addActionListener(this);
         Cp7QFButton.setSize(100,35);
         Cp7QFButton.setLocation(225,560);
         qfPanel.add(Cp7QFButton);
+        Cp7QFButton.addActionListener(this);
         Lp7QFButton.setSize(100,35);
         Lp7QFButton.setLocation(225,605);
         qfPanel.add(Lp7QFButton);
+        Lp7QFButton.addActionListener(this);
         Sp7QFButton.setSize(100,35);
         Sp7QFButton.setLocation(350,605);
         qfPanel.add(Sp7QFButton);
+        Sp7QFButton.addActionListener(this);
         //p8 buttons
         Rp8QFButton.setSize(100,35);
         Rp8QFButton.setLocation(650,560);
         qfPanel.add(Rp8QFButton);
+        Rp8QFButton.addActionListener(this);
         Pp8QFButton.setSize(100,35);
         Pp8QFButton.setLocation(525,605);
         qfPanel.add(Pp8QFButton);
+        Pp8QFButton.addActionListener(this);
         Cp8QFButton.setSize(100,35);
         Cp8QFButton.setLocation(775,560);
         qfPanel.add(Cp8QFButton);
+        Cp8QFButton.addActionListener(this);
         Lp8QFButton.setSize(100,35);
         Lp8QFButton.setLocation(650,605);
         qfPanel.add(Lp8QFButton);
+        Lp8QFButton.addActionListener(this);
         Sp8QFButton.setSize(100,35);
         Sp8QFButton.setLocation(775,605);
         qfPanel.add(Sp8QFButton);
+        Sp8QFButton.addActionListener(this);
 
         // Semi Final Screen Components
         sfPanel.setPreferredSize(new Dimension(1280, 720));
