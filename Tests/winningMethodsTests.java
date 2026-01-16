@@ -9,16 +9,16 @@ public class winningMethodsTests {
 
 
        switch (playerChoice) {
-           case "Rock":
-               return (opponentChoice.equals("Scissors")) ? "w" : "l";
-           case "Paper":
-               return (opponentChoice.equals("Rock")) ? "w" : "l";
-           case "Scissors":
-               return (opponentChoice.equals("Paper")) ? "w" : "l";
-           case "Lizard":
-               return (opponentChoice.equals("Spock") || opponentChoice.equals("Paper")) ? "w" : "l";
-           case "Spock":
-               return (opponentChoice.equals("Scissors") || opponentChoice.equals("Rock")) ? "w" : "l";
+           case "ROCK":
+               return (opponentChoice.equals("SCISSORS")) ? "w" : "l";
+           case "PAPER":
+               return (opponentChoice.equals("ROCK")) ? "w" : "l";
+           case "SCISSORS":
+               return (opponentChoice.equals("PAPER")) ? "w" : "l";
+           case "LIZARD":
+               return (opponentChoice.equals("SPOCK") || opponentChoice.equals("PAPER")) ? "w" : "l";
+           case "SPOCK":
+               return (opponentChoice.equals("SCISSORS") || opponentChoice.equals("ROCK")) ? "w" : "l";
            default:
                return "Invalid choice!";
        }
