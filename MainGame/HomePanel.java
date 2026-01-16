@@ -1,4 +1,4 @@
-package Tests;
+package MainGame;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,8 +7,7 @@ import java.awt.image.*;
 import javax.imageio.ImageIO;
 import java.awt.Graphics;
 
-public class HomeScreen extends JPanel {
-
+public class HomePanel extends JPanel{
     // Properties
     BufferedImage HomeImage;
 
@@ -19,7 +18,7 @@ public class HomeScreen extends JPanel {
     }
 
     // Constructor
-    public HomeScreen(){
+    public HomePanel(){
         super();
         InputStream imageStream = null;
         imageStream = this.getClass().getResourceAsStream("TheHomeScreen.png");
@@ -30,6 +29,3 @@ public class HomeScreen extends JPanel {
         }
     }
 }
-
-   
-    

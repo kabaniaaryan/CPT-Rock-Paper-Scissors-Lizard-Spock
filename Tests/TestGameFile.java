@@ -268,9 +268,9 @@ public class TestGameFile implements ActionListener{
                     chatArea.append(strMessage + "\n");
                 }else if(blnRound1Start == true && blnRound2Start == false && blnRound3Start == false){
                     chatArea2.append(strMessage + "\n");
-                }else if(blnRound1Start == true && blnRound2Start == true && blnRound3Start == false){
+                }else if(blnRound1Start == false && blnRound2Start == true && blnRound3Start == false){
                     chatArea3.append(strMessage + "\n");
-                }else if(blnRound1Start == true && blnRound2Start == true && blnRound3Start == true){
+                }else if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == true){
                     chatArea4.append(strMessage + "\n");
                 }
             }
