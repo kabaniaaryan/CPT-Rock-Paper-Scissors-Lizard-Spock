@@ -265,6 +265,7 @@ public class TestGameFile implements ActionListener{
                 theFrame.pack();
                 blnGameStarted = true;
                 blnRound1Start = true;
+            // quarter finals
             }else if(strMessage.startsWith("2_R1_")){
                 if(intPNumber == 1){
                     strChoiceR1aOPP = strMessage.substring(5);
@@ -276,7 +277,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1a = "2";
                     }
                     chatArea2.append("Outcome for [P1]: " + strOutcomeQfA + "\n");
-                    chatArea2.append("Winner: P[" + strWinnerR1a + "]\n");
+                    chatArea2.append("Winner: [P" + strWinnerR1a + "]\n");
                 }
             }else if(strMessage.startsWith("4_R1_")){
                 if(intPNumber == 3){
@@ -289,7 +290,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1b = "4";
                     }
                     chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
-                    chatArea2.append("Winner: P[" + strWinnerR1b + "]\n");
+                    chatArea2.append("Winner: [P" + strWinnerR1b + "]\n");
                 }
             }else if(strMessage.startsWith("6_R1_")){
                 if(intPNumber == 5){
@@ -302,7 +303,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1c = "6";
                     }
                     chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
-                    chatArea2.append("Winner: P[" + strWinnerR1c + "]\n");
+                    chatArea2.append("Winner: [P" + strWinnerR1c + "]\n");
                 }
             }else if(strMessage.startsWith("8_R1_")){
                 if(intPNumber == 7){
@@ -315,8 +316,9 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1d = "8";
                     }
                     chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
-                    chatArea2.append("Winner: P[" + strWinnerR1d + "]\n");
+                    chatArea2.append("Winner: [P" + strWinnerR1d + "]\n");
                 }
+            // semi finals 
             }else if(strMessage.startsWith(strWinnerR1b + "_R2_")){
                 if(intPNumber == Integer.parseInt(strWinnerR1a)){
                     strChoiceR2aOPP = strMessage.substring(5);
@@ -328,7 +330,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR2a = strWinnerR1b;
                     }
                     chatArea3.append("Outcome for [P" + strWinnerR1a + "]: " + strOutcomeSfA + "\n");
-                    chatArea3.append("Winner: P[" + strWinnerR2a + "]\n");
+                    chatArea3.append("Winner: [P" + strWinnerR2a + "]\n");
             }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
