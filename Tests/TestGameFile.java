@@ -67,7 +67,12 @@ public class TestGameFile implements ActionListener{
     String strChoiceR3 = null;
     String strChoiceR3OPP = null;
 
-    String strWinnerR1a = "";
+    String strOutcomeQfA = "";
+    String strOutcomeQfB = "";
+    String strOutcomeQfC = "";
+    String strOutcomeQfD = "";
+
+    String strWinnerR1a = "test";
     String strWinnerR1b = "";
     String strWinnerR1c = "";
     String strWinnerR1d = "";
@@ -264,29 +269,53 @@ public class TestGameFile implements ActionListener{
                 if(intPNumber == 1){
                     strChoiceR1aOPP = strMessage.substring(5);
                     chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
-                    String strOutcomeQfA = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
-                    System.out.println(strOutcomeQfA);
+                    strOutcomeQfA = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
+                    if(strOutcomeQfA.equals("W")){
+                        strWinnerR1a = "1";
+                    }else if(strOutcomeQfA.equals("L")){
+                        strWinnerR1a = "2";
+                    }
+                    chatArea2.append("Outcome for [P1]: " + strOutcomeQfA + "\n");
+                    chatArea2.append("Winner: " + strWinnerR1a + "\n");
                 }
             }else if(strMessage.startsWith("4_R1_")){
                 if(intPNumber == 3){
                     strChoiceR1bOPP = strMessage.substring(5);
                     chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
-                    String strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
-                    System.out.println(strOutcomeQfB);
+                    strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
+                    if(strOutcomeQfB.equals("W")){
+                        strWinnerR1b = "3";
+                    }else if(strOutcomeQfB.equals("L")){
+                        strWinnerR1b = "4";
+                    }
+                    chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
+                    chatArea2.append("Winner: " + strWinnerR1b + "\n");
                 }
             }else if(strMessage.startsWith("6_R1_")){
                 if(intPNumber == 5){
                     strChoiceR1cOPP = strMessage.substring(5);
                     chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
-                    String strOutcomeQfC = winningMethodsTests.isWinner(strChoiceR1c, strChoiceR1cOPP);
-                    System.out.println(strOutcomeQfC);
+                    strOutcomeQfC = winningMethodsTests.isWinner(strChoiceR1c, strChoiceR1cOPP);
+                    if(strOutcomeQfC.equals("W")){
+                        strWinnerR1c = "5";
+                    }else if(strOutcomeQfC.equals("L")){
+                        strWinnerR1c = "6";
+                    }
+                    chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
+                    chatArea2.append("Winner: " + strWinnerR1c + "\n");
                 }
             }else if(strMessage.startsWith("8_R1_")){
                 if(intPNumber == 7){
                     strChoiceR1dOPP = strMessage.substring(5);
                     chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
-                    String strOutcomeQfD = winningMethodsTests.isWinner(strChoiceR1d, strChoiceR1dOPP);
-                    System.out.println(strOutcomeQfD);
+                    strOutcomeQfD = winningMethodsTests.isWinner(strChoiceR1d, strChoiceR1dOPP);
+                    if(strOutcomeQfD.equals("W")){
+                        strWinnerR1d = "7";
+                    }else if(strOutcomeQfD.equals("L")){
+                        strWinnerR1d = "8";
+                    }
+                    chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
+                    chatArea2.append("Winner: " + strWinnerR1d + "\n");
                 }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
