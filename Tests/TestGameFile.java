@@ -270,6 +270,16 @@ public class TestGameFile implements ActionListener{
                 chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
                 String strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
                 System.out.println(strOutcomeQfB);
+            }else if(intPNumber == 5 && strMessage.startsWith("6_R1_")){
+                strChoiceR1cOPP = strMessage.substring(5);
+                chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
+                String strOutcomeQfC = winningMethodsTests.isWinner(strChoiceR1c, strChoiceR1cOPP);
+                System.out.println(strOutcomeQfC);
+            }else if(intPNumber == 7 && strMessage.startsWith("8_R1_")){
+                strChoiceR1dOPP = strMessage.substring(5);
+                chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
+                String strOutcomeQfD = winningMethodsTests.isWinner(strChoiceR1d, strChoiceR1dOPP);
+                System.out.println(strOutcomeQfD);
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
                     chatArea.append(strMessage + "\n");
