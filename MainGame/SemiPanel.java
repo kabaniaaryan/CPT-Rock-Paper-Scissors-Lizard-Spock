@@ -1,6 +1,5 @@
 package MainGame;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,23 +7,23 @@ import java.awt.image.*;
 import javax.imageio.ImageIO;
 import java.awt.Graphics;
 
-public class QuarterPanel extends JPanel{
+public class SemiPanel extends JPanel{
     //Properties
-    BufferedImage qfImage;
+    BufferedImage sfImage;
 
     //Methods
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(qfImage, 0, 0, null);
+        g.drawImage(sfImage, 0, 0, null);
     }
 
     //Constructor
-    public QuarterPanel(){
+    public SemiPanel(){
         super();
         InputStream imageStream = null;
-        imageStream = this.getClass().getResourceAsStream("QuarterFinals.png");
+        imageStream = this.getClass().getResourceAsStream("SemiFinals.png");
         try{
-            qfImage = ImageIO.read(imageStream);
+            sfImage = ImageIO.read(imageStream);
         }catch(IOException e){
             System.out.println("Error loading image");
         }
