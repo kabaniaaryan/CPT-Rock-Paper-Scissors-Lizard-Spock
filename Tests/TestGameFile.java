@@ -276,7 +276,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1a = "2";
                     }
                     chatArea2.append("Outcome for [P1]: " + strOutcomeQfA + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1a + "\n");
+                    chatArea2.append("Winner: P[" + strWinnerR1a + "]\n");
                 }
             }else if(strMessage.startsWith("4_R1_")){
                 if(intPNumber == 3){
@@ -289,7 +289,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1b = "4";
                     }
                     chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1b + "\n");
+                    chatArea2.append("Winner: P[" + strWinnerR1b + "]\n");
                 }
             }else if(strMessage.startsWith("6_R1_")){
                 if(intPNumber == 5){
@@ -302,7 +302,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1c = "6";
                     }
                     chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1c + "\n");
+                    chatArea2.append("Winner: P[" + strWinnerR1c + "]\n");
                 }
             }else if(strMessage.startsWith("8_R1_")){
                 if(intPNumber == 7){
@@ -315,7 +315,7 @@ public class TestGameFile implements ActionListener{
                         strWinnerR1d = "8";
                     }
                     chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1d + "\n");
+                    chatArea2.append("Winner: P[" + strWinnerR1d + "]\n");
                 }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
@@ -329,16 +329,22 @@ public class TestGameFile implements ActionListener{
                 }
             }
         }else if(evt.getSource() == tempButton1){
+            blnRound1Start = false;
+            blnRound2Start = true;
             qfPanel.setVisible(false);
             sfPanel.setVisible(true);
             theFrame.setContentPane(sfPanel);
             theFrame.pack();
         }else if(evt.getSource() == tempButton2){
+            blnRound2Start = false;
+            blnRound3Start = true;
             sfPanel.setVisible(false);
             fPanel.setVisible(true);
             theFrame.setContentPane(fPanel);
             theFrame.pack();
         }else if(evt.getSource() == tempButton3){
+            blnRound3Start = false;
+            blnRound1Start = true;
             fPanel.setVisible(false);
             qfPanel.setVisible(true);
             theFrame.setContentPane(qfPanel);

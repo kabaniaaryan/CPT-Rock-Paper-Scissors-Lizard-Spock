@@ -1,6 +1,5 @@
 package MainGame;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.io.IOException;
 import java.io.InputStream;
