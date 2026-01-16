@@ -2,23 +2,21 @@ package Tests;
 
 
 public class winningMethodsTests {
-   public static String isWinner(String playerChoice, String opponentChoice) {
-       if (playerChoice.equals(opponentChoice)) {
+   public static String isWinner(String playerA, String playerB) {
+       if (playerA.equals(playerB)) {
            return "t";
        }
-
-
-       switch (playerChoice) {
+       switch (playerA) {
            case "ROCK":
-               return (opponentChoice.equals("SCISSORS")) ? "w" : "l";
+               return (playerB.equals("SCISSORS")) ? "w" : "l";
            case "PAPER":
-               return (opponentChoice.equals("ROCK")) ? "w" : "l";
+               return (playerB.equals("ROCK")) ? "w" : "l";
            case "SCISSORS":
-               return (opponentChoice.equals("PAPER")) ? "w" : "l";
+               return (playerB.equals("PAPER")) ? "w" : "l";
            case "LIZARD":
-               return (opponentChoice.equals("SPOCK") || opponentChoice.equals("PAPER")) ? "w" : "l";
+               return (playerB.equals("SPOCK") || playerB.equals("PAPER")) ? "w" : "l";
            case "SPOCK":
-               return (opponentChoice.equals("SCISSORS") || opponentChoice.equals("ROCK")) ? "w" : "l";
+               return (playerB.equals("SCISSORS") || playerB.equals("ROCK")) ? "w" : "l";
            default:
                return "Invalid choice!";
        }
