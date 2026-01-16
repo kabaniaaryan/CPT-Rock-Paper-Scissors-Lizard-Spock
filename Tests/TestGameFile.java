@@ -263,8 +263,13 @@ public class TestGameFile implements ActionListener{
             }else if(intPNumber == 1 && strMessage.startsWith("2_R1_")){
                 strChoiceR1aOPP = strMessage.substring(5);
                 chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
-                String strOutcome = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
-                System.out.println(strOutcome);
+                String strOutcomeQfA = winningMethodsTests.isWinner(strChoiceR1a, strChoiceR1aOPP);
+                System.out.println(strOutcomeQfA);
+            }else if(intPNumber == 3 && strMessage.startsWith("4_R1_")){
+                strChoiceR1bOPP = strMessage.substring(5);
+                chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
+                String strOutcomeQfB = winningMethodsTests.isWinner(strChoiceR1b, strChoiceR1bOPP);
+                System.out.println(strOutcomeQfB);
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
                     chatArea.append(strMessage + "\n");
