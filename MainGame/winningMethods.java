@@ -7,14 +7,13 @@ public class winningMethods {
            return "T";
        }
 
-
        switch (playerChoice) {
            case "ROCK":
-               return (opponentChoice.equals("SCISSORS")) ? "W" : "L";
+               return (opponentChoice.equals("SCISSORS") || opponentChoice.equals("LIZARD")) ? "W" : "L";
            case "PAPER":
-               return (opponentChoice.equals("ROCK")) ? "W" : "L";
+               return (opponentChoice.equals("ROCK") || opponentChoice.equals("SPOCK")) ? "W" : "L";
            case "SCISSORS":
-               return (opponentChoice.equals("PAPER")) ? "W" : "L";
+               return (opponentChoice.equals("PAPER") || opponentChoice.equals("LIZARD")) ? "W" : "L";
            case "LIZARD":
                return (opponentChoice.equals("SPOCK") || opponentChoice.equals("PAPER")) ? "W" : "L";
            case "SPOCK":
