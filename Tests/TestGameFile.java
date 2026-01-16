@@ -42,6 +42,39 @@ public class TestGameFile implements ActionListener{
     boolean blnLastPlayer = false;
     boolean blnGameStarted = false;
 
+    boolean blnWinR1 = false;
+    boolean blnWinR2 = false;
+    boolean blnWinR3 = false;
+
+    boolean blnRound1Start = false;
+    boolean blnRound2Start = false;
+    boolean blnRound3Start = false;
+
+    String strChoiceR1a = null;
+    String strChoiceR1aOPP = null;
+    String strChoiceR1b = null;
+    String strChoiceR1bOPP = null;
+    String strChoiceR1c = null;
+    String strChoiceR1cOPP = null;
+    String strChoiceR1d = null;
+    String strChoiceR1dOPP = null;
+
+    String strChoiceR2a = null;
+    String strChoiceR2aOPP = null;
+    String strChoiceR2b = null;
+    String strChoiceR2bOPP = null;
+
+    String strChoiceR3 = null;
+    String strChoiceR3OPP = null;
+
+    String strWinnerR1a = "";
+    String strWinnerR1b = "";
+    String strWinnerR1c = "";
+    String strWinnerR1d = "";
+    String strWinnerR2a = "";
+    String strWinnerR2b = "";
+    String strFinalWinner = "";
+
     // Game Panels
     QuarterFinal qfPanel = new QuarterFinal();
     SemiFinal sfPanel = new SemiFinal();
@@ -178,6 +211,7 @@ public class TestGameFile implements ActionListener{
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
             blnGameStarted = true;
+            blnRound1Start = true;
         }else if(evt.getSource() == messageField){
             String strMessage = messageField.getText();
             ssm.sendText("[P" + intPNumber + "] " + strMessage);
@@ -216,6 +250,7 @@ public class TestGameFile implements ActionListener{
                 theFrame.setContentPane(qfPanel);
                 theFrame.pack();
                 blnGameStarted = true;
+                blnRound1Start = true;
             }else if(strMessage.equals("GAME_START_EVEN")){
                 if(blnLastPlayer == true){
                     intPNumber = 2;
@@ -224,11 +259,19 @@ public class TestGameFile implements ActionListener{
                 theFrame.setContentPane(qfPanel);
                 theFrame.pack();
                 blnGameStarted = true;
+                blnRound1Start = true;
+            }else if(intPNumber == 1 && strMessage.startsWith("2_R1_")){
+                strChoiceR1aOPP = strMessage.substring(5);
+                chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
             }else{
-                if(blnGameStarted == false){
+                if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
                     chatArea.append(strMessage + "\n");
-                }else{
+                }else if(blnRound1Start == true && blnRound2Start == false && blnRound3Start == false){
                     chatArea2.append(strMessage + "\n");
+                }else if(blnRound1Start == true && blnRound2Start == true && blnRound3Start == false){
+                    chatArea3.append(strMessage + "\n");
+                }else if(blnRound1Start == true && blnRound2Start == true && blnRound3Start == true){
+                    chatArea4.append(strMessage + "\n");
                 }
             }
         }else if(evt.getSource() == tempButton1){
@@ -246,6 +289,35 @@ public class TestGameFile implements ActionListener{
             qfPanel.setVisible(true);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
+        }else if(evt.getSource() == Rp1QFButton || evt.getSource() == Pp1QFButton || evt.getSource() == Cp1QFButton || evt.getSource() == Lp1QFButton || evt.getSource() == Sp1QFButton){
+            if(evt.getSource() == Rp1QFButton){
+                strChoiceR1a = "ROCK";
+            }else if(evt.getSource() == Pp1QFButton){
+                strChoiceR1a = "PAPER";
+            }else if(evt.getSource() == Cp1QFButton){
+                strChoiceR1a = "SCISSORS";
+            }else if(evt.getSource() == Lp1QFButton){
+                strChoiceR1a = "LIZARD";
+            }else if(evt.getSource() == Sp1QFButton){
+                strChoiceR1a = "SPOCK";
+            }
+            chatArea2.append("[P1] chose " + strChoiceR1a + "\n");
+            ssm.sendText("[P1] chose " + strChoiceR1a);
+        }else if(evt.getSource() == Rp2QFButton || evt.getSource() == Pp2QFButton || evt.getSource() == Cp2QFButton || evt.getSource() == Lp2QFButton || evt.getSource() == Sp2QFButton){
+            if(evt.getSource() == Rp2QFButton){
+                strChoiceR1aOPP = "ROCK";
+            }else if(evt.getSource() == Pp2QFButton){
+                strChoiceR1aOPP = "PAPER";
+            }else if(evt.getSource() == Cp2QFButton){
+                strChoiceR1aOPP = "SCISSORS";
+            }else if(evt.getSource() == Lp2QFButton){
+                strChoiceR1aOPP = "LIZARD";
+            }else if(evt.getSource() == Sp2QFButton){
+                strChoiceR1aOPP = "SPOCK";
+            }
+            chatArea2.append("[P2] chose " + strChoiceR1aOPP + "\n");
+            ssm.sendText("[P2] chose " + strChoiceR1aOPP);
+            ssm.sendText("2_R1_" + strChoiceR1aOPP);
         }
     }
 
@@ -263,34 +335,52 @@ public class TestGameFile implements ActionListener{
         Rp1QFButton.setSize(100,35);
         Rp1QFButton.setLocation(100,125);
         qfPanel.add(Rp1QFButton);
+        Rp1QFButton.addActionListener(this);
+
         Pp1QFButton.setSize(100,35);
         Pp1QFButton.setLocation(100,170);
         qfPanel.add(Pp1QFButton);
+        Pp1QFButton.addActionListener(this);
+
         Cp1QFButton.setSize(100,35);
         Cp1QFButton.setLocation(225,125);
         qfPanel.add(Cp1QFButton);
+        Cp1QFButton.addActionListener(this);
+
         Lp1QFButton.setSize(100,35);
         Lp1QFButton.setLocation(225,170);
         qfPanel.add(Lp1QFButton);
+        Lp1QFButton.addActionListener(this);
+
         Sp1QFButton.setSize(100,35);
         Sp1QFButton.setLocation(350,170);
         qfPanel.add(Sp1QFButton);
+        Sp1QFButton.addActionListener(this);
         //p2 buttons
         Rp2QFButton.setSize(100,35);
         Rp2QFButton.setLocation(650,125);
         qfPanel.add(Rp2QFButton);
+        Rp2QFButton.addActionListener(this);
+
         Pp2QFButton.setSize(100,35);
         Pp2QFButton.setLocation(525,170);
         qfPanel.add(Pp2QFButton);
+        Pp2QFButton.addActionListener(this);
+
         Cp2QFButton.setSize(100,35);
         Cp2QFButton.setLocation(775,125);
         qfPanel.add(Cp2QFButton);
+        Cp2QFButton.addActionListener(this);
+
         Lp2QFButton.setSize(100,35);
         Lp2QFButton.setLocation(650,170);
         qfPanel.add(Lp2QFButton);
+        Lp2QFButton.addActionListener(this);
+
         Sp2QFButton.setSize(100,35);
         Sp2QFButton.setLocation(775,170);
         qfPanel.add(Sp2QFButton);
+        Sp2QFButton.addActionListener(this);
         //p3 buttons
         Rp3QFButton.setSize(100,35);
         Rp3QFButton.setLocation(100,270);
