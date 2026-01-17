@@ -71,6 +71,10 @@ public class RPSGame implements ActionListener{
     String strOutcomeQfC = "";
     String strOutcomeQfD = "";
 
+    int intR1MatchesDone = 0;
+    int intR2MatchesDone = 0;
+    int intR3MatchesDone = 0;
+
     String strWinnerR1a = "";
     String strWinnerR1b = "";
     String strWinnerR1c = "";
@@ -314,6 +318,7 @@ public class RPSGame implements ActionListener{
                         ssm.disconnect();
                     }else if(strOutcomeQfA.equals("L")){
                         ssm.sendText("Winner is [P2]");
+                        chatArea2.append("Winner is [P2] \n")
                     }
                 }
             }else if(strMessage.startsWith("2_R1_")){
@@ -323,13 +328,36 @@ public class RPSGame implements ActionListener{
                     strOutcomeQfA = winningMethods.isWinner(strChoiceR1a, strChoiceR1aOPP);
                     if(strOutcomeQfA.equals("W")){
                         ssm.sendText("1_R1_W");
+                        intR1MatchesDone++;
                     }else if(strOutcomeQfA.equals("L")){
                         blnWinR1 = false;
                         ssm.sendText("1_R1_L");
+                        intR1MatchesDone++;
                     }else if(strOutcomeQfA.equals("T")){
                         ssm.sendText("1_R1_T");
                     }
                     chatArea2.append("Outcome for [P1]: " + strOutcomeQfA + "\n");
+                }
+            }else if(strMessage.startsWith("3_R1_")){
+                if(intPNumber == 4 || intPNumber == 1){
+                    strOutcomeQfB = strMessage.substring(5);
+                    if(intPNumber == 4){
+                        if(strOutcomeQfB.equals("W")){
+                            blnWinR1 = false;
+                            ssm.disconnect();
+                        }else if(strOutcomeQfB.equals("L")){
+                            ssm.sendText("Winner is [P4]");
+                            chatArea2.append("Winner is [P4] \n");
+                        }
+                    }else if(intPNumber == 1){
+                        if(strOutcomeQfB.equals("W")){
+                            intR1MatchesDone++;
+                            strWinnerR1b = "3";
+                        }else if(strOutcomeQfB.equals("L")){
+                            intR1MatchesDone++;
+                            strWinnerR1b = "4";
+                        }
+                    }
                 }
             }else if(strMessage.startsWith("4_R1_")){
                 if(intPNumber == 3){
@@ -344,6 +372,27 @@ public class RPSGame implements ActionListener{
                     chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
                     chatArea2.append("Winner: " + strWinnerR1b + "\n");
                 }
+            }else if(strMessage.startsWith("5_R1_")){
+                if(intPNumber == 6 || intPNumber == 1){
+                    strOutcomeQfC = strMessage.substring(5);
+                    if(intPNumber == 6){
+                        if(strOutcomeQfC.equals("W")){
+                            blnWinR1 = false;
+                            ssm.disconnect();
+                        }else if(strOutcomeQfC.equals("L")){
+                            ssm.sendText("Winner is [P6]");
+                            chatArea2.append("Winner is [P6] \n");
+                        }
+                    }else if(intPNumber == 1){
+                        if(strOutcomeQfC.equals("W")){
+                            intR1MatchesDone++;
+                            strWinnerR1c = "5";
+                        }else if(strOutcomeQfC.equals("L")){
+                            intR1MatchesDone++;
+                            strWinnerR1c = "6";
+                        }
+                    }
+                }
             }else if(strMessage.startsWith("6_R1_")){
                 if(intPNumber == 5){
                     strChoiceR1cOPP = strMessage.substring(5);
@@ -356,6 +405,27 @@ public class RPSGame implements ActionListener{
                     }
                     chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
                     chatArea2.append("Winner: " + strWinnerR1c + "\n");
+                }
+            }else if(strMessage.startsWith("7_R1_")){
+                if(intPNumber == 8 || intPNumber == 1){
+                    strOutcomeQfD = strMessage.substring(5);
+                    if(intPNumber == 8){
+                        if(strOutcomeQfD.equals("W")){
+                            blnWinR1 = false;
+                            ssm.disconnect();
+                        }else if(strOutcomeQfD.equals("L")){
+                            ssm.sendText("Winner is [P8]");
+                            chatArea2.append("Winner is [P8] \n");
+                        }
+                    }else if(intPNumber == 1){
+                        if(strOutcomeQfD.equals("W")){
+                            intR1MatchesDone++;
+                            strWinnerR1d = "7";
+                        }else if(strOutcomeQfD.equals("L")){
+                            intR1MatchesDone++;
+                            strWinnerR1d = "8";
+                        }
+                    }
                 }
             }else if(strMessage.startsWith("8_R1_")){
                 if(intPNumber == 7){
