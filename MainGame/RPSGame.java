@@ -674,6 +674,7 @@ public class RPSGame implements ActionListener{
                             intR2MatchesDone++;
                             //strWinnerR2a = "3";
                         }
+                        chatArea3.append(intR2MatchesDone + "");
                         if((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2)){
                             if(intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2){
                                 ssm.sendText("ROUND_3_START_ODD");
