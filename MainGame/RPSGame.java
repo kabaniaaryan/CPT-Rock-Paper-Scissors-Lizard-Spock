@@ -315,10 +315,14 @@ public class RPSGame implements ActionListener{
                     strOutcomeQfA = strMessage.substring(5);
                     if(strOutcomeQfA.equals("W")){
                         blnWinR1 = false;
-                        ssm.disconnect();
+                        ssm.sendText("Winner is [P1]");
+                        chatArea2.append("Winner is [P1] \n");
                     }else if(strOutcomeQfA.equals("L")){
                         ssm.sendText("Winner is [P2]");
                         chatArea2.append("Winner is [P2] \n");
+                    }else if(strOutcomeQfA.equals("T")){
+                        ssm.sendText("Tie between [P1] and [P2]");
+                        chatArea2.append("Tie between [P1] and [P2] \n");
                     }
                 }
             }else if(strMessage.startsWith("2_R1_")){
@@ -344,10 +348,14 @@ public class RPSGame implements ActionListener{
                     if(intPNumber == 4){
                         if(strOutcomeQfB.equals("W")){
                             blnWinR1 = false;
-                            ssm.disconnect();
+                            ssm.sendText("Winner is [P3]");
+                            chatArea2.append("Winner is [P3] \n");
                         }else if(strOutcomeQfB.equals("L")){
                             ssm.sendText("Winner is [P4]");
                             chatArea2.append("Winner is [P4] \n");
+                        }else if(strOutcomeQfB.equals("T")){
+                            ssm.sendText("Tie between [P3] and [P4]");
+                            chatArea2.append("Tie between [P3] and [P4] \n");
                         }
                     }else if(intPNumber == 1){
                         if(strOutcomeQfB.equals("W")){
@@ -365,12 +373,14 @@ public class RPSGame implements ActionListener{
                     chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
                     strOutcomeQfB = winningMethods.isWinner(strChoiceR1b, strChoiceR1bOPP);
                     if(strOutcomeQfB.equals("W")){
-                        strWinnerR1b = "3";
+                        ssm.sendText("3_R1_W");
                     }else if(strOutcomeQfB.equals("L")){
-                        strWinnerR1b = "4";
+                        blnWinR1 = false;
+                        ssm.sendText("3_R1_L");
+                    }else if(strOutcomeQfB.equals("T")){
+                        ssm.sendText("3_R1_T");
                     }
                     chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1b + "\n");
                 }
             }else if(strMessage.startsWith("5_R1_")){
                 if(intPNumber == 6 || intPNumber == 1){
@@ -378,10 +388,14 @@ public class RPSGame implements ActionListener{
                     if(intPNumber == 6){
                         if(strOutcomeQfC.equals("W")){
                             blnWinR1 = false;
-                            ssm.disconnect();
+                            ssm.sendText("Winner is [P5]");
+                            chatArea2.append("Winner is [P5] \n");
                         }else if(strOutcomeQfC.equals("L")){
                             ssm.sendText("Winner is [P6]");
                             chatArea2.append("Winner is [P6] \n");
+                        }else if(strOutcomeQfC.equals("T")){
+                            ssm.sendText("Tie between [P5] and [P6]");
+                            chatArea2.append("Tie between [P5] and [P6] \n");
                         }
                     }else if(intPNumber == 1){
                         if(strOutcomeQfC.equals("W")){
@@ -399,12 +413,14 @@ public class RPSGame implements ActionListener{
                     chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
                     strOutcomeQfC = winningMethods.isWinner(strChoiceR1c, strChoiceR1cOPP);
                     if(strOutcomeQfC.equals("W")){
-                        strWinnerR1c = "5";
+                        ssm.sendText("5_R1_W");
                     }else if(strOutcomeQfC.equals("L")){
-                        strWinnerR1c = "6";
+                        blnWinR1 = false;
+                        ssm.sendText("5_R1_L");
+                    }else if(strOutcomeQfC.equals("T")){
+                        ssm.sendText("5_R1_T");
                     }
                     chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1c + "\n");
                 }
             }else if(strMessage.startsWith("7_R1_")){
                 if(intPNumber == 8 || intPNumber == 1){
@@ -412,10 +428,14 @@ public class RPSGame implements ActionListener{
                     if(intPNumber == 8){
                         if(strOutcomeQfD.equals("W")){
                             blnWinR1 = false;
-                            ssm.disconnect();
+                            ssm.sendText("Winner is [P7]");
+                            chatArea2.append("Winner is [P7] \n");
                         }else if(strOutcomeQfD.equals("L")){
                             ssm.sendText("Winner is [P8]");
                             chatArea2.append("Winner is [P8] \n");
+                        }else if(strOutcomeQfD.equals("T")){
+                            ssm.sendText("Tie between [P7] and [P8]");
+                            chatArea2.append("Tie between [P7] and [P8] \n");
                         }
                     }else if(intPNumber == 1){
                         if(strOutcomeQfD.equals("W")){
@@ -433,12 +453,14 @@ public class RPSGame implements ActionListener{
                     chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
                     strOutcomeQfD = winningMethods.isWinner(strChoiceR1d, strChoiceR1dOPP);
                     if(strOutcomeQfD.equals("W")){
-                        strWinnerR1d = "7";
+                        ssm.sendText("7_R1_W");
                     }else if(strOutcomeQfD.equals("L")){
-                        strWinnerR1d = "8";
+                        blnWinR1 = false;
+                        ssm.sendText("7_R1_L");
+                    }else if(strOutcomeQfD.equals("T")){
+                        ssm.sendText("7_R1_T");
                     }
                     chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
-                    chatArea2.append("Winner: " + strWinnerR1d + "\n");
                 }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
