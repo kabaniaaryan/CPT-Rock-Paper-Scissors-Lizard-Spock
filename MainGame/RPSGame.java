@@ -181,7 +181,7 @@ public class RPSGame implements ActionListener{
     JButton tempButton3 = new JButton("to QF");
 
     // Methods
-     public void actionPerformed(ActionEvent evt) {
+    public void actionPerformed(ActionEvent evt){
         if(evt.getSource() == serverButton){
             ssm = new SuperSocketMaster(8765, this);
             System.out.println("Hosting Game");
@@ -310,6 +310,11 @@ public class RPSGame implements ActionListener{
                     Lp8QFButton.setVisible(true);
                     Sp8QFButton.setVisible(true);
                 }
+            }else if(strMessage.startsWith("ROUND_2_START_")){
+                qfPanel.setVisible(false);
+                theFrame.setContentPane(sfPanel);
+                theFrame.pack();
+                blnRound2Start = true;
             }else if(strMessage.startsWith("1_R1_")){
                 if(intPNumber == 2){
                     strOutcomeQfA = strMessage.substring(5);
@@ -328,7 +333,6 @@ public class RPSGame implements ActionListener{
             }else if(strMessage.startsWith("2_R1_")){
                 if(intPNumber == 1){
                     strChoiceR1aOPP = strMessage.substring(5);
-                    chatArea2.append("Matchup: [P1] chose " + strChoiceR1a + " | [P2] chose " + strChoiceR1aOPP + "\n");
                     strOutcomeQfA = winningMethods.isWinner(strChoiceR1a, strChoiceR1aOPP);
                     if(strOutcomeQfA.equals("W")){
                         ssm.sendText("1_R1_W");
@@ -340,7 +344,19 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfA.equals("T")){
                         ssm.sendText("1_R1_T");
                     }
-                    chatArea2.append("Outcome for [P1]: " + strOutcomeQfA + "\n");
+                    if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
+                        qfPanel.setVisible(false);
+                        theFrame.setContentPane(sfPanel);
+                        theFrame.pack();
+                        blnRound2Start = true;
+                        ssm.sendText("ROUND_2_START_ODD");
+                    }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
+                        qfPanel.setVisible(false);
+                        theFrame.setContentPane(sfPanel);
+                        theFrame.pack();
+                        blnRound2Start = true;
+                        ssm.sendText("ROUND_2_START_EVEN");
+                    }
                 }
             }else if(strMessage.startsWith("3_R1_")){
                 if(intPNumber == 4 || intPNumber == 1){
@@ -365,12 +381,24 @@ public class RPSGame implements ActionListener{
                             intR1MatchesDone++;
                             strWinnerR1b = "4";
                         }
+                        if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_ODD");
+                        }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_EVEN");
+                        }
                     }
                 }
             }else if(strMessage.startsWith("4_R1_")){
                 if(intPNumber == 3){
                     strChoiceR1bOPP = strMessage.substring(5);
-                    chatArea2.append("Matchup: [P3] chose " + strChoiceR1b + " | [P4] chose " + strChoiceR1bOPP + "\n");
                     strOutcomeQfB = winningMethods.isWinner(strChoiceR1b, strChoiceR1bOPP);
                     if(strOutcomeQfB.equals("W")){
                         ssm.sendText("3_R1_W");
@@ -380,7 +408,6 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfB.equals("T")){
                         ssm.sendText("3_R1_T");
                     }
-                    chatArea2.append("Outcome for [P3]: " + strOutcomeQfB + "\n");
                 }
             }else if(strMessage.startsWith("5_R1_")){
                 if(intPNumber == 6 || intPNumber == 1){
@@ -405,12 +432,24 @@ public class RPSGame implements ActionListener{
                             intR1MatchesDone++;
                             strWinnerR1c = "6";
                         }
+                        if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_ODD");
+                        }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_EVEN");
+                        }
                     }
                 }
             }else if(strMessage.startsWith("6_R1_")){
                 if(intPNumber == 5){
                     strChoiceR1cOPP = strMessage.substring(5);
-                    chatArea2.append("Matchup: [P5] chose " + strChoiceR1c + " | [P6] chose " + strChoiceR1cOPP + "\n");
                     strOutcomeQfC = winningMethods.isWinner(strChoiceR1c, strChoiceR1cOPP);
                     if(strOutcomeQfC.equals("W")){
                         ssm.sendText("5_R1_W");
@@ -420,7 +459,6 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfC.equals("T")){
                         ssm.sendText("5_R1_T");
                     }
-                    chatArea2.append("Outcome for [P5]: " + strOutcomeQfC + "\n");
                 }
             }else if(strMessage.startsWith("7_R1_")){
                 if(intPNumber == 8 || intPNumber == 1){
@@ -445,12 +483,24 @@ public class RPSGame implements ActionListener{
                             intR1MatchesDone++;
                             strWinnerR1d = "8";
                         }
+                        if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_ODD");
+                        }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
+                            qfPanel.setVisible(false);
+                            theFrame.setContentPane(sfPanel);
+                            theFrame.pack();
+                            blnRound2Start = true;
+                            ssm.sendText("ROUND_2_START_EVEN");
+                        }
                     }
                 }
             }else if(strMessage.startsWith("8_R1_")){
                 if(intPNumber == 7){
                     strChoiceR1dOPP = strMessage.substring(5);
-                    chatArea2.append("Matchup: [P7] chose " + strChoiceR1d + " | [P8] chose " + strChoiceR1dOPP + "\n");
                     strOutcomeQfD = winningMethods.isWinner(strChoiceR1d, strChoiceR1dOPP);
                     if(strOutcomeQfD.equals("W")){
                         ssm.sendText("7_R1_W");
@@ -460,7 +510,6 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfD.equals("T")){
                         ssm.sendText("7_R1_T");
                     }
-                    chatArea2.append("Outcome for [P7]: " + strOutcomeQfD + "\n");
                 }
             }else{
                 if(blnRound1Start == false && blnRound2Start == false && blnRound3Start == false){
