@@ -6,9 +6,9 @@ public class winningMethods{
         if(playerChoice.equals(null) && opponentChoice.equals(null)){
             return "N";
         }else if(!playerChoice.equals(null) && opponentChoice.equals(null)){
-            return "W";
+            return "WX";
         }else if(playerChoice.equals(null) && !opponentChoice.equals(null)){
-            return "L";
+            return "LX";
         }else if(playerChoice.equals(opponentChoice)) {
             return "T";
         }

@@ -360,6 +360,14 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfA.equals("T")){
                         ssm.sendText("Tie between [P1] and [P2]");
                         chatArea2.append("Tie between [P1] and [P2] \n");
+                    }else if(strOutcomeQfA.equals("WX")){
+                        blnWinR1 = false;
+                        ssm.sendText("[P2] did not play, [P1] wins by default");
+                        chatArea2.append("[P2] did not play, [P1] wins by default \n");
+                    }else if(strOutcomeQfA.equals("LX")){
+                        blnWinR1 = false;
+                        ssm.sendText("[P1] did not play, [P2] wins by default");
+                        chatArea2.append("[P1] did not play, [P2] wins by default \n");
                     }
                 }
             }else if(strMessage.startsWith("2_R1_")){
@@ -376,6 +384,12 @@ public class RPSGame implements ActionListener{
                         intR1MatchesDone++;
                     }else if(strOutcomeQfA.equals("T")){
                         ssm.sendText("1_R1_T");
+                    }else if(strOutcomeQfA.equals("WX")){
+                        intR2Number = 1;
+                        ssm.sendText("1_R1_WX");
+                    }else if(strOutcomeQfA.equals("LX")){
+                        blnWinR1 = false;
+                        ssm.sendText("1_R1_LX");
                     }
                     if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
                         if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
