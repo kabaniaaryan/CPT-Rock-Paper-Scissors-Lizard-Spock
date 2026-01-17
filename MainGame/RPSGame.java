@@ -318,7 +318,7 @@ public class RPSGame implements ActionListener{
                         ssm.disconnect();
                     }else if(strOutcomeQfA.equals("L")){
                         ssm.sendText("Winner is [P2]");
-                        chatArea2.append("Winner is [P2] \n")
+                        chatArea2.append("Winner is [P2] \n");
                     }
                 }
             }else if(strMessage.startsWith("2_R1_")){
