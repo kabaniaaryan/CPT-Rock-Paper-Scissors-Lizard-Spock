@@ -268,13 +268,57 @@ public class RPSGame implements ActionListener{
                 qfCountLabel.setText("");
                 if(intPNumber == 2){
                     ssm.sendText("2_R1_" + strChoiceR1aOPP);
+                    Rp2QFButton.setVisible(false);
+                    Pp2QFButton.setVisible(false);
+                    Cp2QFButton.setVisible(false);
+                    Lp2QFButton.setVisible(false);
+                    Sp2QFButton.setVisible(false);
                 }else if(intPNumber == 4){
                     ssm.sendText("4_R1_" + strChoiceR1bOPP);
+                    Rp4QFButton.setVisible(false);
+                    Pp4QFButton.setVisible(false);
+                    Cp4QFButton.setVisible(false);
+                    Lp4QFButton.setVisible(false);
+                    Sp4QFButton.setVisible(false);
                 }else if(intPNumber == 6){
                     ssm.sendText("6_R1_" + strChoiceR1cOPP);
+                    Rp6QFButton.setVisible(false);
+                    Pp6QFButton.setVisible(false);
+                    Cp6QFButton.setVisible(false);
+                    Lp6QFButton.setVisible(false);
+                    Sp6QFButton.setVisible(false);
                 }else if(intPNumber == 8){
                     ssm.sendText("8_R1_" + strChoiceR1cOPP);
+                    Rp8QFButton.setVisible(false);
+                    Pp8QFButton.setVisible(false);
+                    Cp8QFButton.setVisible(false);
+                    Lp8QFButton.setVisible(false);
+                    Sp8QFButton.setVisible(false);
                 }
+                // R1 p1 buttons not visible
+                Rp1QFButton.setVisible(false);
+                Pp1QFButton.setVisible(false);
+                Cp1QFButton.setVisible(false);
+                Lp1QFButton.setVisible(false);
+                Sp1QFButton.setVisible(false);
+                // R1 p3 buttons not visible
+                Rp3QFButton.setVisible(false);
+                Pp3QFButton.setVisible(false);
+                Cp3QFButton.setVisible(false);
+                Lp3QFButton.setVisible(false);
+                Sp3QFButton.setVisible(false);
+                // R1 p5 buttons not visible
+                Rp5QFButton.setVisible(false);
+                Pp5QFButton.setVisible(false);
+                Cp5QFButton.setVisible(false);
+                Lp5QFButton.setVisible(false);
+                Sp5QFButton.setVisible(false);
+                // R1 p7 buttons not visible
+                Rp7QFButton.setVisible(false);
+                Pp7QFButton.setVisible(false);
+                Cp7QFButton.setVisible(false);
+                Lp7QFButton.setVisible(false);
+                Sp7QFButton.setVisible(false);
                 intPause--;
                 qfTimer.start();
             }else if(intTime == 0 & intPause == 4){
@@ -289,9 +333,6 @@ public class RPSGame implements ActionListener{
             }else if(intTime == 0 & intPause == 1){
                 intPause--;
                 qfTimer.start();
-            }else if(intTime == 0 & intPause == 0){
-                intTime = 3;
-                intPause = 5;
                 if(intPNumber == 1){
                     if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
                         if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
@@ -303,6 +344,7 @@ public class RPSGame implements ActionListener{
                         theFrame.setContentPane(sfPanel);
                         theFrame.pack();
                         blnRound2Start = true;
+                        sfTimer.start();
                         if(intR2Number == 1){
                             Rp1SFButton.setVisible(true);
                             Pp1SFButton.setVisible(true);
@@ -312,6 +354,9 @@ public class RPSGame implements ActionListener{
                         }
                     }
                 }
+            }else if(intTime == 0 & intPause == 0){
+                intTime = 3;
+                intPause = 5;
                 if(blnRound2Start == false){
                     strChoiceR1a = "";
                     strChoiceR1aOPP = "";
@@ -321,6 +366,169 @@ public class RPSGame implements ActionListener{
                     strChoiceR1cOPP = "";
                     strChoiceR1d = "";
                     strChoiceR1dOPP = "";
+                    // set buttons to visible again
+                    if(intPNumber == 1){
+                        Rp1QFButton.setVisible(true);
+                        Pp1QFButton.setVisible(true);
+                        Cp1QFButton.setVisible(true);
+                        Lp1QFButton.setVisible(true);
+                        Sp1QFButton.setVisible(true);
+                    }else if(intPNumber == 2){
+                        Rp2QFButton.setVisible(true);
+                        Pp2QFButton.setVisible(true);
+                        Cp2QFButton.setVisible(true);
+                        Lp2QFButton.setVisible(true);
+                        Sp2QFButton.setVisible(true);
+                    }else if(intPNumber == 3){
+                        Rp3QFButton.setVisible(true);
+                        Pp3QFButton.setVisible(true);
+                        Cp3QFButton.setVisible(true);
+                        Lp3QFButton.setVisible(true);
+                        Sp3QFButton.setVisible(true);
+                    }else if(intPNumber == 4){
+                        Rp4QFButton.setVisible(true);
+                        Pp4QFButton.setVisible(true);
+                        Cp4QFButton.setVisible(true);
+                        Lp4QFButton.setVisible(true);
+                        Sp4QFButton.setVisible(true);
+                    }else if(intPNumber == 5){
+                        Rp5QFButton.setVisible(true);
+                        Pp5QFButton.setVisible(true);
+                        Cp5QFButton.setVisible(true);
+                        Lp5QFButton.setVisible(true);
+                        Sp5QFButton.setVisible(true);
+                    }else if(intPNumber == 6){
+                        Rp6QFButton.setVisible(true);
+                        Pp6QFButton.setVisible(true);
+                        Cp6QFButton.setVisible(true);
+                        Lp6QFButton.setVisible(true);
+                        Sp6QFButton.setVisible(true);
+                    }else if(intPNumber == 7){
+                        Rp7QFButton.setVisible(true);
+                        Pp7QFButton.setVisible(true);
+                        Cp7QFButton.setVisible(true);
+                        Lp7QFButton.setVisible(true);
+                        Sp7QFButton.setVisible(true);
+                    }else if(intPNumber == 8){
+                        Rp8QFButton.setVisible(true);
+                        Pp8QFButton.setVisible(true);
+                        Cp8QFButton.setVisible(true);
+                        Lp8QFButton.setVisible(true);
+                        Sp8QFButton.setVisible(true);
+                    }
+                    qfTimer.start();
+                }
+            }
+        }else if(evt.getSource() == sfTimer){
+            sfTimer.stop();
+            if(intTime == 3){
+                sfCountLabel.setText("3");
+                intTime--;
+                sfTimer.start();
+            }else if(intTime == 2){
+                sfCountLabel.setText("3 2");
+                intTime--;
+                sfTimer.start();
+            }else if(intTime == 1){
+                sfCountLabel.setText("3 2 1");
+                intTime--;
+                sfTimer.start();
+            }else if(intTime == 0 && intPause == 5){
+                sfCountLabel.setText("");
+                if(intR2Number == 3){
+                    ssm.sendText("3_R2_" + strChoiceR2aOPP);
+                    Rp3SFButton.setVisible(false);
+                    Pp3SFButton.setVisible(false);
+                    Cp3SFButton.setVisible(false);
+                    Lp3SFButton.setVisible(false);
+                    Sp3SFButton.setVisible(false);
+                }else if(intR2Number == 7){
+                    ssm.sendText("7_R2_" + strChoiceR2bOPP);
+                    Rp7SFButton.setVisible(false);
+                    Pp7SFButton.setVisible(false);
+                    Cp7SFButton.setVisible(false);
+                    Lp7SFButton.setVisible(false);
+                    Sp7SFButton.setVisible(false);
+                }
+                // R2 p1 buttons not visible
+                Rp1SFButton.setVisible(false);
+                Pp1SFButton.setVisible(false);
+                Cp1SFButton.setVisible(false);
+                Lp1SFButton.setVisible(false);
+                Sp1SFButton.setVisible(false);
+                // R2 p5 buttons not visible
+                Rp5SFButton.setVisible(false);
+                Pp5SFButton.setVisible(false);
+                Cp5SFButton.setVisible(false);
+                Lp5SFButton.setVisible(false);
+                Sp5SFButton.setVisible(false);
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 4){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 3){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 2){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 1){
+                intPause--;
+                qfTimer.start();
+                if(intPNumber == 1){
+                    if((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2)){
+                        if(intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2){
+                            ssm.sendText("ROUND_3_START_ODD");
+                        }else if(intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2){
+                            ssm.sendText("ROUND_3_START_EVEN");
+                        }
+                        sfPanel.setVisible(false);
+                        theFrame.setContentPane(fPanel);
+                        theFrame.pack();
+                        blnRound3Start = true;
+                        if(intR3Number == 1){
+                            Rp1FButton.setVisible(true);
+                            Pp1FButton.setVisible(true);
+                            Cp1FButton.setVisible(true);
+                            Lp1FButton.setVisible(true);
+                            Sp1FButton.setVisible(true);
+                        }
+                    }
+                }
+            }else if(intTime == 0 & intPause == 0){
+                intTime = 3;
+                intPause = 5;
+                if(blnRound3Start == false){
+                    strChoiceR2a = "";
+                    strChoiceR2aOPP = "";
+                    strChoiceR2b = "";
+                    strChoiceR2bOPP = "";
+                    if(intR2Number == 1){
+                        Rp1SFButton.setVisible(true);
+                        Pp1SFButton.setVisible(true);
+                        Cp1SFButton.setVisible(true);
+                        Lp1SFButton.setVisible(true);
+                        Sp1SFButton.setVisible(true);
+                    }else if(intR2Number == 3){
+                        Rp3SFButton.setVisible(true);
+                        Pp3SFButton.setVisible(true);
+                        Cp3SFButton.setVisible(true);
+                        Lp3SFButton.setVisible(true);
+                        Sp3SFButton.setVisible(true);
+                    }else if(intR2Number == 5){
+                        Rp5SFButton.setVisible(true);
+                        Pp5SFButton.setVisible(true);
+                        Cp5SFButton.setVisible(true);
+                        Lp5SFButton.setVisible(true);
+                        Sp5SFButton.setVisible(true);
+                    }else if(intR2Number == 7){
+                        Rp7SFButton.setVisible(true);
+                        Pp7SFButton.setVisible(true);
+                        Cp7SFButton.setVisible(true);
+                        Lp7SFButton.setVisible(true);
+                        Sp7SFButton.setVisible(true);
+                    }
                     qfTimer.start();
                 }
             }
@@ -439,6 +647,7 @@ public class RPSGame implements ActionListener{
                 theFrame.setContentPane(sfPanel);
                 theFrame.pack();
                 blnRound2Start = true;
+                sfTimer.start();
                 if(intR2Number == 1){
                     Rp1SFButton.setVisible(true);
                     Pp1SFButton.setVisible(true);
@@ -742,24 +951,6 @@ public class RPSGame implements ActionListener{
             }else if(strMessage.equals("INTR2MATCHES_INCREASE")){
                 if(intPNumber == 1){
                     intR2MatchesDone++;
-                    if((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2)){
-                        if(intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2){
-                            ssm.sendText("ROUND_3_START_ODD");
-                        }else if(intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2){
-                            ssm.sendText("ROUND_3_START_EVEN");
-                        }
-                        sfPanel.setVisible(false);
-                        theFrame.setContentPane(fPanel);
-                        theFrame.pack();
-                        blnRound3Start = true;
-                        if(intR3Number == 1){
-                            Rp1FButton.setVisible(true);
-                            Pp1FButton.setVisible(true);
-                            Cp1FButton.setVisible(true);
-                            Lp1FButton.setVisible(true);
-                            Sp1FButton.setVisible(true);
-                        }
-                    }
                 }
             }else if(strMessage.startsWith("1_R2_")){
                 if(intR2Number == 3){
@@ -1068,7 +1259,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2aOPP + "\n");
             ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2aOPP);
-            ssm.sendText("3_R2_" + strChoiceR2aOPP);
         }else if(evt.getSource() == Rp5SFButton || evt.getSource() == Pp5SFButton || evt.getSource() == Cp5SFButton || evt.getSource() == Lp5SFButton || evt.getSource() == Sp5SFButton){
             if(evt.getSource() == Rp5SFButton){
                 strChoiceR2b = "ROCK";
@@ -1097,7 +1287,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2bOPP + "\n");
             ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2bOPP);
-            ssm.sendText("7_R2_" + strChoiceR2bOPP);
         }else if(evt.getSource() == Rp1FButton || evt.getSource() == Pp1FButton || evt.getSource() == Cp1FButton || evt.getSource() == Lp1FButton || evt.getSource() == Sp1FButton){
             if(evt.getSource() == Rp1FButton){
                 strChoiceR3 = "ROCK";
@@ -1409,6 +1598,13 @@ public class RPSGame implements ActionListener{
         sfCountTitle.setHorizontalAlignment(JLabel.CENTER);
         sfPanel.add(sfCountTitle);
 
+        sfCountLabel.setSize(300, 50);
+        sfCountLabel.setLocation(980, 40);
+        sfCountLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        sfCountLabel.setText("");
+        sfCountLabel.setHorizontalAlignment(JLabel.CENTER);
+        sfPanel.add(sfCountLabel);
+
         //p1 buttons
         Rp1SFButton.setSize(100,35);
         Rp1SFButton.setLocation(100,270);
@@ -1532,10 +1728,11 @@ public class RPSGame implements ActionListener{
         // Final Screen Components
         fPanel.setPreferredSize(new Dimension(1280, 720));
         fPanel.setLayout(null);
-        fPanel.add(tempButton3);
+
         tempButton3.setSize(200,100);
         tempButton3.setLocation(900, 300);
         tempButton3.addActionListener(this);
+        fPanel.add(tempButton3);
 
         fCountTitle.setSize(300, 50);
         fCountTitle.setLocation(980, 0);
@@ -1607,12 +1804,13 @@ public class RPSGame implements ActionListener{
         // Winner Screen Components
         wPanel.setPreferredSize(new Dimension(1280,720));
         wPanel.setLayout(null);
-        wPanel.add(winLabel);
 
         winLabel.setSize(200, 50);
+        winLabel.setFont(new Font("SansSerif", Font.PLAIN, 50));
         winLabel.setText("");
         winLabel.setLocation(390, 300);
         winLabel.setHorizontalAlignment(JLabel.CENTER);
+        wPanel.add(winLabel);
 
         // Chat Components
         // Frame & Panel
