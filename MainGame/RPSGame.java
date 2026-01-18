@@ -47,6 +47,10 @@ public class RPSGame implements ActionListener{
     boolean blnNAssigned = false;
     boolean blnLastPlayer = false;
 
+    boolean blnR1Pass = false;
+    boolean blnR2Pass = false;
+    boolean blnR3Pass = false;
+
     boolean blnWinR1 = true;
     boolean blnWinR2 = true;
     boolean blnWinR3 = true;
@@ -588,6 +592,7 @@ public class RPSGame implements ActionListener{
                 blnNAssigned = true;
             }else if(strMessage.startsWith("PLAYER_COUNT_")){
                 intPlayerCount = Integer.parseInt(strMessage.substring(13));
+                
             }else if(strMessage.startsWith("GAME_START_")){
                 if(strMessage.equals("GAME_START_EVEN")){
                     if(blnLastPlayer == true){
