@@ -21,7 +21,7 @@ public class WinPanel extends JPanel{
     public WinPanel(){
         super();
         InputStream imageStream = null;
-        imageStream = this.getClass().getResourceAsStream("WinScreen.png");
+        imageStream = this.getClass().getResourceAsStream("TheWinScreen.png");
         try{
             WinImage = ImageIO.read(imageStream);
         }catch(IOException e){

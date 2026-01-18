@@ -382,7 +382,7 @@ public class RPSGame implements ActionListener{
             }else if(strMessage.startsWith("WINNER_")){
                 if(intPNumber == 1){
                     strFinalWinner = strMessage.substring(7);
-                    winLabel.setText("WINNER IS: [P" + strFinalWinner + "]");
+                    winLabel.setText("[P" + strFinalWinner + "]");
                     fPanel.setVisible(false);
                     theFrame.setContentPane(wPanel);
                     theFrame.pack();
@@ -390,7 +390,7 @@ public class RPSGame implements ActionListener{
                 }
             }else if(strMessage.startsWith("WIN_SCREEN_")){
                 strFinalWinner = strMessage.substring(11);
-                winLabel.setText("WINNER IS: [P" + strFinalWinner + "]");
+                winLabel.setText("[P" + strFinalWinner + "]");
                 fPanel.setVisible(false);
                 theFrame.setContentPane(wPanel);
                 theFrame.pack();
@@ -469,7 +469,7 @@ public class RPSGame implements ActionListener{
                             ssm.sendText("Winner is [P3]");
                             chatArea2.append("Winner is [P3] \n");
                         }else if(strOutcomeQfB.equals("L")){
-                            if(intPlayerCount == 5 || intPlayerCount == 3){
+                            if(intPlayerCount >= 3 && intPlayerCount <= 6){
                                 intR2Number = 5;
                             }else{
                                 intR2Number = 3;
@@ -484,7 +484,7 @@ public class RPSGame implements ActionListener{
                             ssm.sendText("[P4] did not play, [P3] wins by default");
                             chatArea2.append("[P4] did not play, [P3] wins by default \n");
                         }else if(strOutcomeQfB.equals("LX")){
-                            if(intPlayerCount == 5 || intPlayerCount == 3){
+                            if(intPlayerCount >= 3 && intPlayerCount <= 6){
                                 intR2Number = 5;
                             }else{
                                 intR2Number = 3;
@@ -525,7 +525,7 @@ public class RPSGame implements ActionListener{
                     strChoiceR1bOPP = strMessage.substring(5);
                     strOutcomeQfB = winningMethods.isWinner(strChoiceR1b, strChoiceR1bOPP);
                     if(strOutcomeQfB.equals("W")){
-                        if(intPlayerCount == 5 || intPlayerCount == 3){
+                        if(intPlayerCount >= 3 && intPlayerCount <= 6){
                             intR2Number = 5;
                         }else{
                             intR2Number = 3;
@@ -537,7 +537,7 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeQfB.equals("T")){
                         ssm.sendText("3_R1_T");
                     }else if(strOutcomeQfB.equals("WX")){
-                        if(intPlayerCount == 5 || intPlayerCount == 3){
+                        if(intPlayerCount >= 3 && intPlayerCount <= 6){
                             intR2Number = 5;
                         }else{
                             intR2Number = 3;
@@ -651,11 +651,11 @@ public class RPSGame implements ActionListener{
                         }else if(strOutcomeQfD.equals("T")){
                             ssm.sendText("Tie between [P7] and [P8]");
                             chatArea2.append("Tie between [P7] and [P8] \n");
-                        }else if(strOutcomeQfA.equals("WX")){
+                        }else if(strOutcomeQfD.equals("WX")){
                             blnWinR1 = false;
                             ssm.sendText("[P8] did not play, [P7] wins by default");
                             chatArea2.append("[P8] did not play, [P7] wins by default \n");
-                        }else if(strOutcomeQfA.equals("LX")){
+                        }else if(strOutcomeQfD.equals("LX")){
                             intR2Number = 7;
                             ssm.sendText("[P7] did not play, [P8] wins by default");
                             chatArea2.append("[P7] did not play, [P8] wins by default \n");
@@ -823,7 +823,7 @@ public class RPSGame implements ActionListener{
                         ssm.sendText("5_R2_-" + intPNumber + "-WX");
                     }else if(strOutcomeSfB.equals("LX")){
                         blnWinR2 = false;
-                        ssm.sendText("5_R2_-" + intPNumber + "LX");
+                        ssm.sendText("5_R2_-" + intPNumber + "-LX");
                     }
                 }
             }else if(strMessage.startsWith("1_R3_")){
@@ -1557,6 +1557,7 @@ public class RPSGame implements ActionListener{
         winLabel.setSize(200, 50);
         winLabel.setText("");
         winLabel.setLocation(390, 300);
+        winLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // Chat Components
         // Frame & Panel
