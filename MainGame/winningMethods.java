@@ -3,11 +3,11 @@ package MainGame;
 
 public class winningMethods{
     public static String isWinner(String playerChoice, String opponentChoice){
-        if(playerChoice.equals(null) && opponentChoice.equals(null)){
+        if(playerChoice.equals("") && opponentChoice.equals("")){
             return "N";
-        }else if(!playerChoice.equals(null) && opponentChoice.equals(null)){
+        }else if(!playerChoice.equals("") && opponentChoice.equals("")){
             return "WX";
-        }else if(playerChoice.equals(null) && !opponentChoice.equals(null)){
+        }else if(playerChoice.equals("") && !opponentChoice.equals("")){
             return "LX";
         }else if(playerChoice.equals(opponentChoice)) {
             return "T";
