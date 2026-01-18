@@ -30,6 +30,9 @@ public class RPSGame implements ActionListener{
     JTextArea chatArea4 = new JTextArea();
     JScrollPane theScroll4 = new JScrollPane(chatArea4);
     // Winner Screen Chat Components
+    JTextField messageField5 = new JTextField();
+    JTextArea chatArea5 = new JTextArea();
+    JScrollPane theScroll5 = new JScrollPane(chatArea5);
 
     SuperSocketMaster ssm = null;
     int intPNumber = 0;
@@ -91,10 +94,14 @@ public class RPSGame implements ActionListener{
     String strWinnerR2b = "";
     String strFinalWinner = "";
 
+    // Panels
     // Game Panels
     QuarterPanel qfPanel = new QuarterPanel();
     SemiPanel sfPanel = new SemiPanel();
     FinalPanel fPanel = new FinalPanel();
+    // Winner Panel
+    WinPanel wPanel = new WinPanel();
+    JLabel winLabel = new JLabel();
 
     // Buttons For Quarter Finals
     //Format for naming buttons (First Letter of Option - Scissors is C)(Player numbers)(Round)(Button)
@@ -372,6 +379,21 @@ public class RPSGame implements ActionListener{
                     Lp5FButton.setVisible(true);
                     Sp5FButton.setVisible(true);
                 }
+            }else if(strMessage.startsWith("WINNER_")){
+                if(intPNumber == 1){
+                    strFinalWinner = strMessage.substring(7);
+                    winLabel.setText("WINNER IS: [P" + strFinalWinner + "]");
+                    fPanel.setVisible(false);
+                    theFrame.setContentPane(wPanel);
+                    theFrame.pack();
+                    ssm.sendText("WIN_SCREEN_" + strFinalWinner);
+                }
+            }else if(strMessage.startsWith("WIN_SCREEN_")){
+                strFinalWinner = strMessage.substring(11);
+                winLabel.setText("WINNER IS: [P" + strFinalWinner + "]");
+                fPanel.setVisible(false);
+                theFrame.setContentPane(wPanel);
+                theFrame.pack();
             }else if(strMessage.startsWith("1_R1_")){
                 if(intPNumber == 2){
                     strOutcomeQfA = strMessage.substring(5);
@@ -631,12 +653,12 @@ public class RPSGame implements ActionListener{
                             chatArea2.append("Tie between [P7] and [P8] \n");
                         }else if(strOutcomeQfA.equals("WX")){
                             blnWinR1 = false;
-                            ssm.sendText("[P2] did not play, [P1] wins by default");
-                            chatArea2.append("[P2] did not play, [P1] wins by default \n");
+                            ssm.sendText("[P8] did not play, [P7] wins by default");
+                            chatArea2.append("[P8] did not play, [P7] wins by default \n");
                         }else if(strOutcomeQfA.equals("LX")){
                             intR2Number = 7;
-                            ssm.sendText("[P1] did not play, [P2] wins by default");
-                            chatArea2.append("[P1] did not play, [P2] wins by default \n");
+                            ssm.sendText("[P7] did not play, [P8] wins by default");
+                            chatArea2.append("[P7] did not play, [P8] wins by default \n");
                         }
                     }else if(intPNumber == 1){
                         if(strOutcomeQfD.equals("W") || strOutcomeQfD.equals("WX")){
@@ -727,12 +749,12 @@ public class RPSGame implements ActionListener{
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
                     }else if(strOutcomeSfA.equals("WX")){
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
-                        chatArea.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
+                        chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                     }else if(strOutcomeSfA.equals("LX")){
                         intR3Number = 1;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
-                        chatArea.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
+                        chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                     }
                 }
@@ -775,12 +797,12 @@ public class RPSGame implements ActionListener{
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
                     }else if(strOutcomeSfB.equals("WX")){
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
-                        chatArea.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
+                        chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                     }else if(strOutcomeSfB.equals("LX")){
                         intR3Number = 5;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
-                        chatArea.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
+                        chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                     }
                 }
@@ -1528,6 +1550,13 @@ public class RPSGame implements ActionListener{
         fPanel.add(Sp5FButton);
         Sp5FButton.addActionListener(this);
         // Winner Screen Components
+        wPanel.setPreferredSize(new Dimension(1280,720));
+        wPanel.setLayout(null);
+        wPanel.add(winLabel);
+
+        winLabel.setSize(200, 50);
+        winLabel.setText("");
+        winLabel.setLocation(390, 300);
 
         // Chat Components
         // Frame & Panel
