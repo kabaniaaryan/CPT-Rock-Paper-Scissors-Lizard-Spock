@@ -103,6 +103,25 @@ public class RPSGame implements ActionListener{
     WinPanel wPanel = new WinPanel();
     JLabel winLabel = new JLabel();
 
+    // Timer & Countdown Components
+    // Repaint Timer
+    Timer repaintTimer = new Timer(17, this);
+    // Countdown Timers
+    Timer qfTimer = new Timer(1000, this);
+    Timer sfTimer = new Timer(1000, this);
+    Timer fTimer = new Timer(1000, this);
+    // Timer Trackers
+    int intTime = 3;
+    int intPause = 5;
+    // Countdown Titles
+    JLabel qfCountTitle = new JLabel();
+    JLabel sfCountTitle = new JLabel();
+    JLabel fCountTitle = new JLabel();
+    // Countdown Text
+    JLabel qfCountLabel = new JLabel();
+    JLabel sfCountLabel = new JLabel();
+    JLabel fCountLabel = new JLabel();
+
     // Buttons For Quarter Finals
     //Format for naming buttons (First Letter of Option - Scissors is C)(Player numbers)(Round)(Button)
     JButton Rp1QFButton = new JButton("ROCK");
@@ -223,6 +242,88 @@ public class RPSGame implements ActionListener{
             blnLastPlayer = true;
             ssm.sendText("SERVER_NEW_PLAYER");
             ipField.setVisible(false);
+        }else if(evt.getSource() == repaintTimer){
+            if(blnRound3Start == true){
+                fPanel.repaint();
+            }else if(blnRound2Start == true){
+                sfPanel.repaint();
+            }else if(blnRound1Start == true){
+                qfPanel.repaint();
+            }
+        }else if(evt.getSource() == qfTimer){
+            qfTimer.stop();
+            if(intTime == 3){
+                qfCountLabel.setText("3");
+                intTime--;
+                qfTimer.start();
+            }else if(intTime == 2){
+                qfCountLabel.setText("3 2");
+                intTime--;
+                qfTimer.start();
+            }else if(intTime == 1){
+                qfCountLabel.setText("3 2 1");
+                intTime--;
+                qfTimer.start();
+            }else if(intTime == 0 && intPause == 5){
+                qfCountLabel.setText("");
+                if(intPNumber == 2){
+                    ssm.sendText("2_R1_" + strChoiceR1aOPP);
+                }else if(intPNumber == 4){
+                    ssm.sendText("4_R1_" + strChoiceR1bOPP);
+                }else if(intPNumber == 6){
+                    ssm.sendText("6_R1_" + strChoiceR1cOPP);
+                }else if(intPNumber == 8){
+                    ssm.sendText("8_R1_" + strChoiceR1cOPP);
+                }
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 4){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 3){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 2){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 1){
+                intPause--;
+                qfTimer.start();
+            }else if(intTime == 0 & intPause == 0){
+                intTime = 3;
+                intPause = 5;
+                if(intPNumber == 1){
+                    if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
+                        if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
+                            ssm.sendText("ROUND_2_START_ODD");
+                        }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
+                            ssm.sendText("ROUND_2_START_EVEN");
+                        }
+                        qfPanel.setVisible(false);
+                        theFrame.setContentPane(sfPanel);
+                        theFrame.pack();
+                        blnRound2Start = true;
+                        if(intR2Number == 1){
+                            Rp1SFButton.setVisible(true);
+                            Pp1SFButton.setVisible(true);
+                            Cp1SFButton.setVisible(true);
+                            Lp1SFButton.setVisible(true);
+                            Sp1SFButton.setVisible(true);
+                        }
+                    }
+                }
+                if(blnRound2Start == false){
+                    strChoiceR1a = "";
+                    strChoiceR1aOPP = "";
+                    strChoiceR1b = "";
+                    strChoiceR1bOPP = "";
+                    strChoiceR1c = "";
+                    strChoiceR1cOPP = "";
+                    strChoiceR1d = "";
+                    strChoiceR1dOPP = "";
+                    qfTimer.start();
+                }
+            }
         }else if(evt.getSource() == startButton){
             intPNumberTemp = 0;
             if(intPlayerCount % 2 == 0){
@@ -238,6 +339,7 @@ public class RPSGame implements ActionListener{
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
             blnRound1Start = true;
+            qfTimer.start();
             Rp1QFButton.setVisible(true);
             Pp1QFButton.setVisible(true);
             Cp1QFButton.setVisible(true);
@@ -331,6 +433,7 @@ public class RPSGame implements ActionListener{
                     Lp8QFButton.setVisible(true);
                     Sp8QFButton.setVisible(true);
                 }
+                qfTimer.start();
             }else if(strMessage.startsWith("ROUND_2_START_")){
                 qfPanel.setVisible(false);
                 theFrame.setContentPane(sfPanel);
@@ -441,24 +544,6 @@ public class RPSGame implements ActionListener{
                         ssm.sendText("1_R1_LX");
                         intR1MatchesDone++;
                     }
-                    if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
-                        if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
-                            ssm.sendText("ROUND_2_START_ODD");
-                        }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
-                            ssm.sendText("ROUND_2_START_EVEN");
-                        }
-                        qfPanel.setVisible(false);
-                        theFrame.setContentPane(sfPanel);
-                        theFrame.pack();
-                        blnRound2Start = true;
-                        if(intR2Number == 1){
-                            Rp1SFButton.setVisible(true);
-                            Pp1SFButton.setVisible(true);
-                            Cp1SFButton.setVisible(true);
-                            Lp1SFButton.setVisible(true);
-                            Sp1SFButton.setVisible(true);
-                        }
-                    }
                 }
             }else if(strMessage.startsWith("3_R1_")){
                 if(intPNumber == 4 || intPNumber == 1){
@@ -499,24 +584,6 @@ public class RPSGame implements ActionListener{
                         }else if(strOutcomeQfB.equals("L") || strOutcomeQfB.equals("LX")){
                             intR1MatchesDone++;
                             strWinnerR1b = "4";
-                        }
-                        if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
-                            if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
-                                ssm.sendText("ROUND_2_START_ODD");
-                            }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
-                                ssm.sendText("ROUND_2_START_EVEN");
-                            }
-                            qfPanel.setVisible(false);
-                            theFrame.setContentPane(sfPanel);
-                            theFrame.pack();
-                            blnRound2Start = true;
-                            if(intR2Number == 1){
-                                Rp1SFButton.setVisible(true);
-                                Pp1SFButton.setVisible(true);
-                                Cp1SFButton.setVisible(true);
-                                Lp1SFButton.setVisible(true);
-                                Sp1SFButton.setVisible(true);
-                            }
                         }
                     }
                 }
@@ -588,24 +655,6 @@ public class RPSGame implements ActionListener{
                             intR1MatchesDone++;
                             strWinnerR1c = "6";
                         }
-                        if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
-                            if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
-                                ssm.sendText("ROUND_2_START_ODD");
-                            }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
-                                ssm.sendText("ROUND_2_START_EVEN");
-                            }
-                            qfPanel.setVisible(false);
-                            theFrame.setContentPane(sfPanel);
-                            theFrame.pack();
-                            blnRound2Start = true;
-                            if(intR2Number == 1){
-                                Rp1SFButton.setVisible(true);
-                                Pp1SFButton.setVisible(true);
-                                Cp1SFButton.setVisible(true);
-                                Lp1SFButton.setVisible(true);
-                                Sp1SFButton.setVisible(true);
-                            }
-                        }
                     }
                 }
             }else if(strMessage.startsWith("6_R1_")){
@@ -667,24 +716,6 @@ public class RPSGame implements ActionListener{
                         }else if(strOutcomeQfD.equals("L") || strOutcomeQfD.equals("LX")){
                             intR1MatchesDone++;
                             strWinnerR1d = "8";
-                        }
-                        if((intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2) || (intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2)){
-                            if(intPlayerCount % 2 == 1 && intR1MatchesDone == (intPlayerCount - 1) / 2){
-                                ssm.sendText("ROUND_2_START_ODD");
-                            }else if(intPlayerCount % 2 == 0 && intR1MatchesDone == intPlayerCount / 2){
-                                ssm.sendText("ROUND_2_START_EVEN");
-                            }
-                            qfPanel.setVisible(false);
-                            theFrame.setContentPane(sfPanel);
-                            theFrame.pack();
-                            blnRound2Start = true;
-                            if(intR2Number == 1){
-                                Rp1SFButton.setVisible(true);
-                                Pp1SFButton.setVisible(true);
-                                Cp1SFButton.setVisible(true);
-                                Lp1SFButton.setVisible(true);
-                                Sp1SFButton.setVisible(true);
-                            }
                         }
                     }
                 }
@@ -925,7 +956,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea2.append("[P2] chose " + strChoiceR1aOPP + "\n");
             ssm.sendText("[P2] chose " + strChoiceR1aOPP);
-            ssm.sendText("2_R1_" + strChoiceR1aOPP);
         }else if(evt.getSource() == Rp3QFButton || evt.getSource() == Pp3QFButton || evt.getSource() == Cp3QFButton || evt.getSource() == Lp3QFButton || evt.getSource() == Sp3QFButton){
             if(evt.getSource() == Rp3QFButton){
                 strChoiceR1b = "ROCK";
@@ -954,7 +984,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea2.append("[P4] chose " + strChoiceR1bOPP + "\n");
             ssm.sendText("[P4] chose " + strChoiceR1bOPP);
-            ssm.sendText("4_R1_" + strChoiceR1bOPP);
         }else if(evt.getSource() == Rp5QFButton || evt.getSource() == Pp5QFButton || evt.getSource() == Cp5QFButton || evt.getSource() == Lp5QFButton || evt.getSource() == Sp5QFButton){
             if(evt.getSource() == Rp5QFButton){
                 strChoiceR1c = "ROCK";
@@ -983,7 +1012,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea2.append("[P6] chose " + strChoiceR1cOPP + "\n");
             ssm.sendText("[P6] chose " + strChoiceR1cOPP);
-            ssm.sendText("6_R1_" + strChoiceR1cOPP);
         }else if(evt.getSource() == Rp7QFButton || evt.getSource() == Pp7QFButton || evt.getSource() == Cp7QFButton || evt.getSource() == Lp7QFButton || evt.getSource() == Sp7QFButton){
             if(evt.getSource() == Rp7QFButton){
                 strChoiceR1d = "ROCK";
@@ -1012,7 +1040,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea2.append("[P8] chose " + strChoiceR1dOPP + "\n");
             ssm.sendText("[P8] chose " + strChoiceR1dOPP);
-            ssm.sendText("8_R1_" + strChoiceR1dOPP);
         }else if(evt.getSource() == Rp1SFButton || evt.getSource() == Pp1SFButton || evt.getSource() == Cp1SFButton || evt.getSource() == Lp1SFButton || evt.getSource() == Sp1SFButton){
             if(evt.getSource() == Rp1SFButton){
                 strChoiceR2a = "ROCK";
@@ -1111,6 +1138,20 @@ public class RPSGame implements ActionListener{
         tempButton1.setSize(200,100);
         tempButton1.setLocation(900, 300);
         tempButton1.addActionListener(this);
+
+        qfCountTitle.setSize(300, 50);
+        qfCountTitle.setLocation(980, 0);
+        qfCountTitle.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        qfCountTitle.setText("COUNTDOWN");
+        qfCountTitle.setHorizontalAlignment(JLabel.CENTER);
+        qfPanel.add(qfCountTitle);
+
+        qfCountLabel.setSize(300, 50);
+        qfCountLabel.setLocation(980, 40);
+        qfCountLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        qfCountLabel.setText("");
+        qfCountLabel.setHorizontalAlignment(JLabel.CENTER);
+        qfPanel.add(qfCountLabel);
 
         //p1 buttons
         Rp1QFButton.setSize(100,35);
@@ -1361,6 +1402,13 @@ public class RPSGame implements ActionListener{
         tempButton2.setLocation(900, 300);
         tempButton2.addActionListener(this);
 
+        sfCountTitle.setSize(300, 50);
+        sfCountTitle.setLocation(980, 0);
+        sfCountTitle.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        sfCountTitle.setText("COUNTDOWN");
+        sfCountTitle.setHorizontalAlignment(JLabel.CENTER);
+        sfPanel.add(sfCountTitle);
+
         //p1 buttons
         Rp1SFButton.setSize(100,35);
         Rp1SFButton.setLocation(100,270);
@@ -1488,6 +1536,13 @@ public class RPSGame implements ActionListener{
         tempButton3.setSize(200,100);
         tempButton3.setLocation(900, 300);
         tempButton3.addActionListener(this);
+
+        fCountTitle.setSize(300, 50);
+        fCountTitle.setLocation(980, 0);
+        fCountTitle.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        fCountTitle.setText("COUNTDOWN");
+        fCountTitle.setHorizontalAlignment(JLabel.CENTER);
+        fPanel.add(fCountTitle);
 
         //p1 buttons
         Rp1FButton.setSize(100,35);
