@@ -58,6 +58,7 @@ public class RPSGame implements ActionListener{
     boolean blnRound1Start = false;
     boolean blnRound2Start = false;
     boolean blnRound3Start = false;
+    boolean blnGameEnd = false;
 
     String strChoiceR1a = "";
     String strChoiceR1aOPP = "";
@@ -644,10 +645,29 @@ public class RPSGame implements ActionListener{
                     theFrame.setContentPane(wPanel);
                     theFrame.pack();
                     ssm.sendText("WIN_SCREEN_" + strFinalWinner);
+                    blnGameEnd = true;
                 }
             }else if(intTime == 0 && intPause == 0){
                 intTime = 5;
                 intPause = 5;
+                if(blnGameEnd == false){
+                    strChoiceR3 = "";
+                    strChoiceR3OPP = "";
+                    if(intR3Number == 1){
+                        Rp1FButton.setVisible(true);
+                        Pp1FButton.setVisible(true);
+                        Cp1FButton.setVisible(true);
+                        Lp1FButton.setVisible(true);
+                        Sp1FButton.setVisible(true);
+                    }else if(intR3Number == 5){
+                        Rp5FButton.setVisible(true);
+                        Pp5FButton.setVisible(true);
+                        Cp5FButton.setVisible(true);
+                        Lp5FButton.setVisible(true);
+                        Sp5FButton.setVisible(true);
+                    }
+                    fTimer.start();
+                }
             }
         }else if(evt.getSource() == startButton){
             intPNumberTemp = 0;
@@ -834,6 +854,7 @@ public class RPSGame implements ActionListener{
                     strFinalWinner = strMessage.substring(7);
                 }
             }else if(strMessage.startsWith("WIN_SCREEN_")){
+                blnGameEnd = true;
                 strFinalWinner = strMessage.substring(11);
                 winLabel.setText("[P" + strFinalWinner + "]");
                 fPanel.setVisible(false);
