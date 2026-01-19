@@ -720,11 +720,13 @@ public class RPSGame implements ActionListener{
             if(intPlayerCount == 5 || intPlayerCount == 3){
                 blnR1Pass = true;
                 blnR2Pass = true;
-            }else if(intPlayerCount % 2 == 1){
+            }else if(intPlayerCount == 7){
                 blnR1Pass = true;
             }else if(intPlayerCount == 2){
                 blnR2Pass = true;
                 blnR3Pass = true;
+            }else if(intPlayerCount == 4 || intPlayerCount == 6){
+                blnR2Pass = true;
             }
             thePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
