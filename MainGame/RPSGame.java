@@ -1137,25 +1137,30 @@ public class RPSGame implements ActionListener{
                         ssm.sendText("Winner is [P" + strR2NumberOPP + "]");
                         chatArea3.append("Winner is [P" + strR2NumberOPP + "] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("L")){
                         intR3Number = 1;
                         blnWinR2 = true;
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea3.append("Winner is [P" + intPNumber + "] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("T")){
                         ssm.sendText("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " and Player " + intPNumber + " Tied in Round 2a");
                     }else if(strOutcomeSfA.equals("WX")){
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
                         chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("LX")){
                         intR3Number = 1;
                         blnWinR2 = true;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
                         chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2a");
                     }
                 }
             }else if(strMessage.startsWith("3_R2_")){
@@ -1186,25 +1191,30 @@ public class RPSGame implements ActionListener{
                         ssm.sendText("Winner is [P" + strR2NumberOPP + "]");
                         chatArea3.append("Winner is [P" + strR2NumberOPP + "] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("L")){
                         intR3Number = 5;
                         blnWinR2 = true;
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea3.append("Winner is [P" + intPNumber + "] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("T")){
                         ssm.sendText("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " and Player " + intPNumber + " Tied in Round 2b");
                     }else if(strOutcomeSfB.equals("WX")){
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
                         chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("LX")){
                         intR3Number = 5;
                         blnWinR2 = true;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
                         chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2b");
                     }
                 }
             }else if(strMessage.startsWith("7_R2_")){
