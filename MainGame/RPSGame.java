@@ -115,7 +115,7 @@ public class RPSGame implements ActionListener{
     Timer sfTimer = new Timer(1000, this);
     Timer fTimer = new Timer(1000, this);
     // Timer Trackers
-    int intTime = 3;
+    int intTime = 5;
     int intPause = 5;
     // Countdown Titles
     JLabel qfCountTitle = new JLabel();
@@ -256,16 +256,24 @@ public class RPSGame implements ActionListener{
             }
         }else if(evt.getSource() == qfTimer){
             qfTimer.stop();
-            if(intTime == 3){
-                qfCountLabel.setText("3");
+            if(intTime == 5){
+                qfCountLabel.setText("5");
+                intTime--;
+                qfTimer.start();
+            }else if(intTime == 4){
+                qfCountLabel.setText("5 4");
+                intTime--;
+                qfTimer.start();
+            }else if(intTime == 3){
+                qfCountLabel.setText("5 4 3");
                 intTime--;
                 qfTimer.start();
             }else if(intTime == 2){
-                qfCountLabel.setText("3 2");
+                qfCountLabel.setText("5 4 3 2");
                 intTime--;
                 qfTimer.start();
             }else if(intTime == 1){
-                qfCountLabel.setText("3 2 1");
+                qfCountLabel.setText("5 4 3 2 1");
                 intTime--;
                 qfTimer.start();
             }else if(intTime == 0 && intPause == 5){
@@ -365,7 +373,7 @@ public class RPSGame implements ActionListener{
                     }
                 }
             }else if(intTime == 0 & intPause == 0){
-                intTime = 3;
+                intTime = 5;
                 intPause = 5;
                 if(blnRound2Start == false){
                     strChoiceR1a = "";
@@ -431,16 +439,24 @@ public class RPSGame implements ActionListener{
             }
         }else if(evt.getSource() == sfTimer){
             sfTimer.stop();
-            if(intTime == 3){
-                sfCountLabel.setText("3");
+            if(intTime == 5){
+                sfCountLabel.setText("5");
+                intTime--;
+                sfTimer.start();
+            }else if(intTime == 4){
+                sfCountLabel.setText("5 4");
+                intTime--;
+                sfTimer.start();
+            }else if(intTime == 3){
+                sfCountLabel.setText("5 4 3");
                 intTime--;
                 sfTimer.start();
             }else if(intTime == 2){
-                sfCountLabel.setText("3 2");
+                sfCountLabel.setText("5 4 3 2");
                 intTime--;
                 sfTimer.start();
             }else if(intTime == 1){
-                sfCountLabel.setText("3 2 1");
+                sfCountLabel.setText("5 4 3 2 1");
                 intTime--;
                 sfTimer.start();
             }else if(intTime == 0 && intPause == 5){
@@ -527,6 +543,7 @@ public class RPSGame implements ActionListener{
                     theFrame.setContentPane(fPanel);
                     theFrame.pack();
                     blnRound3Start = true;
+                    fTimer.start();
                     if(intR3Number == 1){
                         Rp1FButton.setVisible(true);
                         Pp1FButton.setVisible(true);
@@ -536,7 +553,7 @@ public class RPSGame implements ActionListener{
                     }
                 }
             }else if(intTime == 0 & intPause == 0){
-                intTime = 3;
+                intTime = 5;
                 intPause = 5;
                 if(blnRound3Start == false){
                     strChoiceR2a = "";
@@ -571,17 +588,81 @@ public class RPSGame implements ActionListener{
                     sfTimer.start();
                 }
             }
+        }else if(evt.getSource() == fTimer){
+            fTimer.stop();
+            if(intTime == 5){
+                fCountLabel.setText("5");
+                intTime--;
+                fTimer.start();
+            }else if(intTime == 4){
+                fCountLabel.setText("5 4");
+                intTime--;
+                fTimer.start();
+            }else if(intTime == 3){
+                fCountLabel.setText("5 4 3");
+                intTime--;
+                fTimer.start();
+            }else if(intTime == 2){
+                fCountLabel.setText("5 4 3 2");
+                intTime--;
+                fTimer.start();
+            }else if(intTime == 1){
+                fCountLabel.setText("5 4 3 2 1");
+                intTime--;
+                fTimer.start();
+            }else if(intTime == 0 && intPause == 5){
+                fCountLabel.setText("");
+                if(intR3Number == 5){
+                    ssm.sendText("5_R3_" + strChoiceR3OPP);
+                    Rp5FButton.setVisible(false);
+                    Pp5FButton.setVisible(false);
+                    Cp5FButton.setVisible(false);
+                    Lp5FButton.setVisible(false);
+                    Sp5FButton.setVisible(false);
+                }
+                Rp1FButton.setVisible(false);
+                Pp1FButton.setVisible(false);
+                Cp1FButton.setVisible(false);
+                Lp1FButton.setVisible(false);
+                Sp1FButton.setVisible(false);
+                intPause--;
+            }else if(intTime == 0 && intPause == 4){
+                intPause--;
+                fTimer.start();
+            }else if(intTime == 0 && intPause == 3){
+                intPause--;
+                fTimer.start();
+            }else if(intTime == 0 && intPause == 2){
+                intPause--;
+                fTimer.start();
+            }else if(intTime == 0 && intPause == 1){
+                intPause--;
+                fTimer.start();
+                if(intPNumber == 1 && intR3MatchesDone == 1){
+                    winLabel.setText("[P" + strFinalWinner + "]");
+                    fPanel.setVisible(false);
+                    theFrame.setContentPane(wPanel);
+                    theFrame.pack();
+                    ssm.sendText("WIN_SCREEN_" + strFinalWinner);
+                }
+            }else if(intTime == 0 && intPause == 0){
+                intTime = 5;
+                intPause = 5;
+            }
         }else if(evt.getSource() == startButton){
             intPNumberTemp = 0;
             if(intPlayerCount % 2 == 0){
                 ssm.sendText("GAME_START_EVEN");
             }else{
                 ssm.sendText("GAME_START_ODD");
-                if(intPlayerCount == 7){
-                    intR2MatchesDone = -1;
-                }
             }
             ssm.sendText("PLAYER_COUNT_" + intPlayerCount);
+            if(intPlayerCount == 5 || intPlayerCount == 3){
+                blnR1Pass = true;
+                blnR2Pass = true;
+            }else if(intPlayerCount % 2 == 1){
+                blnR1Pass = true;
+            }
             thePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
@@ -631,25 +712,17 @@ public class RPSGame implements ActionListener{
                     blnR2Pass = true;
                     blnR3Pass = true;
                 }else if(intPlayerCount == 3){
-                    if(intPNumber == 1){
-                        blnR1Pass = true;
-                    }
                     blnR2Pass = true;
                 }else if(intPlayerCount == 4){
                     blnR2Pass = true;
                 }else if(intPlayerCount == 5){
-                    if(intPNumber == 1){
-                        blnR1Pass = true;
-                        blnR2Pass = true;
-                    }
+                    // No Pass except for P1
                 }else if(intPlayerCount == 6){
-                    if(intPNumber == 1 || intPNumber == 2){
+                    if(intPNumber == 2){
                         blnR2Pass = true;
                     }
                 }else if(intPlayerCount == 7){
-                    if(intPNumber == 1){
-                        blnR1Pass = true;
-                    }
+                    // No Pass except for P1
                 }
             }else if(strMessage.startsWith("GAME_START_")){
                 if(strMessage.equals("GAME_START_EVEN")){
@@ -741,6 +814,7 @@ public class RPSGame implements ActionListener{
                 theFrame.setContentPane(fPanel);
                 theFrame.pack();
                 blnRound3Start = true;
+                fTimer.start();
                 if(intR3Number == 1){
                     Rp1FButton.setVisible(true);
                     Pp1FButton.setVisible(true);
@@ -756,12 +830,8 @@ public class RPSGame implements ActionListener{
                 }
             }else if(strMessage.startsWith("WINNER_")){
                 if(intPNumber == 1){
+                    intR3MatchesDone++;
                     strFinalWinner = strMessage.substring(7);
-                    winLabel.setText("[P" + strFinalWinner + "]");
-                    fPanel.setVisible(false);
-                    theFrame.setContentPane(wPanel);
-                    theFrame.pack();
-                    ssm.sendText("WIN_SCREEN_" + strFinalWinner);
                 }
             }else if(strMessage.startsWith("WIN_SCREEN_")){
                 strFinalWinner = strMessage.substring(11);
@@ -844,7 +914,7 @@ public class RPSGame implements ActionListener{
                         ssm.sendText("INTR1MATCHES_INCREASE");
                     }else if(strOutcomeQfB.equals("LX")){
                         if(intPlayerCount >= 3 && intPlayerCount <= 6){
-                        intR2Number = 5;
+                            intR2Number = 5;
                         }else{
                             intR2Number = 3;
                         }
@@ -1001,6 +1071,10 @@ public class RPSGame implements ActionListener{
                 if(intPNumber == 1){
                     intR2MatchesDone++;
                 }
+            }else if(strMessage.equals("INTR3MATCHES_INCREASE")){
+                if(intPNumber == 1){
+                    intR3MatchesDone++;
+                }
             }else if(strMessage.startsWith("1_R2_")){
                 if(intR2Number == 3){
                     strOutcomeSfA = strMessage.substring(8);
@@ -1109,7 +1183,7 @@ public class RPSGame implements ActionListener{
                     }else if(strOutcomeF.equals("L")){
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea4.append("Winner is [P" + intPNumber + "] \n");
-                        ssm.sendText("WINNER_="  + intPNumber);
+                        ssm.sendText("WINNER_"  + intPNumber);
                     }else if(strOutcomeF.equals("T")){
                         ssm.sendText("Tie between [P" +strR3NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea4.append("Tie between [P" +strR3NumberOPP + "] and [P" + intPNumber + "] \n");
@@ -1364,7 +1438,6 @@ public class RPSGame implements ActionListener{
             }
             chatArea4.append("[P" + intPNumber + "] chose " + strChoiceR3OPP + "\n");
             ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR3OPP);
-            ssm.sendText("5_R3_" + strChoiceR3OPP);
         }
     }
     // Constructor
@@ -1854,7 +1927,7 @@ public class RPSGame implements ActionListener{
         wPanel.setPreferredSize(new Dimension(1280,720));
         wPanel.setLayout(null);
 
-        winLabel.setSize(200, 50);
+        winLabel.setSize(200, 100);
         winLabel.setFont(new Font("SansSerif", Font.PLAIN, 50));
         winLabel.setText("");
         winLabel.setLocation(390, 300);
