@@ -11,6 +11,7 @@ public class RPSGame implements ActionListener{
     JButton serverButton = new JButton("Host Game");
     JButton clientButton = new JButton("Join Game");
     JButton startButton = new JButton("Start Game");
+    JButton helpButton = new JButton("Help");
     JTextField ipField = new JTextField();
 
     // Home Screen Chat Components
@@ -100,6 +101,20 @@ public class RPSGame implements ActionListener{
     String strFinalWinner = "";
 
     // Panels
+
+    //Help Panels 
+    homeHelp homeHelpPanel = new homeHelp();
+    qfHelp qfHelpPanel = new qfHelp();
+    sfHelp sfHelpPanel = new sfHelp();
+    fHelp fHelpPanel = new fHelp();
+    Rules rulesPanel = new Rules();
+    //Help panel buttons 
+    JButton QFHelpButton = new JButton("QF Help");
+    JButton SFHelpButton = new JButton("SF Help");
+    JButton FHelpButton = new JButton("F Help");
+    JButton RulesButton = new JButton("Rules");
+    JButton backHomeButton = new JButton("Back Home");
+
     // Game Panels
     QuarterPanel qfPanel = new QuarterPanel();
     SemiPanel sfPanel = new SemiPanel();
@@ -1344,6 +1359,7 @@ public class RPSGame implements ActionListener{
                     chatArea5.append(strMessage + "\n");
                 }
             }
+        /** 
         }else if(evt.getSource() == tempButton1){
             qfPanel.setVisible(false);
             sfPanel.setVisible(true);
@@ -1359,6 +1375,7 @@ public class RPSGame implements ActionListener{
             qfPanel.setVisible(true);
             theFrame.setContentPane(qfPanel);
             theFrame.pack();
+        **/
         }else if(evt.getSource() == Rp1QFButton || evt.getSource() == Pp1QFButton || evt.getSource() == Cp1QFButton || evt.getSource() == Lp1QFButton || evt.getSource() == Sp1QFButton){
             if(evt.getSource() == Rp1QFButton){
                 strChoiceR1a = "ROCK";
@@ -1541,17 +1558,100 @@ public class RPSGame implements ActionListener{
                 strChoiceR3OPP = "SPOCK";
             }
             chatArea4.append("YOU chose " + strChoiceR3OPP + "\n");
+        }else if(evt.getSource() == helpButton){
+            thePanel.setVisible(false);
+            homeHelpPanel.setVisible(true);
+            theFrame.setContentPane(homeHelpPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == QFHelpButton){
+            homeHelpPanel.setVisible(false);
+            qfHelpPanel.setVisible(true);
+            theFrame.setContentPane(qfHelpPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == SFHelpButton){
+            qfHelpPanel.setVisible(false);
+            sfHelpPanel.setVisible(true);
+            theFrame.setContentPane(sfHelpPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == FHelpButton){
+            sfHelpPanel.setVisible(false);
+            fHelpPanel.setVisible(true);
+            theFrame.setContentPane(fHelpPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == RulesButton){
+            fHelpPanel.setVisible(false);
+            rulesPanel.setVisible(true);
+            theFrame.setContentPane(rulesPanel);
+            theFrame.pack();
+        }else if(evt.getSource() == backHomeButton){
+            rulesPanel.setVisible(false);
+            thePanel.setVisible(true);
+            theFrame.setContentPane(thePanel);
+            theFrame.pack();
         }
     }
     // Constructor
     public RPSGame(){
+
+        // Help Screen Components
+
+        //home help
+        homeHelpPanel.setPreferredSize(new Dimension(1280, 720));
+        homeHelpPanel.setLayout(null);
+
+        QFHelpButton.setSize(100,35);
+        QFHelpButton.setLocation(870,25);
+        QFHelpButton.setVisible(true);
+        homeHelpPanel.add(QFHelpButton);
+        QFHelpButton.addActionListener(this);
+
+        //quarterfinals help
+        qfHelpPanel.setPreferredSize(new Dimension(1280, 720));
+        qfHelpPanel.setLayout(null);
+
+        SFHelpButton.setSize(100,35);
+        SFHelpButton.setLocation(870,25);
+        SFHelpButton.setVisible(true);
+        qfHelpPanel.add(SFHelpButton);
+        SFHelpButton.addActionListener(this);
+        //semifinas help
+        sfHelpPanel.setPreferredSize(new Dimension(1280, 720));
+        sfHelpPanel.setLayout(null);
+
+        FHelpButton.setSize(100,35);
+        FHelpButton.setLocation(870,25);
+        FHelpButton.setVisible(true);
+        sfHelpPanel.add(FHelpButton);
+        FHelpButton.addActionListener(this);
+        //finals help
+        fHelpPanel.setPreferredSize(new Dimension(1280, 720));
+        fHelpPanel.setLayout(null);
+
+        RulesButton.setSize(100,35);
+        RulesButton.setLocation(870,25);
+        RulesButton.setVisible(true);
+        fHelpPanel.add(RulesButton);
+        RulesButton.addActionListener(this);
+
+        //rules 
+        rulesPanel.setPreferredSize(new Dimension(1280, 720));
+        rulesPanel.setLayout(null);
+
+        backHomeButton.setSize(100,35);
+        backHomeButton.setLocation(50,650);
+        backHomeButton.setVisible(true);
+        rulesPanel.add(backHomeButton);
+        backHomeButton.addActionListener(this);
+
         // Quarter Final Screen Components
         qfPanel.setPreferredSize(new Dimension(1280, 720));
         qfPanel.setLayout(null);
+        /** 
         qfPanel.add(tempButton1);
         tempButton1.setSize(200,100);
         tempButton1.setLocation(900, 300);
         tempButton1.addActionListener(this);
+        **/
 
         qfCountTitle.setSize(300, 50);
         qfCountTitle.setLocation(980, 0);
@@ -1811,10 +1911,12 @@ public class RPSGame implements ActionListener{
         // Semi Final Screen Components
         sfPanel.setPreferredSize(new Dimension(1280, 720));
         sfPanel.setLayout(null);
+        /**
         sfPanel.add(tempButton2);
         tempButton2.setSize(200,100);
         tempButton2.setLocation(900, 300);
         tempButton2.addActionListener(this);
+        **/
 
         sfCountTitle.setSize(300, 50);
         sfCountTitle.setLocation(980, 0);
@@ -1954,11 +2056,12 @@ public class RPSGame implements ActionListener{
         fPanel.setPreferredSize(new Dimension(1280, 720));
         fPanel.setLayout(null);
 
+        /** 
         tempButton3.setSize(200,100);
         tempButton3.setLocation(900, 300);
         tempButton3.addActionListener(this);
         fPanel.add(tempButton3);
-
+        **/
         fCountTitle.setSize(300, 50);
         fCountTitle.setLocation(980, 0);
         fCountTitle.setFont(new Font("SansSerif", Font.PLAIN, 30));
@@ -2068,6 +2171,12 @@ public class RPSGame implements ActionListener{
         startButton.setVisible(false);
         thePanel.add(startButton);
         startButton.addActionListener(this);
+
+        helpButton.setSize(100, 100);
+        helpButton.setLocation(200, 520);
+        helpButton.setVisible(true);
+        thePanel.add(helpButton);
+        helpButton.addActionListener(this);
 
         ipField.setSize(100, 100);
         ipField.setLocation(200, 620);
