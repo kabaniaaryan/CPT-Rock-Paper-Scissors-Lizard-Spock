@@ -717,16 +717,20 @@ public class RPSGame implements ActionListener{
                 ssm.sendText("GAME_START_ODD");
             }
             ssm.sendText("PLAYER_COUNT_" + intPlayerCount);
-            if(intPlayerCount == 5 || intPlayerCount == 3){
+            if(intPlayerCount == 1){
                 blnR1Pass = true;
                 blnR2Pass = true;
-            }else if(intPlayerCount == 7){
-                blnR1Pass = true;
+                blnR3Pass = true;
             }else if(intPlayerCount == 2){
                 blnR2Pass = true;
                 blnR3Pass = true;
+            }else if(intPlayerCount == 3 || intPlayerCount == 5){
+                blnR1Pass = true;
+                blnR2Pass = true;
             }else if(intPlayerCount == 4 || intPlayerCount == 6){
                 blnR2Pass = true;
+            }else if(intPlayerCount == 7){
+                blnR1Pass = true;
             }
             thePanel.setVisible(false);
             theFrame.setContentPane(qfPanel);
@@ -1367,8 +1371,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp1QFButton){
                 strChoiceR1a = "SPOCK";
             }
-            chatArea2.append("[P1] chose " + strChoiceR1a + "\n");
-            ssm.sendText("[P1] chose " + strChoiceR1a);
+            chatArea2.append("YOU chose " + strChoiceR1a + "\n");
         }else if(evt.getSource() == Rp2QFButton || evt.getSource() == Pp2QFButton || evt.getSource() == Cp2QFButton || evt.getSource() == Lp2QFButton || evt.getSource() == Sp2QFButton){
             if(evt.getSource() == Rp2QFButton){
                 strChoiceR1aOPP = "ROCK";
@@ -1381,8 +1384,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp2QFButton){
                 strChoiceR1aOPP = "SPOCK";
             }
-            chatArea2.append("[P2] chose " + strChoiceR1aOPP + "\n");
-            ssm.sendText("[P2] chose " + strChoiceR1aOPP);
+            chatArea2.append("YOU chose " + strChoiceR1aOPP + "\n");
         }else if(evt.getSource() == Rp3QFButton || evt.getSource() == Pp3QFButton || evt.getSource() == Cp3QFButton || evt.getSource() == Lp3QFButton || evt.getSource() == Sp3QFButton){
             if(evt.getSource() == Rp3QFButton){
                 strChoiceR1b = "ROCK";
@@ -1395,8 +1397,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp3QFButton){
                 strChoiceR1b = "SPOCK";
             }
-            chatArea2.append("[P3] chose " + strChoiceR1b + "\n");
-            ssm.sendText("[P3] chose " + strChoiceR1b);
+            chatArea2.append("YOU chose " + strChoiceR1b + "\n");
         }else if(evt.getSource() == Rp4QFButton || evt.getSource() == Pp4QFButton || evt.getSource() == Cp4QFButton || evt.getSource() == Lp4QFButton || evt.getSource() == Sp4QFButton){
             if(evt.getSource() == Rp4QFButton){
                 strChoiceR1bOPP = "ROCK";
@@ -1409,8 +1410,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp4QFButton){
                 strChoiceR1bOPP = "SPOCK";
             }
-            chatArea2.append("[P4] chose " + strChoiceR1bOPP + "\n");
-            ssm.sendText("[P4] chose " + strChoiceR1bOPP);
+            chatArea2.append("YOU chose " + strChoiceR1bOPP + "\n");
         }else if(evt.getSource() == Rp5QFButton || evt.getSource() == Pp5QFButton || evt.getSource() == Cp5QFButton || evt.getSource() == Lp5QFButton || evt.getSource() == Sp5QFButton){
             if(evt.getSource() == Rp5QFButton){
                 strChoiceR1c = "ROCK";
@@ -1423,8 +1423,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp5QFButton){
                 strChoiceR1c = "SPOCK";
             }
-            chatArea2.append("[P5] chose " + strChoiceR1c + "\n");
-            ssm.sendText("[P5] chose " + strChoiceR1c);
+            chatArea2.append("YOU chose " + strChoiceR1c + "\n");
         }else if(evt.getSource() == Rp6QFButton || evt.getSource() == Pp6QFButton || evt.getSource() == Cp6QFButton || evt.getSource() == Lp6QFButton || evt.getSource() == Sp6QFButton){
             if(evt.getSource() == Rp6QFButton){
                 strChoiceR1cOPP = "ROCK";
@@ -1437,8 +1436,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp6QFButton){
                 strChoiceR1cOPP = "SPOCK";
             }
-            chatArea2.append("[P6] chose " + strChoiceR1cOPP + "\n");
-            ssm.sendText("[P6] chose " + strChoiceR1cOPP);
+            chatArea2.append("YOU chose " + strChoiceR1cOPP + "\n");
         }else if(evt.getSource() == Rp7QFButton || evt.getSource() == Pp7QFButton || evt.getSource() == Cp7QFButton || evt.getSource() == Lp7QFButton || evt.getSource() == Sp7QFButton){
             if(evt.getSource() == Rp7QFButton){
                 strChoiceR1d = "ROCK";
@@ -1451,8 +1449,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp7QFButton){
                 strChoiceR1d = "SPOCK";
             }
-            chatArea2.append("[P7] chose " + strChoiceR1d + "\n");
-            ssm.sendText("[P7] chose " + strChoiceR1d);
+            chatArea2.append("YOU chose " + strChoiceR1d + "\n");
         }else if(evt.getSource() == Rp8QFButton || evt.getSource() == Pp8QFButton || evt.getSource() == Cp8QFButton || evt.getSource() == Lp8QFButton || evt.getSource() == Sp8QFButton){
             if(evt.getSource() == Rp8QFButton){
                 strChoiceR1dOPP = "ROCK";
@@ -1465,8 +1462,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp8QFButton){
                 strChoiceR1dOPP = "SPOCK";
             }
-            chatArea2.append("[P8] chose " + strChoiceR1dOPP + "\n");
-            ssm.sendText("[P8] chose " + strChoiceR1dOPP);
+            chatArea2.append("YOU chose " + strChoiceR1dOPP + "\n");
         }else if(evt.getSource() == Rp1SFButton || evt.getSource() == Pp1SFButton || evt.getSource() == Cp1SFButton || evt.getSource() == Lp1SFButton || evt.getSource() == Sp1SFButton){
             if(evt.getSource() == Rp1SFButton){
                 strChoiceR2a = "ROCK";
@@ -1479,8 +1475,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp1SFButton){
                 strChoiceR2a = "SPOCK";
             }
-            chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2a + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2a);
+            chatArea3.append("YOU chose " + strChoiceR2a + "\n");
         }else if(evt.getSource() == Rp3SFButton || evt.getSource() == Pp3SFButton || evt.getSource() == Cp3SFButton || evt.getSource() == Lp3SFButton || evt.getSource() == Sp3SFButton){
             if(evt.getSource() == Rp3SFButton){
                 strChoiceR2aOPP = "ROCK";
@@ -1493,8 +1488,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp3SFButton){
                 strChoiceR2aOPP = "SPOCK";
             }
-            chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2aOPP + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2aOPP);
+            chatArea3.append("YOU chose " + strChoiceR2aOPP + "\n");
         }else if(evt.getSource() == Rp5SFButton || evt.getSource() == Pp5SFButton || evt.getSource() == Cp5SFButton || evt.getSource() == Lp5SFButton || evt.getSource() == Sp5SFButton){
             if(evt.getSource() == Rp5SFButton){
                 strChoiceR2b = "ROCK";
@@ -1507,8 +1501,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp5SFButton){
                 strChoiceR2b = "SPOCK";
             }
-            chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2b + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2b);
+            chatArea3.append("YOU chose " + strChoiceR2b + "\n");
         }else if(evt.getSource() == Rp7SFButton || evt.getSource() == Pp7SFButton || evt.getSource() == Cp7SFButton || evt.getSource() == Lp7SFButton || evt.getSource() == Sp7SFButton){
             if(evt.getSource() == Rp7SFButton){
                 strChoiceR2bOPP = "ROCK";
@@ -1521,8 +1514,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp7SFButton){
                 strChoiceR2bOPP = "SPOCK";
             }
-            chatArea3.append("[P" + intPNumber + "] chose " + strChoiceR2bOPP + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR2bOPP);
+            chatArea3.append("YOU chose " + strChoiceR2bOPP + "\n");
         }else if(evt.getSource() == Rp1FButton || evt.getSource() == Pp1FButton || evt.getSource() == Cp1FButton || evt.getSource() == Lp1FButton || evt.getSource() == Sp1FButton){
             if(evt.getSource() == Rp1FButton){
                 strChoiceR3 = "ROCK";
@@ -1535,8 +1527,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp1FButton){
                 strChoiceR3 = "SPOCK";
             }
-            chatArea4.append("[P" + intPNumber + "] chose " + strChoiceR3 + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR3);
+            chatArea4.append("YOU chose " + strChoiceR3 + "\n");
         }else if(evt.getSource() == Rp5FButton || evt.getSource() == Pp5FButton || evt.getSource() == Cp5FButton || evt.getSource() == Lp5FButton || evt.getSource() == Sp5FButton){
             if(evt.getSource() == Rp5FButton){
                 strChoiceR3OPP = "ROCK";
@@ -1549,8 +1540,7 @@ public class RPSGame implements ActionListener{
             }else if(evt.getSource() == Sp5FButton){
                 strChoiceR3OPP = "SPOCK";
             }
-            chatArea4.append("[P" + intPNumber + "] chose " + strChoiceR3OPP + "\n");
-            ssm.sendText("[P" + intPNumber + "] chose " + strChoiceR3OPP);
+            chatArea4.append("YOU chose " + strChoiceR3OPP + "\n");
         }
     }
     // Constructor
