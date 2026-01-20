@@ -1,6 +1,3 @@
-package MainGame;
-
-
 public class winningMethods{
     public static String isWinner(String playerChoice, String opponentChoice){
         if(playerChoice.equals("") && opponentChoice.equals("")){

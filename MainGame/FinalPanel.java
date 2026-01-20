@@ -1,5 +1,3 @@
-package MainGame;
-
 import java.io.IOException;
 import java.io.InputStream;
 import javax.swing.JPanel;

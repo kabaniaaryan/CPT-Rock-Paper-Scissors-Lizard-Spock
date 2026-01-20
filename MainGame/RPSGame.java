@@ -3,12 +3,33 @@
 // January 21, 2026
 // Version 5.3
 
-package MainGame;
-
 // Importing Libraries
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+
+/**
+ * RPSGame represents a multiplayer Rock Paper Scissors Lizard Spock game
+ * played in a tournament format.
+ *
+ * <p>The game supports up to 8 players connected over a network using
+ * SuperSocketMaster. Players progress through Quarter Finals, Semi Finals,
+ * and Finals until a winner is determined.</p>
+ *
+ * <p>This class controls:</p>
+ * <ul>
+ *   <li>Game flow and round transitions</li>
+ *   <li>Player input and button interactions</li>
+ *   <li>Timers and countdowns</li>
+ *   <li>Chat communication between players</li>
+ * </ul>
+ *
+ * @author Aidan Brown
+ * @author Aaryan Kabani
+ * @author Carter Lee
+ * @version 5.3
+ * @since January 21, 2026
+ */
 
 public class RPSGame implements ActionListener{
     // Properties
@@ -254,6 +275,22 @@ public class RPSGame implements ActionListener{
     JButton tempButton3 = new JButton("to QF");
 
     // Methods
+
+    /**
+    * Handles all button presses, timer events, and network messages
+    * throughout the game.
+    *
+    * <p>This method is responsible for:</p>
+    * <ul>
+    *   <li>Starting or joining a game</li>
+    *   <li>Processing player choices</li>
+    *   <li>Managing round timers and countdowns</li>
+    *   <li>Sending and receiving network messages</li>
+    *   <li>Updating the user interface</li>
+    * </ul>
+    *
+    * @param evt the ActionEvent triggered by a button, timer, or socket event
+    */
     public void actionPerformed(ActionEvent evt){
         if(evt.getSource() == serverButton){
             // If the server button is pressed
@@ -1681,6 +1718,15 @@ public class RPSGame implements ActionListener{
         }
     }
     // Constructor
+
+    /**
+     * Constructs a new RPSGame object and initializes the game.
+     *
+     * <p>This constructor sets up the main game window, panels, buttons,
+     * timers, and event listeners required to run the multiplayer
+     * Rock Paper Scissors Lizard Spock tournament.</p>
+     */
+
     public RPSGame(){
 
         // Help Screen Components
@@ -2309,7 +2355,13 @@ public class RPSGame implements ActionListener{
         wPanel.add(theScroll5);
     }
 
+
     // Main Method
+    /**
+     * Launches the Rock Paper Scissors Lizard Spock game.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args){
         new RPSGame();
     }
