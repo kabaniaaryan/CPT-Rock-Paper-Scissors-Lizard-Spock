@@ -4,7 +4,7 @@ package MainGame;
 public class winningMethods{
     public static String isWinner(String playerChoice, String opponentChoice){
         if(playerChoice.equals("") && opponentChoice.equals("")){
-            return "N";
+            return "T";
         }else if(!playerChoice.equals("") && opponentChoice.equals("")){
             return "WX";
         }else if(playerChoice.equals("") && !opponentChoice.equals("")){
