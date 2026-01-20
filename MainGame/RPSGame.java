@@ -92,6 +92,13 @@ public class RPSGame implements ActionListener{
     int intR2MatchesDone = 0;
     int intR3MatchesDone = 0;
 
+    int intR2aScore = 0;
+    int intR2aOPPScore = 0;
+    int intR2bScore = 0;
+    int intR2bOPPScore = 0;
+    int intR3Score = 0;
+    int intR3OPPScore = 0;
+
     String strWinnerR1a = "";
     String strWinnerR1b = "";
     String strWinnerR1c = "";
