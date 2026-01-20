@@ -524,24 +524,28 @@ public class RPSGame implements ActionListener{
                 if(blnR2Pass == true && (intR2Number == 1 || intR2Number == 5) && blnWinR2 == false){
                     if(intPNumber == 1){
                         intR3Number = 1;
+                        blnWinR2 = true;
                         ssm.sendText("Winner is [P1]");
                         chatArea3.append("Winner is [P1] \n");
                         intR2MatchesDone++;
                         trackingWins.Outcome("Player 1 Won Round 2a");
                     }else if(intPNumber == 2){
                         intR3Number = 1;
+                        blnWinR2 = true;
                         ssm.sendText("Winner is [P2]");
                         chatArea3.append("Winner is [P2] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                         trackingWins.Outcome("Player 2 Won Round 2a");
                     }else if(intPNumber == 3){
                         intR3Number = 5;
+                        blnWinR2 = true;
                         ssm.sendText("Winner is [P3]");
                         chatArea3.append("Winner is [P3] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
                         trackingWins.Outcome("Player 3 Won Round 2b");
                     }else if(intPNumber == 4){
                         intR3Number = 5;
+                        blnWinR2 = true;
                         ssm.sendText("Winner is [P4]");
                         chatArea3.append("Winner is [P4] \n");
                         ssm.sendText("INTR2MATCHES_INCREASE");
@@ -563,7 +567,7 @@ public class RPSGame implements ActionListener{
                 intPause--;
                 sfTimer.start();
                 if(intPNumber == 1){
-                    if((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2) || (intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone + 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone) || (intPlayerCount == 2)){
+                    if((blnR2Pass == false && ((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone / 2))) || (blnR2Pass == true && ((intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone + 1) / 2) || (intR1MatchesDone % 2 == 0 && intR2MatchesDone == intR1MatchesDone))) || (intPlayerCount == 2)){
                         if((blnR2Pass == false)){
                             if(intR1MatchesDone % 2 == 1 && intR2MatchesDone == (intR1MatchesDone - 1) / 2){
                                 ssm.sendText("ROUND_3_START_ODD");
@@ -1199,30 +1203,31 @@ public class RPSGame implements ActionListener{
                     strOutcomeSfA = strMessage.substring(8);
                     String strR2NumberOPP = strMessage.substring(6,7);
                     if(strOutcomeSfA.equals("W")){
+                        intR2aScore++;
                         ssm.sendText("Winner is [P" + strR2NumberOPP + "]");
                         chatArea3.append("Winner is [P" + strR2NumberOPP + "] \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("L")){
-                        intR3Number = 1;
-                        blnWinR2 = true;
+                        intR2aOPPScore++;
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea3.append("Winner is [P" + intPNumber + "] \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("T")){
                         ssm.sendText("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
                     }else if(strOutcomeSfA.equals("WX")){
+                        intR2aScore++;
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
                         chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2a");
                     }else if(strOutcomeSfA.equals("LX")){
-                        intR3Number = 1;
-                        blnWinR2 = true;
+                        intR2aOPPScore++;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
                         chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
+                    }
+                    if(intR2aScore == 2){
+                        ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2a");
+                    }else if(intR2aOPPScore == 2){
+                        intR3Number = 1;
+                        blnWinR2 = true;
                         ssm.sendText("INTR2MATCHES_INCREASE");
                         trackingWins.Outcome("Player " + intPNumber + " Won Round 2a");
                     }
@@ -1232,19 +1237,21 @@ public class RPSGame implements ActionListener{
                     strChoiceR2aOPP = strMessage.substring(5);
                     strOutcomeSfA = winningMethods.isWinner(strChoiceR2a, strChoiceR2aOPP);
                     if(strOutcomeSfA.equals("W")){
-                        intR3Number = 1;
-                        blnWinR2 = true;
+                        intR2aScore++;
                         ssm.sendText("1_R2_-" + intPNumber + "-W");
                     }else if(strOutcomeSfA.equals("L")){
                         ssm.sendText("1_R2_-" + intPNumber + "-L");
                     }else if(strOutcomeSfA.equals("T")){
                         ssm.sendText("1_R2_-" + intPNumber + "-T");
                     }else if(strOutcomeSfA.equals("WX")){
-                        intR3Number = 1;
-                        blnWinR2 = true;
+                        intR2aScore++;
                         ssm.sendText("1_R2_-" + intPNumber + "-WX");
                     }else if(strOutcomeSfA.equals("LX")){
                         ssm.sendText("1_R2_-" + intPNumber + "-LX");
+                    }
+                    if(intR2aScore == 2){
+                        intR3Number = 1;
+                        blnWinR2 = true;
                     }
                 }
             }else if(strMessage.startsWith("5_R2_")){
@@ -1252,30 +1259,31 @@ public class RPSGame implements ActionListener{
                     strOutcomeSfB = strMessage.substring(8);
                     String strR2NumberOPP = strMessage.substring(6,7);
                     if(strOutcomeSfB.equals("W")){
+                        intR2bScore++;
                         ssm.sendText("Winner is [P" + strR2NumberOPP + "]");
                         chatArea3.append("Winner is [P" + strR2NumberOPP + "] \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("L")){
-                        intR3Number = 5;
-                        blnWinR2 = true;
+                        intR2bOPPScore++;
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea3.append("Winner is [P" + intPNumber + "] \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + intPNumber + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("T")){
                         ssm.sendText("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea3.append("Tie between [P" + strR2NumberOPP + "] and [P" + intPNumber + "] \n");
                     }else if(strOutcomeSfB.equals("WX")){
+                        intR2bScore++;
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default");
                         chatArea3.append("[P" + intPNumber + "] did not play, [P" + strR2NumberOPP + "] wins by default \n");
-                        ssm.sendText("INTR2MATCHES_INCREASE");
-                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2b");
                     }else if(strOutcomeSfB.equals("LX")){
-                        intR3Number = 5;
-                        blnWinR2 = true;
+                        intR2bOPPScore++;
                         ssm.sendText("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
                         chatArea3.append("[P" + strR2NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
+                    }
+                    if(intR2bScore == 2){
+                        ssm.sendText("INTR2MATCHES_INCREASE");
+                        trackingWins.Outcome("Player " + strR2NumberOPP + " Won Round 2b");
+                    }else if(intR2bOPPScore == 2){
+                        intR3Number = 5;
+                        blnWinR2 = true;
                         ssm.sendText("INTR2MATCHES_INCREASE");
                         trackingWins.Outcome("Player " + intPNumber + " Won Round 2b");
                     }
@@ -1285,19 +1293,21 @@ public class RPSGame implements ActionListener{
                     strChoiceR2bOPP = strMessage.substring(5);
                     strOutcomeSfB = winningMethods.isWinner(strChoiceR2b, strChoiceR2bOPP);
                     if(strOutcomeSfB.equals("W")){
-                        intR3Number = 5;
-                        blnWinR2 = true;
+                        intR2bScore++;
                         ssm.sendText("5_R2_-" + intPNumber + "-W");
                     }else if(strOutcomeSfB.equals("L")){
                         ssm.sendText("5_R2_-" + intPNumber + "-L");
                     }else if(strOutcomeSfB.equals("T")){
                         ssm.sendText("5_R2_-" + intPNumber + "-T");
                     }else if(strOutcomeSfB.equals("WX")){
-                        intR3Number = 5;
-                        blnWinR2 = true;
+                        intR2bScore++;
                         ssm.sendText("5_R2_-" + intPNumber + "-WX");
                     }else if(strOutcomeSfB.equals("LX")){
                         ssm.sendText("5_R2_-" + intPNumber + "-LX");
+                    }
+                    if(intR2bScore == 2){
+                        intR3Number = 5;
+                        blnWinR2 = true;
                     }
                 }
             }else if(strMessage.startsWith("1_R3_")){
@@ -1305,30 +1315,31 @@ public class RPSGame implements ActionListener{
                     strOutcomeF = strMessage.substring(8);
                     String strR3NumberOPP = strMessage.substring(6,7);
                     if(strOutcomeF.equals("W")){
-                        blnGameEnd = true;
                         ssm.sendText("Winner is [P" + strR3NumberOPP + "]");
                         chatArea4.append("Winner is [P" + strR3NumberOPP + "] \n");
-                        ssm.sendText("WINNER_" + strR3NumberOPP);
-                        trackingWins.Outcome("Player " + strR3NumberOPP + " Won Round 3");
+                        intR3Score++;
                     }else if(strOutcomeF.equals("L")){
-                        blnGameEnd = true;
                         ssm.sendText("Winner is [P" + intPNumber + "]");
                         chatArea4.append("Winner is [P" + intPNumber + "] \n");
-                        ssm.sendText("WINNER_"  + intPNumber);
-                        trackingWins.Outcome("Player " + intPNumber + " Won Round 3");
+                        intR3OPPScore++;
                     }else if(strOutcomeF.equals("T")){
                         ssm.sendText("Tie between [P" +strR3NumberOPP + "] and [P" + intPNumber + "]");
                         chatArea4.append("Tie between [P" +strR3NumberOPP + "] and [P" + intPNumber + "] \n");
                     }else if(strOutcomeF.equals("WX")){
-                        blnGameEnd = true;
                         ssm.sendText("[P" + intPNumber + "] did not play, [P" + strR3NumberOPP + "] wins by default");
                         chatArea4.append("[P" + intPNumber + "] did not play, [P" + strR3NumberOPP + "] wins by default \n");
-                        ssm.sendText("WINNER_" + strR3NumberOPP);
-                        trackingWins.Outcome("Player " + strR3NumberOPP + " Won Round 3");
+                        intR3Score++;
                     }else if(strOutcomeF.equals("LX")){
-                        blnGameEnd = true;
                         ssm.sendText("[P" + strR3NumberOPP + "] did not play, [P" + intPNumber + "] wins by default");
                         chatArea4.append("[P" + strR3NumberOPP + "] did not play, [P" + intPNumber + "] wins by default \n");
+                        intR3OPPScore++;
+                    }
+                    if(intR3Score == 3){
+                        blnGameEnd = true;
+                        ssm.sendText("WINNER_" + strR3NumberOPP);
+                        trackingWins.Outcome("Player " + strR3NumberOPP + " Won Round 3");
+                    }else if(intR3OPPScore == 3){
+                        blnGameEnd = true;
                         ssm.sendText("WINNER_"  + intPNumber);
                         trackingWins.Outcome("Player " + intPNumber + " Won Round 3");
                     }
@@ -1338,19 +1349,22 @@ public class RPSGame implements ActionListener{
                     strChoiceR3OPP = strMessage.substring(5);
                     strOutcomeF = winningMethods.isWinner(strChoiceR3, strChoiceR3OPP);
                     if(strOutcomeF.equals("W")){
-                        blnGameEnd = true;
                         ssm.sendText("1_R3_-" + intPNumber + "-W");
+                        intR3Score++;
                     }else if(strOutcomeF.equals("L")){
-                        blnGameEnd = true;
                         ssm.sendText("1_R3_-" + intPNumber + "-L");
+                        intR3OPPScore++;
                     }else if(strOutcomeF.equals("T")){
                         ssm.sendText("1_R3_-" + intPNumber + "-T");
                     }else if(strOutcomeF.equals("WX")){
-                        blnGameEnd = true;
                         ssm.sendText("1_R3_-" + intPNumber + "-WX");
+                        intR3Score++;
                     }else if(strOutcomeF.equals("LX")){
-                        blnGameEnd = true;
                         ssm.sendText("1_R3_-" + intPNumber + "-LX");
+                        intR3OPPScore++;
+                    }
+                    if(intR3Score == 3 || intR3OPPScore == 3){
+                        blnGameEnd = true;
                     }
                 }
             }else{
