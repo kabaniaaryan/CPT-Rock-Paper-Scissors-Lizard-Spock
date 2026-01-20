@@ -801,13 +801,15 @@ public class RPSGame implements ActionListener{
                 if(blnIsHost == true){
                     intPNumberTemp++;
                     intPlayerCount++;
-                    ssm.sendText(intPNumberTemp+"");
+                    ssm.sendText("NUMBER_" + intPNumberTemp);
                 }else{
                     blnLastPlayer = false;
                 }
-            }else if(blnNAssigned == false){
-                intPNumber = Integer.parseInt(strMessage);
-                blnNAssigned = true;
+            }else if(strMessage.startsWith("NUMBER_")){
+                if(blnNAssigned == false){
+                    intPNumber = Integer.parseInt(strMessage.substring(7));
+                    blnNAssigned = true;
+                }
             }else if(strMessage.startsWith("PLAYER_COUNT_")){
                 intPlayerCount = Integer.parseInt(strMessage.substring(13));
                 if(intPlayerCount == 2){
